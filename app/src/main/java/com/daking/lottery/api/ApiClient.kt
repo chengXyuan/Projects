@@ -1,10 +1,8 @@
 package com.daking.lottery.api
 
-import android.content.Context
 import com.daking.lottery.BuildConfig
 import com.daking.lottery.app.App
 import com.daking.lottery.util.Utils
-import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -16,35 +14,28 @@ import java.util.concurrent.TimeUnit
 
 class ApiClient private constructor() {
 
-    private lateinit var mRetrofit: Retrofit
-
-    init {
-        createRetrofit(App.instance)
-    }
-
     companion object {
         const val BASE_URL = "http://182.16.115.114/userBetting/"
         const val TIMEOUT = 20L
         val instance = Holder.Instance
     }
 
+    private var mRetrofit: Retrofit
+
     private object Holder {
         val Instance = ApiClient()
     }
 
-    private fun createRetrofit(context: Context) {
+    init {
         mRetrofit = Retrofit.Builder()
-                .client(constructClient(context))
+                .client(constructClient())
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
 
-
-    private fun constructClient(context: Context): OkHttpClient {
-        val cacheSize: Long = 10 * 1024 * 1024
-        val file = context.externalCacheDir
+    private fun constructClient(): OkHttpClient {
 
         val loggerInterceptor = HttpLoggingInterceptor()
         if (BuildConfig.DEBUG) loggerInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -55,13 +46,11 @@ class ApiClient private constructor() {
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(loggerInterceptor)
-                .cache(Cache(file, cacheSize))
-                .addInterceptor(getInterceptor())
-                .addNetworkInterceptor(CacheInterceptor())
+                //.addInterceptor(getInterceptor())
+                //.addNetworkInterceptor(CacheInterceptor())
                 .retryOnConnectionFailure(true)
                 .build()
     }
-
 
     private fun getInterceptor(): Interceptor {
         return Interceptor { chain ->

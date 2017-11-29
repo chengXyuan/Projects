@@ -39,14 +39,19 @@ object Utils {
     /**
      * dp转px
      */
-    fun dp2px(dp: Int, metrics: DisplayMetrics)
-            = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), metrics)
+    fun dp2px(context: Context, dp: Int): Int {
+        val metrics = context.resources.displayMetrics
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), metrics).toInt()
+    }
 
     /**
      * dp转px
      */
-    fun dp2px(dp: Float, metrics: DisplayMetrics)
-            = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics)
+    fun dp2px(context: Context, dp: Float): Int {
+        val metrics = context.resources.displayMetrics
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics).toInt()
+    }
+
 
     /**
      * 替换电话号码中段4位为 *
@@ -164,6 +169,11 @@ object Utils {
         val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         return tm.line1Number.substring(3..14)
     }
+
+    /**
+     *  获取屏幕宽度
+     */
+    fun getScreenWidth(context: Context) = context.resources.displayMetrics.widthPixels
 
     /**
      * 获取一个View的宽度
