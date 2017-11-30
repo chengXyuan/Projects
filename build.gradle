@@ -13,6 +13,7 @@ buildscript {
         eventbus_version='3.1.1'
         glide_version='4.3.1'
         adapter_version='2.9.33'
+        status_bar_version='1.4.0'
     }
     repositories {
         google()

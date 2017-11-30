@@ -21,6 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activity.SplashActivity"/>
+
+        <service android:name=".service.DownloadService"/>
     </application>
 
 </manifest>
