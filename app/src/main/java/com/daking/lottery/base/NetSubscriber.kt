@@ -26,16 +26,16 @@ abstract class NetSubscriber<T> : DisposableSubscriber<Root<T>>() {
         with(root) {
             when (httpCode) {
                 200 //请求成功
-                        or 201 //更新成功
-                        or 505//新增成功
-                        or 507//删除成功
-                        or 509//登出成功
-                        or 515//登陆成功
-                        or 526//投注成功
-                        or 528//添加成功
-                        or 530//提现成功
-                        or 532//注册成功
-                        or 534//账户可用
+                    , 201 //更新成功
+                    , 505//新增成功
+                    , 507//删除成功
+                    , 509//登出成功
+                    , 515//登陆成功
+                    , 526//投注成功
+                    , 528//添加成功
+                    , 530//提现成功
+                    , 532//注册成功
+                    , 534//账户可用
                 -> onSuccess(httpCode, getMessage(), response)
 
                 4001 -> {

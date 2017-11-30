@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.daking.lottery.widget.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/colorPrimary"
+        app:title_titleMainText="@string/user_login"
+        app:title_titleMainTextColor="@color/white"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/large_margin">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/img_logo"/>
+
+            <EditText
+                android:id="@+id/et_username"
+                style="@style/style_login_edit_text"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:digits="@string/letter_and_number"
+                android:drawableStart="@drawable/ic_circled_user"
+                android:hint="@string/user_name_or_phone_number"
+                android:maxLength="15"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/item_margin_top">
+
+                <EditText
+                    android:id="@+id/et_password"
+                    style="@style/style_login_edit_text"
+                    android:digits="@string/letter_and_number"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:hint="@string/input_login_password"
+                    android:inputType="textPassword"
+                    android:maxLength="15"/>
+
+                <ImageView
+                    android:id="@+id/iv_pwd_visibility"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center|end"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/selector_password_visibility"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp">
+
+                <CheckBox
+                    android:id="@+id/cb_remember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:button="@null"
+                    android:drawableStart="@drawable/selector_check_box"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="@string/remember_account"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_large"/>
+
+                <TextView
+                    android:id="@+id/tv_try_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:text="@string/try_play_for_free"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_large"/>
+            </FrameLayout>
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/selector_primary_dark_corners_5dp"
+                android:text="@string/confirm_login"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_large"/>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/item_margin_top"
+                android:background="@drawable/selector_primary_light_corners_5dp"
+                android:text="@string/register_now"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_large"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

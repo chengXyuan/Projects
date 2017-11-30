@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 class ApiClient private constructor() {
 
     companion object {
-        const val BASE_URL = "http://182.16.115.114/userBetting/"
+        const val BASE_URL = "http://111.68.10.210/userBetting/"
         const val TIMEOUT = 20L
         val instance = Holder.Instance
     }

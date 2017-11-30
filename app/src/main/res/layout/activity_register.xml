@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.daking.lottery.widget.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/colorPrimary"
+        app:title_titleMainText="@string/user_register"
+        app:title_titleMainTextColor="@color/white"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/large_margin">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/img_logo"/>
+
+            <EditText
+                android:id="@+id/et_username"
+                style="@style/style_login_edit_text"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:digits="@string/letter_and_number"
+                android:drawableStart="@drawable/ic_circled_user"
+                android:hint="@string/register_hint_user_name"
+                android:maxLength="15"
+                android:maxLines="1"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/item_margin_top">
+
+                <EditText
+                    android:id="@+id/et_password"
+                    style="@style/style_login_edit_text"
+                    android:digits="@string/letter_and_number"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:hint="@string/register_hint_password"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:maxLines="1"/>
+
+                <ImageView
+                    android:id="@+id/iv_pwd_visibility"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center|end"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/selector_password_visibility"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/item_margin_top">
+
+                <EditText
+                    android:id="@+id/et_ensure_password"
+                    style="@style/style_login_edit_text"
+                    android:digits="@string/letter_and_number"
+                    android:drawableStart="@drawable/ic_lock"
+                    android:hint="@string/register_hint_ensure_password"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:maxLines="1"/>
+
+                <ImageView
+                    android:id="@+id/iv_ensure_pwd_visibility"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center|end"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/selector_password_visibility"/>
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/et_realName"
+                style="@style/style_login_edit_text"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/item_margin_top"
+                android:digits="@string/letter_and_number"
+                android:drawableStart="@drawable/ic_user_realname"
+                android:hint="@string/register_hint_real_name"
+                android:maxLength="15"/>
+
+            <EditText
+                android:id="@+id/et_pay_pwd"
+                style="@style/style_login_edit_text"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/item_margin_top"
+                android:digits="@string/letter_and_number"
+                android:drawableStart="@drawable/ic_money_lock"
+                android:hint="@string/register_hint_pay_password"
+                android:inputType="number"
+                android:maxLength="4"/>
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginEnd="24dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="@dimen/large_margin"
+                android:background="@drawable/selector_primary_dark_corners_5dp"
+                android:text="@string/register_now"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_large"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
