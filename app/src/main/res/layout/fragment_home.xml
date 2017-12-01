@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_home_logo"
+            tools:ignore="ContentDescription"/>
+
+        <LinearLayout
+            android:id="@+id/ll_user"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center|end"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp">
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_user"
+                android:gravity="center"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                tools:text="@string/visitor"/>
+
+            <TextView
+                android:id="@+id/tv_to_register"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/shape_home_top_btn_bg"
+                android:gravity="center"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:text="@string/sign_up"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+
+            <ImageView
+                android:id="@+id/iv_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_menu_white"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/material_unit_space">
+
+                <com.daking.lottery.widget.banner.BannerView
+                    android:id="@+id/banner_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:bvAspectRatio="0.4"
+                    app:bvIndicatorVisible="never"
+                    app:bvTitleVisible="false"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp">
+
+                    <ImageView
+                        android:id="@+id/iv_notice"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_notice"
+                        tools:ignore="ContentDescription"/>
+
+                    <FrameLayout
+                        android:id="@+id/fl_marquee_container"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/marquee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"/>
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_more"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_arrow_right_gray"
+                        android:tint="@color/text_light"
+                        tools:ignore="ContentDescription"/>
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_lottery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_promotion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/horizontal_margin"
+                    android:layout_marginTop="@dimen/material_unit_space"
+                    android:text="@string/promotions"
+                    android:textColor="@color/text_dark"
+                    android:textSize="@dimen/text_x_large"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_promotion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/material_unit_space"
+                    android:orientation="horizontal"
+                    android:paddingEnd="@dimen/material_unit_space"
+                    android:paddingStart="@dimen/material_unit_space"/>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

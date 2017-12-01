@@ -15,6 +15,6 @@ class ApiStoreTest {
         params["payPassword"] = "1111"
 
         val call = mService.register(params)
-        call.execute()
+        call.subscribe()
     }
 }

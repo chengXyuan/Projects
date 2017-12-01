@@ -1,6 +1,6 @@
 package com.daking.lottery.util
 
-import com.daking.lottery.api.NetRepository
+import com.daking.lottery.repository.NetRepository
 import io.reactivex.Flowable
 
 /**

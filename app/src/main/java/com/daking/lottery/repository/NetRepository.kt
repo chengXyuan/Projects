@@ -1,5 +1,7 @@
-package com.daking.lottery.api
+package com.daking.lottery.repository
 
+import com.daking.lottery.api.ApiClient
+import com.daking.lottery.api.ApiStore
 import com.daking.lottery.model.Root
 import com.daking.lottery.model.UserModel
 import com.daking.lottery.util.AccountHelper

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.daking.lottery.widget.AspectRatioLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1px"
+    android:background="@drawable/selector_white_pressed_dim"
+    app:arl_heightRatio="4"
+    app:arl_widthRatio="5">
+
+    <TextView
+        android:id="@+id/tv_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawablePadding="4dp"
+        android:drawableTop="@drawable/img_logo_bj_pk_10"
+        android:gravity="center"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/text_normal"
+        tools:text="北京PK拾"/>
+</com.daking.lottery.widget.AspectRatioLayout>

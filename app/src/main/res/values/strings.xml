@@ -9,6 +9,7 @@
     <string name="register_now">马上注册</string>
     <string name="remember_account">记住密码</string>
     <string name="forget_password">忘记密码</string>
+    <string name="try_play">试玩</string>
     <string name="try_play_for_free">免费试玩</string>
     <string name="input_login_password">请输入登录密码</string>
     <string name="verify_code">验证码</string>
@@ -30,5 +31,29 @@
     <string name="funding">资金</string>
     <string name="mine">我的</string>
     <string name="click_again_to_exit">再按一次退出应用</string>
+    <string name="promotions">优惠活动</string>
+    <string name="account_balance">彩票余额</string>
+    <string name="i_want_recharge">我要充值</string>
+    <string name="i_want_with_draw">我要提现</string>
+    <string name="bet_record">下注记录</string>
+    <string name="lottery_record">开奖记录</string>
+    <string name="game_rules">游戏规则</string>
+    <string name="contact_us">联系我们</string>
+    <string name="log_out">退出</string>
+    <string name="reset">重置</string>
+    <string name="input_manual_amount">请输入下注金额</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="account_yue">账户余额</string>
+    <string name="prize_time">开奖时间</string>
+    <string name="bet_limit" formatted="false">最少选择%d项，最多选择%d项</string>
+    <string name="bet_just">请选择%d项下注</string>
+    <string name="select_betting_item">请选择投注项</string>
+    <string name="default_time_hms">00:00:00</string>
+    <string name="default_time_ms">00:00</string>
+    <string name="no_data_and_click_to_retry">暂无数据，点击重试</string>
+    <string name="personal_center">个人中心</string>
+    <string name="visitor">游客</string>
+    <string name="sign_up">注册</string>
 
 </resources>

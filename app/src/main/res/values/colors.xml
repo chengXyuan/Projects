@@ -19,13 +19,14 @@
     <color name="divider">#1E000000</color>
 
     <color name="text_white">#FFFFFF</color>
-    <!--不透明度70%黑色-->
+    <!--不透明度70%白色-->
     <color name="text_white_secondary">#B2FFFFFF</color>
-    <!--不透明度50%黑色-->
+    <!--不透明度50%白色-->
     <color name="text_white_hint">#7FFFFFFF</color>
 
     <color name="transparent">#00000000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="disabled">#42000000</color>
+    <color name="bg_pressed">#EFEFEF</color>
 </resources>
