@@ -34,8 +34,9 @@
     <string name="promotions">优惠活动</string>
     <string name="account_balance">彩票余额</string>
     <string name="i_want_recharge">我要充值</string>
-    <string name="i_want_with_draw">我要提现</string>
+    <string name="i_want_withdraw">我要提现</string>
     <string name="bet_record">下注记录</string>
+    <string name="lottery_hall">开奖大厅</string>
     <string name="lottery_record">开奖记录</string>
     <string name="game_rules">游戏规则</string>
     <string name="contact_us">联系我们</string>

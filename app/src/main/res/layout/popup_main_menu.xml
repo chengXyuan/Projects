@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:background="@drawable/ic_pop_menu_bg"
+    android:divider="@drawable/shape_divider_line"
+    android:orientation="vertical"
+    android:paddingEnd="3dp"
+    android:paddingStart="3dp"
+    android:paddingTop="8dp"
+    android:showDividers="middle">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/popup_item_height">
+
+        <TextView
+            style="@style/menu_popup_item"
+            android:layout_width="wrap_content"
+            android:drawableStart="@drawable/ic_balance"
+            android:gravity="center_vertical"
+            android:text="@string/account_balance"
+            android:textColor="@color/text_dark"/>
+
+        <TextView
+            android:id="@+id/tv_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_recharge"
+        style="@style/menu_popup_item"
+        android:drawableEnd="@drawable/ic_arrow_right_gray"
+        android:drawableStart="@drawable/ic_recharge"
+        android:text="@string/i_want_recharge"/>
+
+    <TextView
+        android:id="@+id/tv_withdraw"
+        style="@style/menu_popup_item"
+        android:drawableEnd="@drawable/ic_arrow_right_gray"
+        android:drawableStart="@drawable/ic_withdraw"
+        android:text="@string/i_want_withdraw"/>
+
+    <TextView
+        android:id="@+id/tv_bet_record"
+        style="@style/menu_popup_item"
+        android:drawableEnd="@drawable/ic_arrow_right_gray"
+        android:drawableStart="@drawable/ic_trade_record"
+        android:text="@string/bet_record"/>
+
+    <TextView
+        android:id="@+id/tv_personal_center"
+        style="@style/menu_popup_item"
+        android:drawableEnd="@drawable/ic_arrow_right_gray"
+        android:drawableStart="@drawable/ic_lottery_record"
+        android:text="@string/lottery_hall"/>
+
+    <TextView
+        android:id="@+id/tv_game_rule"
+        style="@style/menu_popup_item"
+        android:drawableEnd="@drawable/ic_arrow_right_gray"
+        android:drawableStart="@drawable/ic_game_rules"
+        android:text="@string/game_rules"/>
+
+    <TextView
+        android:id="@+id/tv_service"
+        style="@style/menu_popup_item"
+        android:drawableEnd="@drawable/ic_arrow_right_gray"
+        android:drawableStart="@drawable/ic_service"
+        android:text="@string/contact_us"/>
+
+    <TextView
+        android:id="@+id/tv_log_out"
+        style="@style/menu_popup_item"
+        android:drawableStart="@drawable/ic_log_out"
+        android:text="@string/log_out"/>
+</LinearLayout>

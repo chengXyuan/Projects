@@ -9,7 +9,9 @@ import android.view.*
 import com.daking.lottery.R
 import com.daking.lottery.util.Utils
 
-
+/**
+ *
+ */
 abstract class BaseDialog : DialogFragment() {
 
     companion object {
@@ -104,16 +106,16 @@ abstract class BaseDialog : DialogFragment() {
 
             //设置dialog宽度
             lp.width = when (width) {
-                0 -> Utils.getScreenWidth(context) - 2 * Utils.dp2px(context, margin)
+                0 -> Utils.getScreenWidth(context) - 2 * Utils.dp2px(margin)
                 -1 -> WindowManager.LayoutParams.WRAP_CONTENT
-                else -> Utils.dp2px(context, width)
+                else -> Utils.dp2px(width)
             }
 
             //设置dialog高度
             lp.height = if (height == 0) {
                 WindowManager.LayoutParams.WRAP_CONTENT
             } else {
-                Utils.dp2px(context, height)
+                Utils.dp2px(height)
             }
 
             //设置dialog进入/退出动画

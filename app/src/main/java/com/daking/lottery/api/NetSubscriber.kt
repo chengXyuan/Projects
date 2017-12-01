@@ -1,13 +1,17 @@
-package com.daking.lottery.base
+package com.daking.lottery.api
 
 import com.daking.lottery.app.App
+import com.daking.lottery.app.Constant
 import com.daking.lottery.model.Root
+import com.daking.lottery.util.AccountHelper
+import com.daking.lottery.util.SPUtils
 import com.daking.lottery.util.Utils
 import com.google.gson.JsonParseException
 import io.reactivex.subscribers.DisposableSubscriber
 import org.json.JSONException
 import retrofit2.HttpException
 import java.net.ConnectException
+import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.text.ParseException
 import javax.net.ssl.SSLHandshakeException
@@ -36,13 +40,19 @@ abstract class NetSubscriber<T> : DisposableSubscriber<Root<T>>() {
                     , 530//提现成功
                     , 532//注册成功
                     , 534//账户可用
-                -> onSuccess(httpCode, getMessage(), response)
-
-                4001 -> {
-                    onFailure(httpCode, getMessage())
+                -> {
+                    if (!parameter.isNullOrEmpty()) {
+                        SPUtils.instance.putString(Constant.SERVICE_URL, parameter)
+                    }
+                    onSuccess(httpCode, getMessage(), response)
                 }
 
-                else -> onFailure(httpCode, getMessage())
+                4001 -> {//用户账号失效
+                    onFailure(httpCode, getMessage())
+                    AccountHelper.instance.userSignOut()
+                }
+
+                else -> onFailure(httpCode, getMessage())//其他失败情况
             }
         }
     }
@@ -70,7 +80,8 @@ abstract class NetSubscriber<T> : DisposableSubscriber<Root<T>>() {
             is ConnectException -> onFailure(9004, "连接失败，网络连接可能存在异常，请检查网络后重试")
             is SSLHandshakeException -> onFailure(9005, "证书验证失败")
             is UnknownHostException -> onFailure(9006, "无法连接到服务器，请检查你的网络或稍后重试")
-            else -> onFailure(9007, "出现了未知的错误")
+            is SocketTimeoutException -> onFailure(9007, "糟糕，请求超时了，请检查网络连接后重试")
+            else -> onFailure(9008, "出现了未知的错误")
         }
     }
 

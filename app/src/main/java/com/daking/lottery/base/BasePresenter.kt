@@ -1,7 +1,8 @@
 package com.daking.lottery.base
 
-import com.daking.lottery.repository.NetRepository
+import com.daking.lottery.api.NetSubscriber
 import com.daking.lottery.model.Root
+import com.daking.lottery.repository.NetRepository
 import com.daking.lottery.util.RxSchedulers
 import com.daking.lottery.util.log
 import io.reactivex.Flowable

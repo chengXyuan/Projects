@@ -24,10 +24,19 @@ class NetRepository private constructor() {
 
     private fun getSessionId() = AccountHelper.instance.getSessionId()
 
+    /**
+     * 检查更新
+     */
     fun checkUpdate() = mApiStore.checkUpdate()
 
+    /**
+     * 游客登录
+     */
     fun visitorLogin() = mApiStore.visitorLogin()
 
+    /**
+     * 登录
+     */
     fun login(username: String, password: String): Flowable<Root<UserModel>> {
         val params = HashMap<String, Any?>()
         params["username"] = username
@@ -35,10 +44,18 @@ class NetRepository private constructor() {
         return mApiStore.login(params)
     }
 
+    /**
+     * 刷新账户(个人信息)
+     */
     fun refreshAccount(): Flowable<Root<UserModel>> {
         val params = HashMap<String, Any?>()
         params["usersId"] = getUserId()
         params["sessionId"] = getSessionId()
-        return mApiStore.login(params)
+        return mApiStore.refreshAccount(params)
     }
+
+    /**
+     * 获取轮播图和客服链接
+     */
+    fun getBanner() = mApiStore.getBanner()
 }

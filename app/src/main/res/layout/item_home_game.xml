@@ -7,8 +7,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="1px"
     android:background="@drawable/selector_white_pressed_dim"
-    app:arl_heightRatio="4"
-    app:arl_widthRatio="5">
+    app:arl_heightRatio="1"
+    app:arl_widthRatio="1">
 
     <TextView
         android:id="@+id/tv_game"

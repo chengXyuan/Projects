@@ -12,9 +12,12 @@ class LoginPresenter : BasePresenter<ILoginView>() {
     override fun onAttached() {
         super.onAttached()
         val isRemember = SPUtils.instance.getBoolean(Constant.REMEMBER_ACCOUNT, false)
-        val username = AccountHelper.instance.getUser()?.username ?: ""
-        val password = SPUtils.instance.getString(Constant.PASSWORD, "")
-        mView.initAccount(isRemember, username, password!!)
+        var username = AccountHelper.instance.getUser()?.username ?: ""
+        if (username.isEmpty()) {
+            username = SPUtils.instance.getString(Constant.USERNAME, "") ?: ""
+        }
+        val password = SPUtils.instance.getString(Constant.PASSWORD, "") ?: ""
+        mView.initAccount(isRemember, username, password)
     }
 
     fun loginDemo() {
@@ -39,7 +42,7 @@ class LoginPresenter : BasePresenter<ILoginView>() {
                     toast(msg)
                     model.isVisitor = false
                     AccountHelper.instance.saveUser(model)
-                    dealRememberAccount(isRemember, password)
+                    dealRememberAccount(isRemember, username, password)
                     mView.loginSuccess()
                 }, { _, msg ->
                     //登录失败
@@ -48,7 +51,8 @@ class LoginPresenter : BasePresenter<ILoginView>() {
                 })
     }
 
-    private fun dealRememberAccount(isRemember: Boolean, password: String) {
+    private fun dealRememberAccount(isRemember: Boolean, username: String, password: String) {
+        SPUtils.instance.putString(Constant.USERNAME, username)
         SPUtils.instance.putBoolean(Constant.REMEMBER_ACCOUNT, isRemember)
         if (isRemember) {
             SPUtils.instance.putString(Constant.PASSWORD, password)

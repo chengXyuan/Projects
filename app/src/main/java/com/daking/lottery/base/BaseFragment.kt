@@ -11,8 +11,11 @@ import org.greenrobot.eventbus.EventBus
 
 abstract class BaseFragment : RxFragment() {
 
+    protected var mRootView: View? = null
+
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater?.inflate(getLayoutResId(), container, false)
+        mRootView = inflater?.inflate(getLayoutResId(), container, false)
+        return mRootView
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

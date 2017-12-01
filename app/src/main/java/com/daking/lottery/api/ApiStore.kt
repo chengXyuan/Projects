@@ -1,9 +1,6 @@
 package com.daking.lottery.api
 
-import com.daking.lottery.model.BankModel
-import com.daking.lottery.model.Root
-import com.daking.lottery.model.UserModel
-import com.daking.lottery.model.VersionModel
+import com.daking.lottery.model.*
 import io.reactivex.Flowable
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -33,7 +30,7 @@ interface ApiStore {
      * 获取用户信息
      */
     @POST("user/personalInformation")
-    fun refreshAccount(@Body params: HashMap<String, Any?>): Call<Root<UserModel>>
+    fun refreshAccount(@Body params: HashMap<String, Any?>): Flowable<Root<UserModel>>
 
     /**
      * 修改密码
@@ -64,4 +61,10 @@ interface ApiStore {
     @Streaming//注明为流文件，防止retrofit将大文件读入内存
     @GET
     fun download(@Url url: String): Flowable<ResponseBody>
+
+    /**
+     * 获取轮播图和客服链接
+     */
+    @POST("imageupload/carousel")
+    fun getBanner(): Flowable<Root<BannerModel>>
 }

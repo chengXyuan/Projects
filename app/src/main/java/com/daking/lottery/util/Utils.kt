@@ -15,6 +15,7 @@ import android.util.TypedValue
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.daking.lottery.app.App
 import java.io.File
 import java.text.DecimalFormat
 
@@ -39,16 +40,16 @@ object Utils {
     /**
      * dp转px
      */
-    fun dp2px(context: Context, dp: Int): Int {
-        val metrics = context.resources.displayMetrics
+    fun dp2px(dp: Int): Int {
+        val metrics = App.instance.resources.displayMetrics
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), metrics).toInt()
     }
 
     /**
      * dp转px
      */
-    fun dp2px(context: Context, dp: Float): Int {
-        val metrics = context.resources.displayMetrics
+    fun dp2px(dp: Float): Int {
+        val metrics = App.instance.resources.displayMetrics
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics).toInt()
     }
 

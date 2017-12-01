@@ -31,8 +31,8 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), ILoginView {
 
     override fun initAccount(isRemember: Boolean, username: String, password: String) {
         cb_remember.isChecked = isRemember
+        et_username.setText(username)
         if (isRemember) {
-            et_username.setText(username)
             et_password.setText(password)
         }
     }

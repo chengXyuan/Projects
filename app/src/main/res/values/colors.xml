@@ -17,6 +17,8 @@
     <color name="text_hint">#42000000</color>
     <!--不透明度12%黑色-->
     <color name="divider">#1E000000</color>
+    <!--不透明度12%白色-->
+    <color name="divider_in_dark">#1EFFFFFF</color>
 
     <color name="text_white">#FFFFFF</color>
     <!--不透明度70%白色-->

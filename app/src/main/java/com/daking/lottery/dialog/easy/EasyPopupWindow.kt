@@ -80,7 +80,7 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
 
             if (mAnimationStyle != 0) animationStyle = mAnimationStyle
 
-            if (mFocusAndOutsideEnable) {
+            if (!mFocusAndOutsideEnable) {
                 //from https://github.com/pinguo-zhouwei/CustomPopwindow
                 isFocusable = true
                 isOutsideTouchable = false
@@ -88,7 +88,7 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
                 //注意下面这三个是contentView 不是PopupWindow，响应返回按钮事件
                 contentView.isFocusable = true
                 contentView.isFocusableInTouchMode = true
-                contentView.setOnKeyListener { view, keyCode, keyEvent ->
+                contentView.setOnKeyListener { _, keyCode, _ ->
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         dismiss()
                         return@setOnKeyListener true
@@ -97,7 +97,7 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
                 }
 
                 //在Android 6.0以上 ，只能通过拦截事件来解决
-                setTouchInterceptor { view, event ->
+                setTouchInterceptor { _, event ->
                     val x = event.x
                     val y = event.y
 
@@ -114,7 +114,7 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 mEnterTransition?.let { enterTransition = mEnterTransition }
-                mExitTransition.let { exitTransition = mExitTransition }
+                mExitTransition?.let { exitTransition = mExitTransition }
             }
         }
 
@@ -129,83 +129,83 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
 
     /****设置属性方法****/
 
-    fun <T : EasyPopupWindow> setContentView(contentView: View): T {
+    fun setContentView(contentView: View): EasyPopupWindow {
         this.mContentView = contentView
         this.mLayoutId = 0
-        return this as T
+        return this
     }
 
 
-    fun <T : EasyPopupWindow> setContentView(@LayoutRes layoutId: Int): T {
+    fun setContentView(@LayoutRes layoutId: Int): EasyPopupWindow {
         this.mContentView = null
         this.mLayoutId = layoutId
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setContentView(contentView: View, width: Int, height: Int): T {
+    fun setContentView(contentView: View, width: Int, height: Int): EasyPopupWindow {
         this.mContentView = contentView
         this.mLayoutId = 0
         this.mWidth = width
         this.mHeight = height
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setContentView(@LayoutRes layoutId: Int, width: Int, height: Int): T {
+    fun setContentView(@LayoutRes layoutId: Int, width: Int, height: Int): EasyPopupWindow {
         this.mContentView = null
         this.mLayoutId = layoutId
         this.mWidth = width
         this.mHeight = height
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setWidth(width: Int): T {
+    fun setWidth(width: Int): EasyPopupWindow {
         this.mWidth = width
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setHeight(height: Int): T {
+    fun setHeight(height: Int): EasyPopupWindow {
         this.mHeight = height
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setAnchorView(view: View): T {
+    fun setAnchorView(view: View): EasyPopupWindow {
         this.mAnchorView = view
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setVerticalGravity(verticalGravity: VerticalGravity): T {
+    fun setVerticalGravity(verticalGravity: VerticalGravity): EasyPopupWindow {
         this.mVerticalGravity = verticalGravity
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setHorizontalGravity(horizontalGravity: HorizontalGravity): T {
+    fun setHorizontalGravity(horizontalGravity: HorizontalGravity): EasyPopupWindow {
         this.mHorizontalGravity = horizontalGravity
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setOffsetX(offsetX: Int): T {
+    fun setOffsetX(offsetX: Int): EasyPopupWindow {
         this.mOffsetX = offsetX
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setOffsetY(offsetY: Int): T {
+    fun setOffsetY(offsetY: Int): EasyPopupWindow {
         this.mOffsetY = offsetY
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setAnimationStyle(@StyleRes animationStyle: Int): T {
+    fun setAnimationStyle(@StyleRes animationStyle: Int): EasyPopupWindow {
         this.mAnimationStyle = animationStyle
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setFocusable(focusable: Boolean): T {
+    fun setFocusable(focusable: Boolean): EasyPopupWindow {
         this.mFocusable = focusable
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setOutsideTouchable(outsideTouchable: Boolean): T {
+    fun setOutsideTouchable(outsideTouchable: Boolean): EasyPopupWindow {
         this.mOutsideTouchable = outsideTouchable
-        return this as T
+        return this
     }
 
     /**
@@ -214,9 +214,9 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
      * @param focusAndOutsideEnable
      * @return
      */
-    fun <T : EasyPopupWindow> setFocusAndOutsideEnable(focusAndOutsideEnable: Boolean): T {
+    fun setFocusAndOutsideEnable(focusAndOutsideEnable: Boolean): EasyPopupWindow {
         this.mFocusAndOutsideEnable = focusAndOutsideEnable
-        return this as T
+        return this
     }
 
     /**
@@ -225,36 +225,36 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
      * @param isDim
      * @return
      */
-    fun <T : EasyPopupWindow> setBackgroundDimEnable(isDim: Boolean): T {
+    fun setBackgroundDimEnable(isDim: Boolean): EasyPopupWindow {
         this.isBackgroundDim = isDim
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setDimValue(@FloatRange(from = 0.0, to = 1.0) dimValue: Float): T {
+    fun setDimValue(@FloatRange(from = 0.0, to = 1.0) dimValue: Float): EasyPopupWindow {
         this.mDimValue = dimValue
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setDimColor(@ColorInt color: Int): T {
+    fun setDimColor(@ColorInt color: Int): EasyPopupWindow {
         this.mDimColor = color
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setDimView(dimView: ViewGroup): T {
+    fun setDimView(dimView: ViewGroup): EasyPopupWindow {
         this.mDimView = dimView
-        return this as T
+        return this
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    fun <T : EasyPopupWindow> setEnterTransition(enterTransition: Transition): T {
+    fun setEnterTransition(enterTransition: Transition): EasyPopupWindow {
         this.mEnterTransition = enterTransition
-        return this as T
+        return this
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    fun <T : EasyPopupWindow> setExitTransition(exitTransition: Transition): T {
+    fun setExitTransition(exitTransition: Transition): EasyPopupWindow {
         this.mExitTransition = exitTransition
-        return this as T
+        return this
     }
 
     /**
@@ -416,14 +416,14 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
         removeGlobalLayoutListener()
     }
 
-    fun <T : EasyPopupWindow> setOnDismissListener(listener: PopupWindow.OnDismissListener): T {
+    fun setOnDismissListener(listener: PopupWindow.OnDismissListener): EasyPopupWindow {
         this.mOnDismissListener = listener
-        return this as T
+        return this
     }
 
-    fun <T : EasyPopupWindow> setOnAttachedWindowListener(listener: OnAttachedWindowListener): T {
+    fun setOnAttachedWindowListener(listener: OnAttachedWindowListener): EasyPopupWindow {
         this.mOnAttachedWindowListener = listener
-        return this as T
+        return this
     }
 
     /**
