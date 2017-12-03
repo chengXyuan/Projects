@@ -29,6 +29,7 @@
     <string name="home_page">首页</string>
     <string name="lottery">开奖</string>
     <string name="funding">资金</string>
+    <string name="funding_manage">资金管理</string>
     <string name="mine">我的</string>
     <string name="click_again_to_exit">再按一次退出应用</string>
     <string name="promotions">优惠活动</string>
@@ -56,5 +57,10 @@
     <string name="personal_center">个人中心</string>
     <string name="visitor">游客</string>
     <string name="sign_up">注册</string>
+    <string name="deposit">存入：</string>
+    <string name="take_out">取出：</string>
+    <string name="untreated">未处理</string>
+    <string name="fail">失败</string>
+    <string name="success">成功</string>
 
 </resources>

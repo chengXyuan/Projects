@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.view.View
 
-abstract class ViewConvertListener constructor(parcel: Parcel) : Parcelable {
+abstract class ViewConvertListener constructor(parcel: Parcel? = null) : Parcelable {
 
     override fun writeToParcel(p0: Parcel?, p1: Int) {
     }

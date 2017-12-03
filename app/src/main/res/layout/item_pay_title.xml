@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="35dp"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:background="#f6f6f6"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingEnd="@dimen/horizontal_padding"
+              android:paddingStart="@dimen/horizontal_padding">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="在线支付"
+        android:textColor="@color/text_normal"/>
+
+    <TextView
+        android:id="@+id/tv_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        tools:text="Online Payment"
+        android:textColor="@color/text_hint"/>
+
+</LinearLayout>

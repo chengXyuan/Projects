@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/item_height"
+              android:background="@color/white"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingEnd="@dimen/horizontal_margin"
+              android:paddingStart="@dimen/horizontal_margin">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        tools:background="@drawable/img_logo_union_small"/>
+
+    <TextView
+        android:id="@+id/tv_pay_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/material_unit_space"
+        android:drawableEnd="@drawable/ic_arrow_right_gray"
+        android:textColor="@color/text_normal"
+        tools:text="网银在线充值"/>
+
+</LinearLayout>

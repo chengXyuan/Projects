@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:gravity="center_vertical"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp">
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/text_light"
+        tools:text="2017-09-08 12:34:44"/>
+
+    <TextView
+        android:id="@+id/tv_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_time"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/text_normal"
+        android:textSize="@dimen/sp_16"
+        tools:text="存入：333,444元"/>
+
+    <TextView
+        android:id="@+id/tv_record_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:drawableEnd="@drawable/ic_arrow_right_gray"
+        android:drawablePadding="10dp"
+        android:textSize="@dimen/sp_16"
+        tools:text="成功"/>
+</RelativeLayout>

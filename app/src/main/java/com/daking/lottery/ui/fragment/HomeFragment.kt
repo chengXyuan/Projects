@@ -16,6 +16,7 @@ import com.daking.lottery.ui.activity.RegisterActivity
 import com.daking.lottery.ui.adapter.HomeGameAdapter
 import com.daking.lottery.ui.iview.IHomeView
 import com.daking.lottery.ui.presenter.HomePresenter
+import com.daking.lottery.widget.RecyclerViewDivider
 import com.daking.lottery.widget.banner.BannerView
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.startActivity
@@ -56,6 +57,8 @@ class HomeFragment : BaseMVPFragment<HomePresenter>(), IHomeView {
         rv_lottery.setHasFixedSize(true)
         rv_lottery.isNestedScrollingEnabled = false
         rv_lottery.layoutManager = GridLayoutManager(context, 3)
+        rv_lottery.addItemDecoration(RecyclerViewDivider(context,
+                RecyclerViewDivider.BOTH_SET, R.drawable.shape_divider_line))
         rv_lottery.adapter = gameAdapter
     }
 
@@ -83,6 +86,7 @@ class HomeFragment : BaseMVPFragment<HomePresenter>(), IHomeView {
         if (menuPopup == null) {
             menuPopup = MainMenuPopupWindow(activity).createPopup()
         }
+        menuPopup!!.refreshBalance()
         menuPopup!!.showAtAnchorView(fl_title_bar, VerticalGravity.BELOW, HorizontalGravity.ALIGN_RIGHT)
     }
 }

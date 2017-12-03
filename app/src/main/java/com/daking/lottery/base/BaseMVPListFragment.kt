@@ -52,7 +52,7 @@ abstract class BaseMVPListFragment<P : BasePresenter<*>> : BaseMVPFragment<P>(),
         requestData(false)
     }
 
-    protected fun requestData(isRefresh: Boolean) {
+    open fun requestData(isRefresh: Boolean) {
         mIsRefresh = isRefresh
         if (mIsRefresh) mPageIndex = 1
         else mPageIndex++

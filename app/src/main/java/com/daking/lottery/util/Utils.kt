@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.support.annotation.StringRes
 import android.telephony.TelephonyManager
 import android.util.DisplayMetrics
 import android.util.TypedValue
@@ -18,6 +19,8 @@ import android.widget.EditText
 import com.daking.lottery.app.App
 import java.io.File
 import java.text.DecimalFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 object Utils {
 
@@ -197,7 +200,7 @@ object Utils {
     /**
      * 保留指定位数的小数
      */
-    fun keepOneDecimal(num: Double, limit: Int): String {
+    fun keepDecimal(num: Double, limit: Int): String {
         val format = DecimalFormat()
         format.maximumFractionDigits = limit
         return format.format(num)
@@ -211,6 +214,19 @@ object Utils {
         val myPid = android.os.Process.myPid()
         val packageName = context.packageName
         return am.runningAppProcesses.any { packageName == it.processName && myPid == it.pid }
+    }
+
+    fun getString(@StringRes id: Int): String {
+        return App.instance.getString(id)
+    }
+
+    fun convertTime(timestamp: Long): String {
+        if (timestamp <= 0L) {
+            return ""
+        }
+        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        format.timeZone = TimeZone.getTimeZone("GMT+08")
+        return format.format(timestamp)
     }
 
 

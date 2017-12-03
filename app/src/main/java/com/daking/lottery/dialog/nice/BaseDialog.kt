@@ -10,7 +10,7 @@ import com.daking.lottery.R
 import com.daking.lottery.util.Utils
 
 /**
- *
+ * https://github.com/Othershe/NiceDialog
  */
 abstract class BaseDialog : DialogFragment() {
 

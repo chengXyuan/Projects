@@ -2,6 +2,9 @@ package com.daking.lottery.repository
 
 import com.daking.lottery.api.ApiClient
 import com.daking.lottery.api.ApiStore
+import com.daking.lottery.app.Constant
+import com.daking.lottery.model.FundingModel
+import com.daking.lottery.model.PayWaysModel
 import com.daking.lottery.model.Root
 import com.daking.lottery.model.UserModel
 import com.daking.lottery.util.AccountHelper
@@ -58,4 +61,24 @@ class NetRepository private constructor() {
      * 获取轮播图和客服链接
      */
     fun getBanner() = mApiStore.getBanner()
+
+    /**
+     * 获取支持的支付方式
+     */
+    fun requestPayInWays(): Flowable<Root<PayWaysModel>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        return mApiStore.getPayWays(params)
+    }
+
+    fun getFundingRecord(pageIndex: Int, pageSize: Int = Constant.PAGE_SIZE)
+            : Flowable<Root<FundingModel>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["pageSize"] = pageSize
+        params["pageNo"] = pageIndex
+        return mApiStore.getFundingRecord(params)
+    }
 }

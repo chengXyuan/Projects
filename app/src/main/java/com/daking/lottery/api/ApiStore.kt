@@ -67,4 +67,18 @@ interface ApiStore {
      */
     @POST("imageupload/carousel")
     fun getBanner(): Flowable<Root<BannerModel>>
+
+    /**
+     * 获取支持的支付方式
+     */
+    @POST("onlinePay/payType")
+    fun getPayWays(@Body params: HashMap<String, Any?>): Flowable<Root<PayWaysModel>>
+
+    /**
+     * 存取款记录
+     */
+    @POST("userdeposit/withdrawalsAndSaveDetail")
+    fun getFundingRecord(@Body params: HashMap<String, Any?>): Flowable<Root<FundingModel>>
+
+
 }

@@ -7,6 +7,8 @@ interface Constant {
         val PASSWORD = "password"
         val SERVICE_URL = "service_url"
 
+        val PAGE_SIZE = 20
+
         val REGEX_USERNAME = "^[a-zA-Z0-9]{6,15}$"
         val REGEX_PASSWORD = "^[a-zA-Z0-9]{6,15}$"
         val REGEX_REAL_NAME = "^[\\u4e00-\\u9fa5]{2,8}$"
