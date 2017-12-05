@@ -87,6 +87,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/material_unit_space">
 
@@ -94,6 +95,7 @@
                     android:id="@+id/banner_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/img_banner_default"
                     app:bvAspectRatio="0.4"
                     app:bvIndicatorVisible="never"
                     app:bvTitleVisible="false"/>
@@ -137,7 +139,8 @@
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_lottery"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"/>
 
                 <FrameLayout
                     android:id="@+id/fl_promotion_title"
@@ -173,6 +176,7 @@
                     android:orientation="horizontal"
                     android:paddingEnd="@dimen/material_unit_space"
                     android:paddingStart="@dimen/material_unit_space"
+                    android:scrollbars="none"
                     android:visibility="gone"/>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

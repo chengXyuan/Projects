@@ -38,4 +38,8 @@ class FundingFragment : BaseMVPFragment<FundingPresenter>(), IFundingView {
             mPresenter.refreshAccountInfo()
         }
     }
+
+    fun setCurrentTab(position: Int) {
+        view_pager.setCurrentItem(position, true)
+    }
 }

@@ -15,6 +15,7 @@ class RechargePresenter : BasePresenter<IRechargeView>() {
                     dealPayInData(model)
                 }, { _, msg ->
                     mView.onFailure(msg)
+                    mView.onComplete()
                 }, {
                     mView.onComplete()
                 })

@@ -16,33 +16,38 @@ import kotlinx.android.synthetic.main.fragment_recharge.*
 
 class RechargeFragment : BaseMVPFragment<RechargePresenter>(), IRechargeView {
 
-    lateinit var mErrorView: View
-    lateinit var mTvError: TextView
-    lateinit var mAdapter: PayWaysAdapter
+    private lateinit var mErrorView: View
+    private lateinit var mTvError: TextView
+
+    private lateinit var mAdapter: PayWaysAdapter
 
     override fun getLayoutResId() = R.layout.fragment_recharge
 
     override fun initData(savedInstanceState: Bundle?) {
         initRecyclerView()
-
         mPresenter.requestPayInWays()
     }
 
     private fun initRecyclerView() {
+        mAdapter = PayWaysAdapter(null)
+
+        refresh_layout.isRefreshing = true
         refresh_layout.setColorSchemeResources(R.color.colorAccent)
         refresh_layout.setOnRefreshListener { mPresenter.requestPayInWays() }
         recycler_view.setHasFixedSize(true)
         recycler_view.layoutManager = LinearLayoutManager(context)
         recycler_view.addItemDecoration(RecyclerViewDivider(context,
                 RecyclerViewDivider.HORIZONTAL_DIVIDER, R.drawable.shape_divider_line))
-        mAdapter = PayWaysAdapter(null)
         recycler_view.adapter = mAdapter
 
         /*error view*/
         mErrorView = layoutInflater.inflate(R.layout.layout_error_view,
                 recycler_view.parent as ViewGroup, false)
         mTvError = mErrorView.findViewById(R.id.tv_error_view_msg)
-        mErrorView.setOnClickListener { mPresenter.requestPayInWays() }
+        mErrorView.setOnClickListener {
+            refresh_layout.isRefreshing = true
+            mPresenter.requestPayInWays()
+        }
     }
 
     override fun showPayWays(data: List<MultiItemEntity>) {

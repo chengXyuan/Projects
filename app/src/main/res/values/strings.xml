@@ -62,5 +62,9 @@
     <string name="untreated">未处理</string>
     <string name="fail">失败</string>
     <string name="success">成功</string>
+    <string name="user_balance">用户余额：</string>
+    <string name="last_round">上期</string>
+    <string name="lottery_close">封盘</string>
+    <string name="lottery_round">%s期</string>
 
 </resources>

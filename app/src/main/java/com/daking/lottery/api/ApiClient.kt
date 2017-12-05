@@ -2,6 +2,7 @@ package com.daking.lottery.api
 
 import com.daking.lottery.BuildConfig
 import com.daking.lottery.app.App
+import com.daking.lottery.app.Constant
 import com.daking.lottery.util.Utils
 import okhttp3.CacheControl
 import okhttp3.Interceptor
@@ -15,7 +16,6 @@ import java.util.concurrent.TimeUnit
 class ApiClient private constructor() {
 
     companion object {
-        const val BASE_URL = "http://111.68.10.210/userBetting/"
         const val TIMEOUT = 20L
         val instance = Holder.Instance
     }
@@ -29,7 +29,7 @@ class ApiClient private constructor() {
     init {
         mRetrofit = Retrofit.Builder()
                 .client(constructClient())
-                .baseUrl(BASE_URL)
+                .baseUrl(Constant.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
@@ -46,8 +46,8 @@ class ApiClient private constructor() {
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor(loggerInterceptor)
-                //.addInterceptor(getInterceptor())
-                //.addNetworkInterceptor(CacheInterceptor())
+                .addInterceptor(getInterceptor())
+                .addNetworkInterceptor(CacheInterceptor())
                 .retryOnConnectionFailure(true)
                 .build()
     }

@@ -78,7 +78,12 @@ interface ApiStore {
      * 存取款记录
      */
     @POST("userdeposit/withdrawalsAndSaveDetail")
-    fun getFundingRecord(@Body params: HashMap<String, Any?>): Flowable<Root<FundingModel>>
+    fun getMoneyRecord(@Body params: HashMap<String, Any?>): Flowable<Root<FundingModel>>
 
+    /**
+     * 开奖历史
+     */
+    @POST("lotterOpen/openselet")
+    fun getLotteryHistory(@Body params: HashMap<String, Any?>): Flowable<Root<LotteryModel>>
 
 }

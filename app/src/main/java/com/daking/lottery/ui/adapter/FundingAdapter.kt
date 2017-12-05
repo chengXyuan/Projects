@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.util.SparseArray
+import android.view.ViewGroup
 import com.daking.lottery.ui.fragment.MoneyRecordFragment
 import com.daking.lottery.ui.fragment.RechargeFragment
 import com.daking.lottery.ui.fragment.WithdrawFragment
@@ -29,5 +30,9 @@ class FundingAdapter(fm: FragmentManager, private val titles: Array<String>) : F
 
     override fun getPageTitle(position: Int): CharSequence {
         return titles[position]
+    }
+
+    override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
+        //super.destroyItem(container, position, `object`)
     }
 }

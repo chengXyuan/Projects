@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginEnd="8dp"
     android:layout_marginStart="8dp"
-    android:background="@drawable/ic_pop_menu_bg"
+    android:background="@drawable/img_pop_menu_bg"
     android:divider="@drawable/shape_divider_line"
     android:orientation="vertical"
     android:paddingEnd="3dp"

@@ -229,5 +229,23 @@ object Utils {
         return format.format(timestamp)
     }
 
+    fun seconds2Time(seconds: Long): String {
+        if (seconds < 0) {
+            return "--:--"
+        }
+        var temp: Long = seconds / 3600
+        val sb = StringBuilder()
 
+        if (temp != 0L) {
+            sb.append(if (temp < 10) "0$temp:" else "$temp:")
+        }
+
+        temp = seconds % 3600 / 60
+        sb.append(if (temp < 10) "0$temp:" else "$temp:")
+
+        temp = seconds % 3600 % 60
+        sb.append(if (temp < 10) "0$temp" else "$temp")
+
+        return sb.toString()
+    }
 }

@@ -1,5 +1,6 @@
 package com.daking.lottery.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.daking.lottery.R
@@ -11,6 +12,7 @@ import com.daking.lottery.ui.fragment.HomeFragment
 import com.daking.lottery.ui.fragment.MineFragment
 import com.daking.lottery.ui.iview.IMainView
 import com.daking.lottery.ui.presenter.MainPresenter
+import com.daking.lottery.util.log
 import com.daking.lottery.util.toast
 import com.daking.lottery.widget.TabEntity
 import com.flyco.tablayout.listener.CustomTabEntity
@@ -18,6 +20,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : BaseMVPActivity<MainPresenter>(), IMainView {
+
+    companion object {
+        val MAIN_TAB_POSITION = "MAIN_TAB_POSITION"
+        val FUNDING_TAB_POSITION = "funding_tab_position"
+    }
 
     private var mExitTime = 0L
     private var mFragments = ArrayList<Fragment>()
@@ -56,6 +63,20 @@ class MainActivity : BaseMVPActivity<MainPresenter>(), IMainView {
             mFragments.add(fragClazz[index].newInstance() as Fragment)
         }
         bottom_tab.setTabData(tabEntities, this, R.id.fl_container, mFragments)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        log("onNewIntent: ")
+        intent?.let {
+            val mainPosition = intent.getIntExtra(MAIN_TAB_POSITION, 0)
+            bottom_tab.currentTab = mainPosition
+            if (mainPosition == 2) {
+                val fundingPosition = intent.getIntExtra(FUNDING_TAB_POSITION, 0)
+                val frag = mFragments[mainPosition] as FundingFragment
+                frag.setCurrentTab(fundingPosition)
+            }
+        }
     }
 
     override fun onBackPressed() {

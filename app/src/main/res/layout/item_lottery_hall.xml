@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <TextView
+        android:id="@+id/tv_game_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_dark"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="北京PK拾"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="30dp"
+        android:layout_height="1px"
+        android:layout_marginStart="4dp"
+        android:background="@color/text_light"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_game_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_game_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_game_name"/>
+
+    <TextView
+        android:id="@+id/tv_round_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textColor="@color/text_light"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        tools:text="2017060894期"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/prize_time"
+        android:textColor="@color/text_normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_round_number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_round_number"/>
+
+    <com.daking.lottery.widget.LotteryNumberView
+        android:id="@+id/lotteryNumberView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        app:flexWrap="wrap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_lottery_time"
+        app:layout_constraintStart_toEndOf="@id/tv_last_round"
+        app:layout_constraintTop_toBottomOf="@+id/tv_game_name"
+        tools:minHeight="24dp"/>
+
+    <TextView
+        android:id="@+id/tv_last_round"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/last_round"
+        app:layout_constraintBottom_toBottomOf="@+id/lotteryNumberView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lotteryNumberView"
+        tools:layout_editor_absoluteY="78dp"/>
+
+    <TextView
+        android:id="@+id/tv_lottery_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ff9200"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lotteryNumberView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lotteryNumberView"
+        tools:text="05:35"/>
+</android.support.constraint.ConstraintLayout>

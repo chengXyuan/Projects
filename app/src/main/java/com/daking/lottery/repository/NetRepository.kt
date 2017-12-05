@@ -2,11 +2,7 @@ package com.daking.lottery.repository
 
 import com.daking.lottery.api.ApiClient
 import com.daking.lottery.api.ApiStore
-import com.daking.lottery.app.Constant
-import com.daking.lottery.model.FundingModel
-import com.daking.lottery.model.PayWaysModel
-import com.daking.lottery.model.Root
-import com.daking.lottery.model.UserModel
+import com.daking.lottery.model.*
 import com.daking.lottery.util.AccountHelper
 import io.reactivex.Flowable
 
@@ -72,13 +68,24 @@ class NetRepository private constructor() {
         return mApiStore.getPayWays(params)
     }
 
-    fun getFundingRecord(pageIndex: Int, pageSize: Int = Constant.PAGE_SIZE)
+    fun getMoneyRecord(pageIndex: Int, pageSize: Int)
             : Flowable<Root<FundingModel>> {
         val params = HashMap<String, Any?>()
         params["usersId"] = getUserId()
         params["sessionId"] = getSessionId()
         params["pageSize"] = pageSize
         params["pageNo"] = pageIndex
-        return mApiStore.getFundingRecord(params)
+        return mApiStore.getMoneyRecord(params)
+    }
+
+    fun getLotteryHistory(gameCode: Int?, pageIndex: Int, pageSize: Int)
+            : Flowable<Root<LotteryModel>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["lotterygamesId"] = gameCode
+        params["pageSize"] = pageSize
+        params["pageNo"] = pageIndex
+        return mApiStore.getLotteryHistory(params)
     }
 }
