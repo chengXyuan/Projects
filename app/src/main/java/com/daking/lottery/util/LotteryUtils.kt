@@ -13,6 +13,32 @@ class LotteryUtils private constructor() {
         val instance = Holder.INSTANCE
     }
 
+    fun getGameName(gameCode: Int): String {
+        return when (gameCode) {
+            Constant.GAME_CODE_PJ_FUNNY_8//北京快乐8
+            -> "北京快乐8"
+            Constant.GAME_CODE_GD_5_IN_11//广东11选5
+            -> "广东11选5"
+            Constant.GAME_CODE_PJ_PK_10//北京赛车
+            -> "北京PK拾"
+            Constant.GAME_CODE_CJ_LOTTERY//重庆时时彩
+            -> "重庆时时彩"
+            Constant.GAME_CODE_LUCKY_AIRSHIP//幸运飞艇
+            -> "幸运飞艇"
+            Constant.GAME_CODE_LUCKY_28//PC蛋蛋
+            -> "PC蛋蛋"
+            Constant.GAME_CODE_GD_HAPPY_10//广东快乐十分
+            -> "广东快乐十分"
+            Constant.GAME_CODE_CJ_LUCKY_FARM//重庆幸运农场
+            -> "重庆幸运农场"
+            Constant.GAME_CODE_HK_MARK_SIX//香港六合彩
+            -> "香港六合彩"
+            Constant.GAME_CODE_JS_FAST_3//江苏快三
+            -> "江苏快三"
+            else -> ""
+        }
+    }
+
     fun getLotteryNumBg(gameCode: Int, number: String): Int {
         return when (gameCode) {
             Constant.GAME_CODE_PJ_PK_10,
@@ -88,4 +114,33 @@ class LotteryUtils private constructor() {
             else -> R.drawable.shape_dot_grey
         }
     }
+
+    /**
+     * 获取六合彩生肖属性
+     */
+    fun getZodiac(number: Int) = when (number % 12) {
+        10 -> "鼠"
+        9 -> "牛"
+        8 -> "虎"
+        7 -> "兔"
+        6 -> "龙"
+        5 -> "蛇"
+        4 -> "马"
+        3 -> "羊"
+        2 -> "猴"
+        1 -> "鸡"
+        0 -> "狗"
+        else -> "猪"
+    }
+
+    fun getYuXiaXie(number: Int) = when (number) {
+        1 -> "鱼"
+        2 -> "虾"
+        3 -> "葫芦"
+        4 -> "金钱"
+        5 -> "蟹"
+        6 -> "鸡"
+        else -> ""
+    }
+
 }

@@ -2,6 +2,7 @@ package com.daking.lottery.repository
 
 import com.daking.lottery.api.ApiClient
 import com.daking.lottery.api.ApiStore
+import com.daking.lottery.app.Constant
 import com.daking.lottery.model.*
 import com.daking.lottery.util.AccountHelper
 import io.reactivex.Flowable
@@ -68,6 +69,9 @@ class NetRepository private constructor() {
         return mApiStore.getPayWays(params)
     }
 
+    /**
+     * 充值提现记录
+     */
     fun getMoneyRecord(pageIndex: Int, pageSize: Int)
             : Flowable<Root<FundingModel>> {
         val params = HashMap<String, Any?>()
@@ -78,7 +82,10 @@ class NetRepository private constructor() {
         return mApiStore.getMoneyRecord(params)
     }
 
-    fun getLotteryHistory(gameCode: Int?, pageIndex: Int, pageSize: Int)
+    /**
+     * 开奖历史
+     */
+    fun getLotteryHistory(gameCode: Int?, pageIndex: Int, pageSize: Int = Constant.PAGE_SIZE)
             : Flowable<Root<LotteryModel>> {
         val params = HashMap<String, Any?>()
         params["usersId"] = getUserId()

@@ -1,6 +1,5 @@
 package com.daking.lottery.ui.presenter
 
-import com.daking.lottery.app.Constant
 import com.daking.lottery.base.BasePresenter
 import com.daking.lottery.model.LotteryModel
 import com.daking.lottery.ui.iview.IHallView
@@ -40,7 +39,7 @@ class HallPresenter : BasePresenter<IHallView>() {
      * 获取开奖信息
      */
     private fun getLotteryHistory() {
-        mNetRepository.getLotteryHistory(null, 1, Constant.PAGE_SIZE)
+        mNetRepository.getLotteryHistory(null, 1)
                 .dealArray({ _, _, data ->
                     mView.showLotteries(data)
                     if (data != null) startCountDown(data)

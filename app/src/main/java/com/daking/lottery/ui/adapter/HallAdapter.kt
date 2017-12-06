@@ -4,6 +4,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.daking.lottery.R
 import com.daking.lottery.model.LotteryModel
+import com.daking.lottery.util.LotteryUtils
 import com.daking.lottery.util.Utils
 import kotlinx.android.synthetic.main.item_lottery_hall.view.*
 
@@ -11,7 +12,7 @@ class HallAdapter : BaseQuickAdapter<LotteryModel, BaseViewHolder>(R.layout.item
 
     override fun convert(helper: BaseViewHolder, item: LotteryModel) {
         with(item) {
-            helper.itemView.tv_game_name.text = getGameName()
+            helper.itemView.tv_game_name.text = LotteryUtils.instance.getGameName(gameCode)
             helper.itemView.tv_round_number.text = mContext.getString(R.string.lottery_round, round)
             if (isClose == 0 && openTime != null && sysTime != null) {
                 val timeCD = (openTime - sysTime)

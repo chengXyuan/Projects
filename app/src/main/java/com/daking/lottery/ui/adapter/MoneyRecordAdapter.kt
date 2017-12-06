@@ -10,7 +10,7 @@ import com.daking.lottery.util.Utils
 class MoneyRecordAdapter : BaseQuickAdapter<FundingModel, BaseViewHolder>(R.layout.item_record) {
 
     override fun convert(helper: BaseViewHolder, item: FundingModel) {
-        helper.setText(R.id.tv_time, Utils.convertTime(item.createdTime * 1000))
+        helper.setText(R.id.tv_time, Utils.convertDateTime(item.createdTime * 1000))
         val type = if (item.type == 0) Utils.getString(R.string.deposit) else Utils.getString(R.string.take_out)
         helper.setText(R.id.tv_amount, "$type ${item.money}")
         when (item.orderStatus) {

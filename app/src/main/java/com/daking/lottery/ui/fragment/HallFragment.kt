@@ -11,6 +11,7 @@ import com.daking.lottery.dialog.MainMenuPopupWindow
 import com.daking.lottery.dialog.easy.HorizontalGravity
 import com.daking.lottery.dialog.easy.VerticalGravity
 import com.daking.lottery.model.LotteryModel
+import com.daking.lottery.ui.activity.LotteryHistoryActivity
 import com.daking.lottery.ui.activity.WebViewActivity
 import com.daking.lottery.ui.adapter.HallAdapter
 import com.daking.lottery.ui.iview.IHallView
@@ -46,6 +47,12 @@ class HallFragment : BaseMVPFragment<HallPresenter>(), IHallView {
 
     private fun initRecyclerView() {
         mAdapter = HallAdapter()
+        mAdapter.setOnItemClickListener { adapter, _, position ->
+            val item = adapter.getItem(position) as LotteryModel
+            context.startActivity<LotteryHistoryActivity>(
+                    Pair(Constant.GAME_CODE, item.gameCode)
+            )
+        }
 
         refresh_layout.isRefreshing = true
         refresh_layout.setColorSchemeResources(R.color.colorAccent)

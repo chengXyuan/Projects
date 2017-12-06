@@ -220,11 +220,20 @@ object Utils {
         return App.instance.getString(id)
     }
 
-    fun convertTime(timestamp: Long): String {
+    fun convertDateTime(timestamp: Long): String {
         if (timestamp <= 0L) {
             return ""
         }
         val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        format.timeZone = TimeZone.getTimeZone("GMT+08")
+        return format.format(timestamp)
+    }
+
+    fun convertTime(timestamp: Long): String {
+        if (timestamp <= 0L) {
+            return ""
+        }
+        val format = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
         format.timeZone = TimeZone.getTimeZone("GMT+08")
         return format.format(timestamp)
     }

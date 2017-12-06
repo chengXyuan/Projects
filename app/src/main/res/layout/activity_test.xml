@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:background="@drawable/shape_stroke_divider"
+    app:dividerDrawableVertical="@drawable/shape_vertical_divider"
+    app:showDividerVertical="middle">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/lottery_property_title_bg"
+        android:gravity="center"
+        android:text="总和"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="1"
+        tools:text="105"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/lottery_property_title_bg"
+        android:gravity="center"
+        android:text="生肖"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="1"
+        tools:text="龙"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="1"
+        tools:text="蛇"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="1"
+        tools:text="马"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="1"
+        tools:text="羊"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="1"
+        tools:text="猴"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/text_normal"
+        android:textSize="12sp"
+        app:layout_flexGrow="1"
+        tools:text="鸡"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_flexGrow="1"
+        tools:text="狗"/>
+
+</com.google.android.flexbox.FlexboxLayout>

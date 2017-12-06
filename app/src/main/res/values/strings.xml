@@ -46,7 +46,7 @@
     <string name="input_manual_amount">请输入下注金额</string>
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>
-    <string name="account_yue">账户余额</string>
+    <string name="balance">余额：</string>
     <string name="prize_time">开奖时间</string>
     <string name="bet_limit" formatted="false">最少选择%d项，最多选择%d项</string>
     <string name="bet_just">请选择%d项下注</string>
@@ -66,5 +66,6 @@
     <string name="last_round">上期</string>
     <string name="lottery_close">封盘</string>
     <string name="lottery_round">%s期</string>
+    <string name="time">时间：%s</string>
 
 </resources>

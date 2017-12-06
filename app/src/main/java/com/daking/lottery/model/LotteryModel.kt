@@ -1,6 +1,5 @@
 package com.daking.lottery.model
 
-import com.daking.lottery.app.Constant
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -19,31 +18,4 @@ data class LotteryModel(@SerializedName("lotterygamesId") val gameCode: Int,
                         val number: String,
                         val openTime: Long?,
                         val sysTime: Long?,
-                        val isClose: Int) {
-
-    fun getGameName(): String {
-        return when (gameCode) {
-            Constant.GAME_CODE_PJ_FUNNY_8//北京快乐8
-            -> "北京快乐8"
-            Constant.GAME_CODE_GD_5_IN_11//广东11选5
-            -> "广东11选5"
-            Constant.GAME_CODE_PJ_PK_10//北京赛车
-            -> "北京PK拾"
-            Constant.GAME_CODE_CJ_LOTTERY//重庆时时彩
-            -> "重庆时时彩"
-            Constant.GAME_CODE_LUCKY_AIRSHIP//幸运飞艇
-            -> "幸运飞艇"
-            Constant.GAME_CODE_LUCKY_28//PC蛋蛋
-            -> "PC蛋蛋"
-            Constant.GAME_CODE_GD_HAPPY_10//广东快乐十分
-            -> "广东快乐十分"
-            Constant.GAME_CODE_CJ_LUCKY_FARM//重庆幸运农场
-            -> "重庆幸运农场"
-            Constant.GAME_CODE_HK_MARK_SIX//香港六合彩
-            -> "香港六合彩"
-            Constant.GAME_CODE_JS_FAST_3//江苏快三
-            -> "江苏快三"
-            else -> ""
-        }
-    }
-}
+                        val isClose: Int)

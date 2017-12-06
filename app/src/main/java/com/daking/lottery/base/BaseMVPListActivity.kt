@@ -12,13 +12,14 @@ import com.daking.lottery.widget.CustomLoadMoreView
 
 abstract class BaseMVPListActivity<P : BasePresenter<*>> : BaseMVPActivity<P>(), BaseQuickAdapter.RequestLoadMoreListener {
 
-    lateinit var mRefresshLayout: SwipeRefreshLayout
+    private lateinit var mAdapter: BaseQuickAdapter<*, *>
+    lateinit var mRefreshLayout: SwipeRefreshLayout
     lateinit var mEmptyView: View
     lateinit var mErrorView: View
     lateinit var mTvError: TextView
 
     private var mIsRefresh = false
-    private var mPageIndex = 1
+    open var mPageIndex = 1
 
     companion object {
         val PAGE_SIZE = 20
@@ -26,7 +27,8 @@ abstract class BaseMVPListActivity<P : BasePresenter<*>> : BaseMVPActivity<P>(),
 
     fun <T, K : BaseViewHolder> setupList(refreshLayout: SwipeRefreshLayout, recyclerView: RecyclerView,
                                           adapter: BaseQuickAdapter<T, K>) {
-        mRefresshLayout = refreshLayout
+        mAdapter = adapter
+        mRefreshLayout = refreshLayout
 
         /*emptyView*/
         mEmptyView = layoutInflater.inflate(R.layout.layout_empty_view,
@@ -38,24 +40,26 @@ abstract class BaseMVPListActivity<P : BasePresenter<*>> : BaseMVPActivity<P>(),
         mTvError = mErrorView.findViewById(R.id.tv_error_view_msg)
 
         /*refresh*/
-        mRefresshLayout.setColorSchemeResources(R.color.colorAccent)
-        mRefresshLayout.setOnRefreshListener { requestData(true) }
+        mRefreshLayout.setColorSchemeResources(R.color.colorAccent)
+        mRefreshLayout.setOnRefreshListener { requestData(true) }
 
         /*loadmore*/
-        adapter.setLoadMoreView(CustomLoadMoreView())
-        adapter.setOnLoadMoreListener(this, recyclerView)
+        mAdapter.setLoadMoreView(CustomLoadMoreView())
+        mAdapter.setOnLoadMoreListener(this, recyclerView)
 
-        recyclerView.adapter = adapter
+        recyclerView.adapter = mAdapter
     }
 
     override fun onLoadMoreRequested() {
         requestData(false)
     }
 
-    protected fun requestData(isRefresh: Boolean) {
+    open fun requestData(isRefresh: Boolean) {
         mIsRefresh = isRefresh
-        if (mIsRefresh) mPageIndex = 1
-        else mPageIndex++
+        if (mIsRefresh) {
+            mPageIndex = 1
+            mRefreshLayout.isRefreshing = true
+        } else mPageIndex++
     }
 
     fun <T, K : BaseViewHolder> setData(adapter: BaseQuickAdapter<T, K>, data: List<T>?) {
@@ -72,8 +76,8 @@ abstract class BaseMVPListActivity<P : BasePresenter<*>> : BaseMVPActivity<P>(),
         }
     }
 
-    fun <T, K : BaseViewHolder> showError(adapter: BaseQuickAdapter<T, K>, msg: String) {
-        with(adapter) {
+    fun showError(msg: String) {
+        with(mAdapter) {
             if (mIsRefresh) {
                 emptyView = mErrorView
                 mTvError.text = msg
@@ -82,6 +86,6 @@ abstract class BaseMVPListActivity<P : BasePresenter<*>> : BaseMVPActivity<P>(),
     }
 
     fun onComplete() {
-        mRefresshLayout.isRefreshing = false
+        mRefreshLayout.isRefreshing = false
     }
 }

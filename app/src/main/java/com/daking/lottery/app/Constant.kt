@@ -14,6 +14,7 @@ interface Constant {
         val REGEX_REAL_NAME = "^[\\u4e00-\\u9fa5]{2,8}$"
 
         /*===============game code start=================*/
+        val GAME_CODE = "game_code"
         val GAME_CODE_PJ_FUNNY_8 = 1//北京快乐8
         val GAME_CODE_GD_5_IN_11 = 2//广东11选5
         val GAME_CODE_PJ_PK_10 = 3//北京PK拾

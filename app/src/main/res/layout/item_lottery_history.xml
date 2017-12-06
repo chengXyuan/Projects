@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="85dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lotteryRound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_normal"
+                android:textSize="12.5sp"
+                tools:text="20171121-045"/>
+
+            <TextView
+                android:id="@+id/lotteryTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_light"
+                android:textSize="12sp"
+                tools:text="时间：20:03:21"/>
+
+        </LinearLayout>
+
+        <com.daking.lottery.widget.LotteryNumberView
+            android:id="@+id/lotteryNumberView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flexWrap="wrap"/>
+    </LinearLayout>
+
+    <com.daking.lottery.widget.LotteryPropertyView
+        android:id="@+id/lotteryPropertyView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/shape_stroke_divider"
+        app:dividerDrawableVertical="@drawable/shape_vertical_divider"
+        app:showDividerVertical="middle"/>
+</LinearLayout>
