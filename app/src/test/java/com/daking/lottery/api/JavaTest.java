@@ -1,22 +1,19 @@
 package com.daking.lottery.api;
 
-import android.view.View;
+import org.reactivestreams.Publisher;
 
-import com.daking.lottery.dialog.nice.BaseDialog;
-import com.daking.lottery.dialog.nice.NiceDialog;
-import com.daking.lottery.dialog.nice.ViewConvertListener;
-
-import org.jetbrains.annotations.NotNull;
+import io.reactivex.Flowable;
+import io.reactivex.functions.Function;
 
 public class JavaTest {
 
-    public void testJavaMethod(){
-        NiceDialog.Companion.init()
-                .setConvertListener(new ViewConvertListener() {
+    public void testavaMethod(){
+        Flowable.just(0)
+                .retryWhen(new Function<Flowable<Throwable>, Publisher<?>>() {
                     @Override
-                    public void convertView(@NotNull View view, @NotNull BaseDialog dialog) {
-
+                    public Publisher<?> apply(Flowable<Throwable> throwableFlowable) throws Exception {
+                        return throwableFlowable;
                     }
-                });
+                }).subscribe();
     }
 }

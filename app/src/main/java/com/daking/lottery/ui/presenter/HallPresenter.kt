@@ -1,9 +1,9 @@
 package com.daking.lottery.ui.presenter
 
 import com.daking.lottery.base.BasePresenter
-import com.daking.lottery.model.LotteryModel
+import com.daking.lottery.model.OpenModel
 import com.daking.lottery.ui.iview.IHallView
-import com.daking.lottery.util.RxSchedulers
+import com.daking.lottery.util.RxUtils
 import io.reactivex.Flowable
 import io.reactivex.disposables.Disposable
 import java.util.concurrent.TimeUnit
@@ -21,7 +21,7 @@ class HallPresenter : BasePresenter<IHallView>() {
             mPollingDis!!.dispose()
         }
         mPollingDis = Flowable.interval(0, 15, TimeUnit.SECONDS)
-                .compose(RxSchedulers.io2Main())
+                .compose(RxUtils.io2Main())
                 .compose(mView.bindLifecycle())
                 .subscribe { getLotteryHistory() }
     }
@@ -51,7 +51,7 @@ class HallPresenter : BasePresenter<IHallView>() {
                 })
     }
 
-    private fun startCountDown(data: List<LotteryModel>) {
+    private fun startCountDown(data: List<OpenModel>) {
         if (mCountDownDis != null && !mCountDownDis!!.isDisposed) {
             mCountDownDis!!.dispose()
         }
@@ -62,7 +62,7 @@ class HallPresenter : BasePresenter<IHallView>() {
                 } else -1
             })
         }
-                .compose(RxSchedulers.io2Main())
+                .compose(RxUtils.io2Main())
                 .compose(mView.bindLifecycle())
                 .subscribe({ longs ->
                     //是否马上刷新

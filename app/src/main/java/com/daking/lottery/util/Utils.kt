@@ -242,19 +242,34 @@ object Utils {
         if (seconds < 0) {
             return "--:--"
         }
-        var temp: Long = seconds / 3600
-        val sb = StringBuilder()
+        val hour = seconds / 3600
+        val minute = seconds % 3600 / 60
+        val second = seconds % 3600 % 60
+        return if (hour == 0L) String.format("%02D:%02D", minute, second)
+        else String.format("%02D:%02D:%02D", hour, minute, second)
+    }
 
-        if (temp != 0L) {
-            sb.append(if (temp < 10) "0$temp:" else "$temp:")
+    fun getHour(seconds: Long): String {
+        if (seconds < 0) {
+            return "00"
         }
+        val hour = seconds / 3600
+        return String.format("%02D", hour)
+    }
 
-        temp = seconds % 3600 / 60
-        sb.append(if (temp < 10) "0$temp:" else "$temp:")
+    fun getMinute(seconds: Long): String {
+        if (seconds < 0) {
+            return "00"
+        }
+        val minute = seconds % 3600 / 60
+        return String.format("%02D", minute)
+    }
 
-        temp = seconds % 3600 % 60
-        sb.append(if (temp < 10) "0$temp" else "$temp")
-
-        return sb.toString()
+    fun getSecond(seconds: Long): String {
+        if (seconds < 0) {
+            return "00"
+        }
+        val second = seconds % 3600 % 60
+        return String.format("%02D", second)
     }
 }

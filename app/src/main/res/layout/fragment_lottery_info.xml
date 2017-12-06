@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingEnd="8dp"
-    android:paddingStart="8dp">
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp"
+    tools:showIn="@layout/activity_bet">
 
     <TextView
         android:id="@+id/tvNextRound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:textColor="@color/text_dark"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +29,6 @@
         android:text="@string/balance"
         android:textColor="@color/text_normal"
         android:textSize="@dimen/sp_16"
-        app:layout_constraintBottom_toTopOf="@id/lotteryNumberView"
         app:layout_constraintStart_toStartOf="@id/tvNextRound"
         app:layout_constraintTop_toBottomOf="@id/tvNextRound"/>
 
@@ -47,6 +47,7 @@
         android:id="@+id/tvOpenTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="1dp"
         android:textColor="@color/text_dark"
         android:textSize="@dimen/sp_16"
@@ -72,13 +73,13 @@
         android:orientation="horizontal"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@id/lotteryNumberView"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="@id/tvOpenTime">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:text="封"
+            android:text="@string/lottery_closed"
             android:textColor="@color/text_dark"
             android:textSize="30sp"/>
 
@@ -89,7 +90,7 @@
             android:background="@drawable/shape_time_bg"
             android:gravity="center"
             android:singleLine="true"
-            android:text="--"
+            android:text="@string/default_text"
             android:textColor="@color/white"
             android:textSize="20sp"/>
 
@@ -97,7 +98,7 @@
             android:layout_width="12dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text=":"
+            android:text="@string/colon"
             android:textColor="#000"
             android:textSize="22sp"
             android:textStyle="bold"/>
@@ -109,7 +110,7 @@
             android:background="@drawable/shape_time_bg"
             android:gravity="center"
             android:singleLine="true"
-            android:text="--"
+            android:text="@string/default_text"
             android:textColor="@color/white"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -123,13 +124,13 @@
         android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/lotteryNumberView"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="@id/tvOpenTime">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="3dp"
-            android:text="封"
+            android:text="@string/lottery_closed"
             android:textColor="@color/text_dark"
             android:textSize="28sp"/>
 
@@ -141,7 +142,7 @@
             android:gravity="center"
             android:minWidth="25dp"
             android:singleLine="true"
-            android:text="--"
+            android:text="@string/default_text"
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
@@ -149,7 +150,7 @@
             android:layout_width="8dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text=":"
+            android:text="@string/colon"
             android:textColor="@color/text_dark"
             android:textSize="21sp"/>
 
@@ -161,7 +162,7 @@
             android:gravity="center"
             android:minWidth="25dp"
             android:singleLine="true"
-            android:text="--"
+            android:text="@string/default_text"
             android:textColor="@color/white"
             android:textSize="18sp"/>
 
@@ -169,7 +170,7 @@
             android:layout_width="8dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text=":"
+            android:text="@string/colon"
             android:textColor="#000"
             android:textSize="21sp"/>
 
@@ -181,18 +182,19 @@
             android:gravity="center"
             android:minWidth="25dp"
             android:singleLine="true"
-            android:text="--"
+            android:text="@string/default_text"
             android:textColor="@color/white"
             android:textSize="18sp"/>
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvLastRound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/text_dark"
         android:textSize="@dimen/sp_12"
         app:layout_constraintBottom_toBottomOf="@id/lotteryNumberView"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvNextRound"
         app:layout_constraintTop_toTopOf="@id/lotteryNumberView"
         tools:text="20171206-54"/>
 
@@ -200,21 +202,24 @@
         android:id="@+id/lotteryNumberView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         app:flexWrap="wrap"
-        app:layout_constraintBottom_toTopOf="@id/lotteryPropertyView"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tvOpenTime"
+        app:layout_constraintStart_toEndOf="@id/tvLastRound"
+        app:layout_constraintTop_toBottomOf="@id/tv_balance"
         tools:layout_height="24dp"/>
 
     <com.daking.lottery.widget.LotteryPropertyView
         android:id="@+id/lotteryPropertyView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="20dp"
-        android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
         android:background="@drawable/shape_stroke_divider"
         app:dividerDrawableVertical="@drawable/shape_vertical_divider"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tvOpenTime"
+        app:layout_constraintStart_toStartOf="@id/tvNextRound"
+        app:layout_constraintTop_toBottomOf="@id/lotteryNumberView"
         app:showDividerVertical="middle"/>
 
 </android.support.constraint.ConstraintLayout>

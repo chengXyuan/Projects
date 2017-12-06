@@ -13,7 +13,7 @@
         tools:showIn="@layout/activity_bet">
 
         <ImageView
-            android:id="@+id/iv_back"
+            android:id="@+id/ivBack"
             android:layout_width="@dimen/title_bar_height"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -22,7 +22,7 @@
             tools:ignore="ContentDescription"/>
 
         <TextView
-            android:id="@+id/tv_bet_title"
+            android:id="@+id/tvGameName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -34,7 +34,7 @@
             tools:text="北京PK拾"/>
 
         <ImageView
-            android:id="@+id/iv_menu"
+            android:id="@+id/ivMenu"
             android:layout_width="@dimen/title_bar_height"
             android:layout_height="match_parent"
             android:layout_gravity="center|end"
@@ -46,17 +46,27 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/fragment_lottery_info"/>
 
             <FrameLayout
-                android:id="@+id/flLotteryInfo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="43dp"
+                android:background="@color/colorPrimary">
 
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flOddsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

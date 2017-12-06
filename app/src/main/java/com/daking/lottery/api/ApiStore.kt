@@ -84,6 +84,12 @@ interface ApiStore {
      * 开奖历史
      */
     @POST("lotterOpen/openselet")
-    fun getLotteryHistory(@Body params: HashMap<String, Any?>): Flowable<Root<LotteryModel>>
+    fun getLotteryHistory(@Body params: HashMap<String, Any?>): Flowable<Root<OpenModel>>
+
+    /**
+     * 期数查询接口(下注页面获取开奖信息)
+     */
+    @POST("lotterOpen/getinfo/periods")
+    fun getLotteryInfo(@Body params: HashMap<String, Any?>):Flowable<Root<LotteryInfo>>
 
 }

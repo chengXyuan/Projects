@@ -50,7 +50,7 @@ class AccountHelper {
      */
     fun <T : BaseView> refreshAccount(view: T, success: (user: UserModel?) -> Unit) {
         NetRepository.instance.refreshAccount()
-                .compose(RxSchedulers.io2Main())
+                .compose(RxUtils.io2Main())
                 .compose(view.bindLifecycle())
                 .subscribe(object : NetSubscriber<UserModel>() {
                     override fun onSuccess(code: Int, msg: String, data: List<UserModel>?) {

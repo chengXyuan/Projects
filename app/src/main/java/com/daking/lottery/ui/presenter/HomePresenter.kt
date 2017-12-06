@@ -1,6 +1,7 @@
 package com.daking.lottery.ui.presenter
 
 import com.daking.lottery.app.App
+import com.daking.lottery.app.Constant
 import com.daking.lottery.base.BasePresenter
 import com.daking.lottery.repository.LocalRepository
 import com.daking.lottery.ui.activity.BetActivity
@@ -36,7 +37,7 @@ class HomePresenter : BasePresenter<IHomeView>() {
         val gameAdapter = HomeGameAdapter(games)
         gameAdapter.setOnItemClickListener { _, _, position ->
             App.instance.startActivity<BetActivity>(
-                    Pair(BetActivity.GAME_CODE, gameAdapter.data[position].gameCode)
+                    Pair(Constant.GAME_CODE, gameAdapter.data[position].gameCode)
             )
         }
         mView.showGames(gameAdapter)

@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.daking.lottery.R
 import com.daking.lottery.app.Constant
 import com.daking.lottery.base.BaseMVPListActivity
-import com.daking.lottery.model.LotteryModel
+import com.daking.lottery.model.OpenModel
 import com.daking.lottery.ui.adapter.LotteryHistoryAdapter
 import com.daking.lottery.ui.iview.ILotteryHistoryView
 import com.daking.lottery.ui.presenter.LotteryHistoryPresenter
@@ -41,7 +41,7 @@ class LotteryHistoryActivity : BaseMVPListActivity<LotteryHistoryPresenter>(), I
         setupList(refreshLayout, recycler_view, mAdapter)
     }
 
-    override fun showHistory(data: List<LotteryModel>?) {
+    override fun showHistory(data: List<OpenModel>?) {
         setData(mAdapter, data)
     }
 

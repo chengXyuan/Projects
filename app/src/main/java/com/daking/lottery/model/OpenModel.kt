@@ -13,9 +13,9 @@ import com.google.gson.annotations.SerializedName
  * "isClose": 0
  * }
  */
-data class LotteryModel(@SerializedName("lotterygamesId") val gameCode: Int,
-                        val round: String,
-                        val number: String,
-                        val openTime: Long?,
-                        val sysTime: Long?,
-                        val isClose: Int)
+data class OpenModel(@SerializedName("lotterygamesId") val gameCode: Int,
+                     val round: String,
+                     val number: String,
+                     val openTime: Long?,
+                     val sysTime: Long?,
+                     val isClose: Int)

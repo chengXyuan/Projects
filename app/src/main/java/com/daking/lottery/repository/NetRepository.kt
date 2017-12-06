@@ -86,7 +86,7 @@ class NetRepository private constructor() {
      * 开奖历史
      */
     fun getLotteryHistory(gameCode: Int?, pageIndex: Int, pageSize: Int = Constant.PAGE_SIZE)
-            : Flowable<Root<LotteryModel>> {
+            : Flowable<Root<OpenModel>> {
         val params = HashMap<String, Any?>()
         params["usersId"] = getUserId()
         params["sessionId"] = getSessionId()
@@ -94,5 +94,14 @@ class NetRepository private constructor() {
         params["pageSize"] = pageSize
         params["pageNo"] = pageIndex
         return mApiStore.getLotteryHistory(params)
+    }
+
+    /**
+     * 期数查询
+     */
+    fun getLotteryInfo(gameCode: Int): Flowable<Root<LotteryInfo>> {
+        val params = HashMap<String, Any?>()
+        params["gameCode"] = gameCode
+        return mApiStore.getLotteryInfo(params)
     }
 }

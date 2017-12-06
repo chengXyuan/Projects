@@ -3,7 +3,7 @@ package com.daking.lottery.base
 import com.daking.lottery.api.NetSubscriber
 import com.daking.lottery.model.Root
 import com.daking.lottery.repository.NetRepository
-import com.daking.lottery.util.RxSchedulers
+import com.daking.lottery.util.RxUtils
 import com.daking.lottery.util.log
 import io.reactivex.Flowable
 import org.greenrobot.eventbus.EventBus
@@ -43,7 +43,7 @@ open class BasePresenter<V : BaseView> {
             complete: () -> Unit = {}
     ) {
         this.compose(mView.bindLifecycle())
-                .compose(RxSchedulers.io2Main())
+                .compose(RxUtils.io2Main())
                 .subscribe(object : NetSubscriber<T>() {
                     override fun onSuccess(code: Int, msg: String, data: List<T>?) {
                         success(code, msg, data!![0])
@@ -69,7 +69,7 @@ open class BasePresenter<V : BaseView> {
             complete: () -> Unit = {}
     ) {
         this.compose(mView.bindLifecycle())
-                .compose(RxSchedulers.io2Main())
+                .compose(RxUtils.io2Main())
                 .subscribe(object : NetSubscriber<T>() {
                     override fun onSuccess(code: Int, msg: String, data: List<T>?) {
                         success(code, msg, data)
