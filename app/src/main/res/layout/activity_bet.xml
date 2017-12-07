@@ -56,12 +56,29 @@
 
             <include layout="@layout/fragment_lottery_info"/>
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
-                android:background="@color/colorPrimary">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            </FrameLayout>
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:orientation="horizontal"/>
+
+                <ImageView
+                    android:id="@+id/ivShowMore"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_drop_down"
+                    tools:ignore="ContentDescription"/>
+            </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/flOddsContainer"

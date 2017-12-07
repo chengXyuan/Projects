@@ -5,6 +5,8 @@ import com.daking.lottery.model.LastModel
 
 interface IBetView : BaseView {
 
+    fun refreshBalance(balance: Double)
+
     fun showLastRound(lastModel: LastModel)
 
     fun setNextRoundNum(round: String)

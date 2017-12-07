@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvNextRound"/>
 
     <TextView
-        android:id="@+id/tv_balance"
+        android:id="@+id/tvBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -84,7 +84,7 @@
             android:textSize="30sp"/>
 
         <TextView
-            android:id="@+id/tv_time_minute"
+            android:id="@+id/tvCloseTimeMinute"
             android:layout_width="26dp"
             android:layout_height="30dp"
             android:background="@drawable/shape_time_bg"
@@ -104,7 +104,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/tv_time_seconds"
+            android:id="@+id/tvCloseTimeSecond"
             android:layout_width="26dp"
             android:layout_height="30dp"
             android:background="@drawable/shape_time_bg"
@@ -135,7 +135,7 @@
             android:textSize="28sp"/>
 
         <TextView
-            android:id="@+id/tv_time_hour"
+            android:id="@+id/tvCloseTime2Hour"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/shape_time_bg"
@@ -155,7 +155,7 @@
             android:textSize="21sp"/>
 
         <TextView
-            android:id="@+id/tv_time_minute2"
+            android:id="@+id/tvCloseTime2Minute"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/shape_time_bg"
@@ -175,7 +175,7 @@
             android:textSize="21sp"/>
 
         <TextView
-            android:id="@+id/tv_time_seconds2"
+            android:id="@+id/tvCloseTime2Second"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/shape_time_bg"
@@ -207,7 +207,7 @@
         app:flexWrap="wrap"
         app:layout_constraintEnd_toEndOf="@id/tvOpenTime"
         app:layout_constraintStart_toEndOf="@id/tvLastRound"
-        app:layout_constraintTop_toBottomOf="@id/tv_balance"
+        app:layout_constraintTop_toBottomOf="@id/tvBalance"
         tools:layout_height="24dp"/>
 
     <com.daking.lottery.widget.LotteryPropertyView

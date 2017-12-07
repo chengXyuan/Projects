@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="20dp"
+    app:flexWrap="wrap"
     android:background="@drawable/shape_stroke_divider"
     app:dividerDrawableVertical="@drawable/shape_vertical_divider"
     app:showDividerVertical="middle">

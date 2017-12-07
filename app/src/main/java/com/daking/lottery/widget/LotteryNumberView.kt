@@ -20,10 +20,10 @@ class LotteryNumberView : FlexboxLayout {
 
     fun setNumbers(gameCode: Int, numbers: List<String>) {
         removeAllViews()
-        val layoutParams = FlexboxLayout.LayoutParams(Utils.dp2px(21), Utils.dp2px(21))
-        layoutParams.marginStart = Utils.dp2px(3)
-        layoutParams.bottomMargin = Utils.dp2px(3)
         numbers.forEachIndexed { index, number ->
+            val layoutParams = FlexboxLayout.LayoutParams(Utils.dp2px(21), Utils.dp2px(21))
+            layoutParams.marginStart = Utils.dp2px(3)
+            layoutParams.bottomMargin = Utils.dp2px(3)
             val textView = TextView(context)
             textView.setTextColor(Color.WHITE)
             textView.gravity = Gravity.CENTER

@@ -245,8 +245,8 @@ object Utils {
         val hour = seconds / 3600
         val minute = seconds % 3600 / 60
         val second = seconds % 3600 % 60
-        return if (hour == 0L) String.format("%02D:%02D", minute, second)
-        else String.format("%02D:%02D:%02D", hour, minute, second)
+        return if (hour == 0L) String.format("%02d:%02d", minute, second)
+        else String.format("%02d:%02d:%02d", hour, minute, second)
     }
 
     fun getHour(seconds: Long): String {
@@ -254,7 +254,7 @@ object Utils {
             return "00"
         }
         val hour = seconds / 3600
-        return String.format("%02D", hour)
+        return String.format("%02d", hour)
     }
 
     fun getMinute(seconds: Long): String {
@@ -262,7 +262,7 @@ object Utils {
             return "00"
         }
         val minute = seconds % 3600 / 60
-        return String.format("%02D", minute)
+        return String.format("%02d", minute)
     }
 
     fun getSecond(seconds: Long): String {
@@ -270,6 +270,6 @@ object Utils {
             return "00"
         }
         val second = seconds % 3600 % 60
-        return String.format("%02D", second)
+        return String.format("%02d", second)
     }
 }
