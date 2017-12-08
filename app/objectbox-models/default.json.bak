@@ -1,0 +1,113 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:1540071829703740995",
+      "lastPropertyId": "9:1348222605006403718",
+      "name": "MultiBetItem",
+      "properties": [
+        {
+          "id": "1:7031525231508042676",
+          "name": "gameCode"
+        },
+        {
+          "id": "2:1906408557577458679",
+          "name": "typeCode"
+        },
+        {
+          "id": "3:7270532844633143429",
+          "name": "itemType"
+        },
+        {
+          "id": "4:6392516209879838666",
+          "name": "spanSize"
+        },
+        {
+          "id": "5:7765492852551991293",
+          "name": "typeName"
+        },
+        {
+          "id": "6:2208111864837136489",
+          "name": "isSelected"
+        },
+        {
+          "id": "7:2476860510867712191",
+          "name": "number"
+        },
+        {
+          "id": "8:4418760294793389419",
+          "name": "betItem"
+        },
+        {
+          "id": "9:1348222605006403718",
+          "name": "id"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:2071950369413417469",
+      "lastPropertyId": "9:2823029079075711496",
+      "name": "BetTypeItem",
+      "properties": [
+        {
+          "id": "1:3826361889156649665",
+          "name": "gameCode"
+        },
+        {
+          "id": "2:1705782878295337392",
+          "name": "typeCode"
+        },
+        {
+          "id": "3:8339917667215432178",
+          "name": "itemType"
+        },
+        {
+          "id": "4:3835246647819364830",
+          "name": "spanSize"
+        },
+        {
+          "id": "5:6242300319738331542",
+          "name": "selected"
+        },
+        {
+          "id": "6:7728220603661944838",
+          "name": "key"
+        },
+        {
+          "id": "7:7355746582764979075",
+          "name": "odds"
+        },
+        {
+          "id": "8:2594405054129420561",
+          "name": "backwater"
+        },
+        {
+          "id": "9:2823029079075711496",
+          "name": "id"
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "3:2071950369413417469",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 4,
+  "modelVersionParserMinimum": 4,
+  "retiredEntityUids": [
+    4672824827462098236
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    4839542908835620094,
+    5092441068320380971,
+    7001967986584524761,
+    5210908108134844701
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

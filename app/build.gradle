@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'io.objectbox'
 
 android {
     compileSdkVersion 26
@@ -75,4 +75,8 @@ dependencies {
     implementation 'com.google.android:flexbox:0.3.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+    //数据库 objectbox
+    implementation "io.objectbox:objectbox-android:$objectbox_version"
+    implementation "io.objectbox:objectbox-kotlin:$objectbox_version"
+    kapt "io.objectbox:objectbox-processor:$objectbox_version"
 }

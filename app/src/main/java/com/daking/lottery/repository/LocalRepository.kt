@@ -1,9 +1,13 @@
 package com.daking.lottery.repository
 
 import com.daking.lottery.R
+import com.daking.lottery.app.App
 import com.daking.lottery.app.Constant
-import com.daking.lottery.model.GameModel
-import com.daking.lottery.model.MineItem
+import com.daking.lottery.model.*
+import com.daking.lottery.util.log
+import io.objectbox.kotlin.boxFor
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 
 /**
  * 本地数据仓库: 为应用提供本地数据(包括写死的和缓存的.)
@@ -18,6 +22,9 @@ class LocalRepository private constructor() {
         val instance = Holder.Instance
     }
 
+    /**
+     * 获取首页九宫格数据
+     */
     fun getHomeGames(): ArrayList<GameModel> {
         val list = ArrayList<GameModel>()
         list.add(GameModel(Constant.GAME_CODE_PJ_PK_10,
@@ -50,6 +57,9 @@ class LocalRepository private constructor() {
         return list
     }
 
+    /**
+     * 获取个人中心九宫格数据
+     */
     fun getMineItems(): ArrayList<MineItem> {
         val list = ArrayList<MineItem>()
         list.add(MineItem("个人资料", R.drawable.ic_mine_personal_info))
@@ -62,5 +72,62 @@ class LocalRepository private constructor() {
         list.add(MineItem("关于我们", R.drawable.ic_mine_about_us))
         list.add(MineItem("客服中心", R.drawable.ic_mine_customer_service))
         return list
+    }
+
+    /**
+     * 根据gameCode和typeCode获取赔率
+     */
+    fun getOddsData(gameCode: Int, typeCode: String): List<MultiBetItem> {
+        val boxStore = App.instance.boxStore
+        return boxStore.boxFor(MultiBetItem::class).query()
+                .equal(MultiBetItem_.gameCode, gameCode.toLong())
+                .equal(MultiBetItem_.typeCode, typeCode)
+                .build().find()
+    }
+
+    /**
+     * 根据gameCode和typeCode保存赔率到数据库
+     */
+    fun saveOddsData(gameCode: Int, typeCode: String, data: List<MultiBetItem>) {
+        Observable.just(data)
+                .observeOn(Schedulers.io())//在IO线程中执行保存操作
+                .subscribe { it ->
+                    val boxStore = App.instance.boxStore
+                    val betItemBox = boxStore.boxFor(MultiBetItem::class)
+                    //查询就的数据并删除
+                    val oddData = getOddsData(gameCode, typeCode)
+                    betItemBox.remove(oddData)
+                    //保存新的数据到数据库
+                    betItemBox.put(it)
+                    log("保存数据 gameCode = $gameCode, typeCode = $typeCode, 共${data.size}条!")
+                }
+    }
+
+    /**
+     * 获取连码赔率
+     */
+    fun getOddsLian(gameCode: Int): List<BetTypeItem> {
+        val boxStore = App.instance.boxStore
+        return boxStore.boxFor(BetTypeItem::class).query()
+                .equal(BetTypeItem_.gameCode, gameCode.toLong())
+                .build().find()
+    }
+
+    /**
+     * 保存连码赔率
+     */
+    fun saveOddsLian(gameCode: Int,  data: List<BetTypeItem>) {
+        Observable.just(data)
+                .observeOn(Schedulers.io())//在IO线程中执行保存操作
+                .subscribe { it ->
+                    val boxStore = App.instance.boxStore
+                    val betItemBox = boxStore.boxFor(BetTypeItem::class)
+                    //查询就的数据并删除
+                    val oddData = getOddsLian(gameCode)
+                    betItemBox.remove(oddData)
+                    //保存新的数据到数据库
+                    betItemBox.put(it)
+                    log("保存数据 gameCode = $gameCode, 共${data.size}条!")
+                }
     }
 }

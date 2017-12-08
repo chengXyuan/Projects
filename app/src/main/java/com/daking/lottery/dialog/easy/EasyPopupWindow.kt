@@ -324,7 +324,7 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
      * 注意：如果使用 VerticalGravity 和 HorizontalGravity 时，请确保使用之后 PopupWindow 没有超出屏幕边界，
      * 如果超出屏幕边界，VerticalGravity 和 HorizontalGravity 可能无效，从而达不到你想要的效果。
      */
-    fun showAtAnchorView(anchor: View, vertGravity: VerticalGravity, horizGravity: HorizontalGravity) {
+    open fun showAtAnchorView(anchor: View, vertGravity: VerticalGravity, horizGravity: HorizontalGravity) {
         showAtAnchorView(anchor, vertGravity, horizGravity, 0, 0)
     }
 
@@ -525,13 +525,8 @@ open class EasyPopupWindow(context: Context) : PopupWindow.OnDismissListener {
         contentView.viewTreeObserver.addOnGlobalLayoutListener(mOnGlobalLayoutListener)
     }
 
-    @SuppressLint("ObsoleteSdkInt")
     private fun removeGlobalLayoutListener() {
-        if (Build.VERSION.SDK_INT >= 16) {
-            mPopupWindow.contentView.viewTreeObserver.removeOnGlobalLayoutListener(mOnGlobalLayoutListener)
-        } else {
-            mPopupWindow.contentView.viewTreeObserver.removeGlobalOnLayoutListener(mOnGlobalLayoutListener)
-        }
+        mPopupWindow.contentView.viewTreeObserver.removeOnGlobalLayoutListener(mOnGlobalLayoutListener)
     }
 
     interface OnAttachedWindowListener {

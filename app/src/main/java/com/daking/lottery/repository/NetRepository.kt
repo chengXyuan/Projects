@@ -104,4 +104,19 @@ class NetRepository private constructor() {
         params["gameCode"] = gameCode
         return mApiStore.getLotteryInfo(params)
     }
+
+    /**
+     * 获取赔率
+     */
+    fun getGameOdds(play: String): Flowable<Root<OddsModel>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["play"] = play
+        return mApiStore.getGameOdds(params)
+    }
+
+    fun betting(body: BetRequest): Flowable<Root<Unit>> {
+        return mApiStore.betting(body)
+    }
 }

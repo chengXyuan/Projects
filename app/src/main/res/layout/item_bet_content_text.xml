@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/ll_bet_item"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="3dp"
+              android:layout_marginEnd="4dp"
+              android:layout_marginStart="4dp"
+              android:layout_marginTop="3dp"
+              android:background="@drawable/selector_bet_item_bg"
+              android:descendantFocusability="blocksDescendants"
+              android:focusable="true"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:duplicateParentState="true"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:textColor="@color/selector_item_text_color"
+        android:textSize="17sp"
+        tools:text="龙"/>
+
+    <TextView
+        android:id="@+id/tv_item_odds"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        android:layout_margin="1dp"
+        android:background="@drawable/selector_bet_item_odds_bg"
+        android:duplicateParentState="true"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:textColor="@color/selector_item_odds_color"
+        android:textSize="@dimen/sp_12"
+        tools:text="1.998"/>
+</LinearLayout>

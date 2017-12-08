@@ -70,5 +70,7 @@
     <string name="lottery_closed">封</string>
     <string name="default_text">--</string>
     <string name="colon">:</string>
+    <string name="input_bet_money">请输入投注金额</string>
+    <string name="bet_detail">下注明细</string>
 
 </resources>

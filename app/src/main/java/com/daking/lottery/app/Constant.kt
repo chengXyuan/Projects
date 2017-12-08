@@ -30,7 +30,7 @@ interface Constant {
         /*===============game code start=================*/
 
         /*================一些写死的URL==================*/
-        val BASE_URL = "http://111.68.10.210/userBetting/"
+        val BASE_URL = "http://182.16.9.242/userBetting/"
         val GAME_RULE_WEBSITE = "http://androidapi.alcp66.com/#/todayRule"//游戏规则
         val LOTTERY_WEBSITE = "https://pk10tv.com/"//开奖网
     }

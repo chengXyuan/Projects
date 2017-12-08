@@ -90,6 +90,17 @@ interface ApiStore {
      * 期数查询接口(下注页面获取开奖信息)
      */
     @POST("lotterOpen/getinfo/periods")
-    fun getLotteryInfo(@Body params: HashMap<String, Any?>):Flowable<Root<LotteryInfo>>
+    fun getLotteryInfo(@Body params: HashMap<String, Any?>): Flowable<Root<LotteryInfo>>
 
+    /**
+     * 获取赔率
+     */
+    @POST("betting/bettingQuery")
+    fun getGameOdds(@Body params: HashMap<String, Any?>): Flowable<Root<OddsModel>>
+
+    /**
+     * 下注
+     */
+    @POST("betting/betting")
+    fun betting(@Body body: BetRequest): Flowable<Root<Unit>>
 }

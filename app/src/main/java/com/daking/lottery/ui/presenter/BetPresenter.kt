@@ -1,7 +1,13 @@
 package com.daking.lottery.ui.presenter
 
+import android.support.annotation.IdRes
+import android.support.v4.app.FragmentManager
+import android.util.ArrayMap
+import android.util.SparseArray
+import collections.forEach
 import com.daking.lottery.base.BasePresenter
 import com.daking.lottery.model.LotteryInfo
+import com.daking.lottery.ui.fragment.OddsFragment
 import com.daking.lottery.ui.iview.IBetView
 import com.daking.lottery.util.AccountHelper
 import com.daking.lottery.util.Utils
@@ -14,9 +20,10 @@ import java.util.concurrent.TimeUnit
 
 class BetPresenter : BasePresenter<IBetView>() {
 
-    private var roundNum = ""
+    var roundNum = ""
     private var closeTimeDisposable: Disposable? = null
     private var endTimeDisposable: Disposable? = null
+    private var arrayMap: ArrayMap<Int, SparseArray<OddsFragment>> = ArrayMap()
 
     override fun onAttached() {
         super.onAttached()
@@ -31,7 +38,7 @@ class BetPresenter : BasePresenter<IBetView>() {
         refreshBalance()
     }
 
-    private fun refreshBalance() {
+    public fun refreshBalance() {
         AccountHelper.instance.refreshAccount(mView, { user ->
             user?.let { mView.refreshBalance(user.balance) }
         })
@@ -145,5 +152,48 @@ class BetPresenter : BasePresenter<IBetView>() {
                         getLotteryInfo(gameCode)
                     }
                 }
+    }
+
+    fun setFragment(gameCode: Int, manager: FragmentManager, @IdRes container: Int,
+                    position: Int, isClosed: Boolean) {
+        var fragments = arrayMap[gameCode]
+        if (fragments == null) {
+            fragments = SparseArray()
+        }
+        var target = fragments[position]
+        if (target == null) {
+            target = OddsFragment.newInstance(gameCode, position, isClosed)
+            fragments.put(position, target)
+            arrayMap.put(gameCode, fragments)
+        }
+        manager.run {
+            executePendingTransactions()
+            val transaction = beginTransaction()
+            if (!target.isAdded) {
+                transaction.add(container, target)
+            }
+            fragments?.forEach { _, oddsFragment ->
+                if (oddsFragment == target) {
+                    transaction.show(oddsFragment)
+                } else {
+                    transaction.hide(oddsFragment)
+                }
+            }
+            transaction.commit()
+        }
+    }
+
+    fun getCurrentFragment(gameCode: Int, position: Int): OddsFragment {
+        val sparseArray = arrayMap[gameCode]
+        return sparseArray!!.get(position)
+    }
+
+    fun clearFragments(gameCode: Int) {
+        val fragments = arrayMap[gameCode]
+        if (fragments == null || fragments.size() == 0) {
+            return
+        }
+        fragments.clear()
+        arrayMap.remove(gameCode)
     }
 }
