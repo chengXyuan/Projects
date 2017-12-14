@@ -54,9 +54,16 @@
             android:name=".ui.activity.LotteryHistoryActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.BankcardActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".service.DownloadService"/>
 
+        <activity android:name=".ui.activity.TestActivity">
+
+        </activity>
     </application>
 
 </manifest>

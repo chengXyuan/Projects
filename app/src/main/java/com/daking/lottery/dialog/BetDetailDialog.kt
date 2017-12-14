@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.daking.lottery.R
 import com.daking.lottery.api.NetSubscriber
+import com.daking.lottery.base.BaseView
 import com.daking.lottery.dialog.nice.BaseDialog
 import com.daking.lottery.model.BetItem
 import com.daking.lottery.model.BetRequest
@@ -21,7 +22,7 @@ import com.daking.lottery.util.LotteryUtils
 import com.daking.lottery.util.RxUtils
 import com.daking.lottery.util.Utils
 import com.daking.lottery.widget.RecyclerViewDivider
-import io.reactivex.disposables.Disposable
+import com.trello.rxlifecycle2.LifecycleTransformer
 import kotlinx.android.synthetic.main.dialog_bet_detail.view.*
 import java.util.*
 
@@ -34,7 +35,7 @@ class BetDetailDialog : BaseDialog() {
     private var betType = 0
     private var mTotal = 0
     private var round = ""
-    private var disposable: Disposable? = null
+    private var endTime = 0L
 
     companion object {
         private var typeItem: BetTypeItem? = null
@@ -42,7 +43,7 @@ class BetDetailDialog : BaseDialog() {
         private lateinit var mOnBetResultListener: OnBetResultListener
 
         fun init(gameCode: Int, position: Int, selectedId: Int, betMoney: Int,
-                 round: String, comboCode: BetTypeItem?, itemList: List<MultiBetItem>, listener: OnBetResultListener): BetDetailDialog {
+                 round: String, endTime: Long, comboCode: BetTypeItem?, itemList: List<MultiBetItem>, listener: OnBetResultListener): BetDetailDialog {
             val detailDialog = BetDetailDialog()
             val bundle = Bundle()
             bundle.putInt("game_code", gameCode)
@@ -50,6 +51,7 @@ class BetDetailDialog : BaseDialog() {
             bundle.putInt("selected_id", selectedId)
             bundle.putInt("bet_money", betMoney)
             bundle.putString("round_num", round)
+            bundle.putLong("end_time", endTime)
             typeItem = comboCode
             betItems = itemList
             mOnBetResultListener = listener
@@ -66,7 +68,7 @@ class BetDetailDialog : BaseDialog() {
         selectedId = bundle.getInt("selected_id")
         betMoney = bundle.getInt("bet_money")
         round = bundle.getString("round_num")
-
+        endTime = bundle.getLong("end_time")
         betType = LotteryUtils.instance.getBetType(gameCode, fragPosition)
     }
 
@@ -172,7 +174,7 @@ class BetDetailDialog : BaseDialog() {
                 list.add(BetItem(key, odds.toString(), backwater.toString()))
             }
         }
-        val betRequest = BetRequest(round, (betMoney * mTotal).toString(), mTotal, list)
+        val betRequest = BetRequest(endTime, round, (betMoney * mTotal).toString(), mTotal, list)
         //提交下注
         mOnBetResultListener.onCommit()
         NetRepository.instance.betting(betRequest)

@@ -256,4 +256,29 @@
         <!-- 圆角矩形宽高相等,取较宽高中大值-->
         <attr name="mv_isWidthHeightEqual" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="PasswordView">
+        <!--密码长度(多少位)-->
+        <attr name="passwordLength" format="integer"/>
+        <!--每两位密码之间的间距-->
+        <attr name="passwordSpace" format="dimension"/>
+        <!--文字颜色-->
+        <attr name="pTextColor" format="color"/>
+        <!--文字大小-->
+        <attr name="pTextSize" format="dimension"/>
+        <!--填充后的背景颜色-->
+        <attr name="filledItemBackground" format="reference"/>
+        <!--未填充时的背景颜色-->
+        <attr name="unfilledItemBackground" format="reference"/>
+        <!--是否显示光标-->
+        <attr name="isCursorEnable" format="boolean"/>
+        <!--光标颜色-->
+        <attr name="cursorColor" format="color"/>
+        <!--光标闪烁时间-->
+        <attr name="cursorFlashTime" format="integer"/>
+        <!--开启密文-->
+        <attr name="cipherEnable" format="boolean"/>
+        <!--密文字符-->
+        <attr name="cipherText" format="string"/>
+    </declare-styleable>
 </resources>

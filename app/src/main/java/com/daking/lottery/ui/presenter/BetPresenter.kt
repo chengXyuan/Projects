@@ -10,7 +10,7 @@ import com.daking.lottery.model.LotteryInfo
 import com.daking.lottery.ui.fragment.OddsFragment
 import com.daking.lottery.ui.iview.IBetView
 import com.daking.lottery.util.AccountHelper
-import com.daking.lottery.util.Utils
+import com.daking.lottery.util.FormatUtils
 import com.daking.lottery.util.retryWithDelay
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit
 class BetPresenter : BasePresenter<IBetView>() {
 
     var roundNum = ""
+    var mEndTime = 0L
     private var closeTimeDisposable: Disposable? = null
     private var endTimeDisposable: Disposable? = null
     private var arrayMap: ArrayMap<Int, SparseArray<OddsFragment>> = ArrayMap()
@@ -38,7 +39,7 @@ class BetPresenter : BasePresenter<IBetView>() {
         refreshBalance()
     }
 
-    public fun refreshBalance() {
+    fun refreshBalance() {
         AccountHelper.instance.refreshAccount(mView, { user ->
             user?.let { mView.refreshBalance(user.balance) }
         })
@@ -49,8 +50,9 @@ class BetPresenter : BasePresenter<IBetView>() {
                 .retryWithDelay(3, 5000L)
                 .dealObj({ _, _, model ->
                     //获取期数信息成功
-                    dealLotteryInfo(gameCode, model)
-                })
+                    mView.dismissLoadingDialog()
+                    model?.let { dealLotteryInfo(gameCode, model) }
+                }, showLoading = true)
     }
 
     private fun getLotteryInfoDelay(gameCode: Int, delay: Long) {
@@ -67,26 +69,23 @@ class BetPresenter : BasePresenter<IBetView>() {
         nextModel?.let {
             with(nextModel) {
                 //新刷出数据里下期 轮数变化 说明有新的数据 展示新数据
-                if (roundNum != round) {
-                    roundNum = round
-                    //显示当前期数
-                    mView.setNextRoundNum(roundNum)
-                    //判断是否封盘
-                    val endTimeCD = endTime - timestamp
-                    val closeTimeCD = closeTime - timestamp
-                    val isClosed = isClose == 1 || closeTimeCD <= 0
-                    //刷新开封盘状态
-                    mView.refreshCloseStatus(isClosed)
-                    //如果已封盘, 封盘时间显示"--", 否则封盘时间开始倒计时
-                    if (isClosed) mView.showCloseTime("--", "--")
-                    else closeTimeCountDown(closeTimeCD)
-                    //显示开奖时间并倒计时
-                    endTimeCountDown(gameCode, endTimeCD)
-                }
-
+                roundNum = round
+                //显示当前期数
+                mView.setNextRoundNum(roundNum)
+                mEndTime = endTime
+                //判断是否封盘
+                val endTimeCD = endTime - timestamp
+                val closeTimeCD = closeTime - timestamp
+                val isClosed = isClose == 1 || closeTimeCD <= 0
+                //刷新开封盘状态
+                mView.refreshCloseStatus(isClosed)
+                //如果已封盘, 封盘时间显示"--", 否则封盘时间开始倒计时
+                if (isClosed) mView.showCloseTime("--", "--")
+                else closeTimeCountDown(closeTimeCD)
+                //显示开奖时间并倒计时
+                endTimeCountDown(gameCode, endTimeCD)
             }
         }
-
 
         lastModel?.let {
             mView.showLastRound(lastModel)
@@ -116,9 +115,9 @@ class BetPresenter : BasePresenter<IBetView>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(mView.bindLifecycle())
                 .subscribe { aLong ->
-                    val hour = Utils.getHour(aLong)
-                    val minute = Utils.getMinute(aLong)
-                    val second = Utils.getSecond(aLong)
+                    val hour = FormatUtils.instance.getHour(aLong)
+                    val minute = FormatUtils.instance.getMinute(aLong)
+                    val second = FormatUtils.instance.getSecond(aLong)
                     if ("00" == hour) {
                         mView.showCloseTime(minute, second)
                     } else {
@@ -145,7 +144,7 @@ class BetPresenter : BasePresenter<IBetView>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(mView.bindLifecycle())
                 .subscribe { aLong ->
-                    val endTime = Utils.seconds2Time(aLong)
+                    val endTime = FormatUtils.instance.seconds2Time(aLong)
                     mView.showEndTime(endTime)
                     //倒计时结束后从新请求数据
                     if (aLong == 0L) {

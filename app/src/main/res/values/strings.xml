@@ -13,8 +13,8 @@
     <string name="try_play_for_free">免费试玩</string>
     <string name="input_login_password">请输入登录密码</string>
     <string name="verify_code">验证码</string>
-    <string name="input_correct_user_name">请输入正确的用户名，用户名由6&#8211;15位大小写字符和数字组成</string>
-    <string name="input_correct_password">请输入正确的密码，用户名由6&#8211;15位大小写字符和数字组成</string>
+    <string name="input_correct_user_name">用户名应该由6&#8211;15位大小写字符和数字组成</string>
+    <string name="input_correct_password">密码应该由6&#8211;15位大小写字符和数字组成</string>
     <string name="input_correct_verify_code">请输入正确的验证码</string>
     <string name="letter_and_number">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</string>
     <!--注册-->
@@ -72,5 +72,28 @@
     <string name="colon">:</string>
     <string name="input_bet_money">请输入投注金额</string>
     <string name="bet_detail">下注明细</string>
+    <string name="login_now">马上登录</string>
+    <string name="has_an_account">已有账号？</string>
+    <string name="no_data">暂无数据</string>
+    <string name="add_bankcard">添加银行卡</string>
+    <string name="withdraw_amount">提现金额</string>
+    <string name="amount_hint">最低金额￥100</string>
+    <string name="withdraw_pwd">提现密码</string>
+    <string name="withdraw_pwd_hint">请输入4位提现密码</string>
+    <string name="confirm_withdraw">确认提现</string>
+    <string name="bank_name">银行名称：</string>
+    <string name="input_odd_card_num">请输入已绑定银行卡的完整卡号</string>
+    <string name="bind_card_tip1">请验证已经绑定的银行卡账号</string>
+    <string name="bind_card_tip2">请输入您的银行卡资料</string>
+    <string name="bind_card_tip3">请输入新的银行卡资料</string>
+    <string name="bind_card_tip4">身份验证不通过，请输入正确的卡号！</string>
+    <string name="select_bank">选择银行：</string>
+    <string name="choice_bank_you_deposit">选择您转账所使用的银行</string>
+    <string name="bank_num">银行卡号：</string>
+    <string name="input_card_num">请输入16–19位的银行卡号</string>
+    <string name="input_card_num_again">请再次输入银行卡号</string>
+    <string name="account_address">开户地址：</string>
+    <string name="input_address">请输入开户行地址</string>
+    <string name="commit">提交</string>
 
 </resources>

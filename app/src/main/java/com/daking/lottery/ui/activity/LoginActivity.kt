@@ -3,10 +3,12 @@ package com.daking.lottery.ui.activity
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.View
 import com.daking.lottery.R
 import com.daking.lottery.base.BaseMVPActivity
 import com.daking.lottery.ui.iview.ILoginView
 import com.daking.lottery.ui.presenter.LoginPresenter
+import com.daking.lottery.widget.OnMultiClickListener
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
 
@@ -16,13 +18,19 @@ class LoginActivity : BaseMVPActivity<LoginPresenter>(), ILoginView {
 
     override fun initData(savedInstanceState: Bundle?) {
         iv_pwd_visibility.setOnClickListener { showPassword(iv_pwd_visibility.isSelected) }
-        tv_try_play.setOnClickListener { mPresenter.loginDemo() }
-        btn_login.setOnClickListener {
-            val isRemember = cb_remember.isChecked
-            val username = et_username.text.toString().trim()
-            val password = et_password.text.toString().trim()
-            mPresenter.requestLogin(isRemember, username, password)
-        }
+        tv_try_play.setOnClickListener(object : OnMultiClickListener() {
+            override fun noMultiClick(view: View) {
+                mPresenter.loginDemo()
+            }
+        })
+        btn_login.setOnClickListener(object : OnMultiClickListener() {
+            override fun noMultiClick(view: View) {
+                val isRemember = cb_remember.isChecked
+                val username = et_username.text.toString().trim()
+                val password = et_password.text.toString().trim()
+                mPresenter.requestLogin(isRemember, username, password)
+            }
+        })
         btn_register.setOnClickListener {
             startActivity<RegisterActivity>()
             finish()

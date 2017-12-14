@@ -51,9 +51,9 @@ object Utils {
     /**
      * dp转px
      */
-    fun dp2px(dp: Float): Int {
+    fun dp2px(dp: Float): Float {
         val metrics = App.instance.resources.displayMetrics
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics).toInt()
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, metrics)
     }
 
 
@@ -218,58 +218,5 @@ object Utils {
 
     fun getString(@StringRes id: Int): String {
         return App.instance.getString(id)
-    }
-
-    fun convertDateTime(timestamp: Long): String {
-        if (timestamp <= 0L) {
-            return ""
-        }
-        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        format.timeZone = TimeZone.getTimeZone("GMT+08")
-        return format.format(timestamp)
-    }
-
-    fun convertTime(timestamp: Long): String {
-        if (timestamp <= 0L) {
-            return ""
-        }
-        val format = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
-        format.timeZone = TimeZone.getTimeZone("GMT+08")
-        return format.format(timestamp)
-    }
-
-    fun seconds2Time(seconds: Long): String {
-        if (seconds < 0) {
-            return "--:--"
-        }
-        val hour = seconds / 3600
-        val minute = seconds % 3600 / 60
-        val second = seconds % 3600 % 60
-        return if (hour == 0L) String.format("%02d:%02d", minute, second)
-        else String.format("%02d:%02d:%02d", hour, minute, second)
-    }
-
-    fun getHour(seconds: Long): String {
-        if (seconds < 0) {
-            return "00"
-        }
-        val hour = seconds / 3600
-        return String.format("%02d", hour)
-    }
-
-    fun getMinute(seconds: Long): String {
-        if (seconds < 0) {
-            return "00"
-        }
-        val minute = seconds % 3600 / 60
-        return String.format("%02d", minute)
-    }
-
-    fun getSecond(seconds: Long): String {
-        if (seconds < 0) {
-            return "00"
-        }
-        val second = seconds % 3600 % 60
-        return String.format("%02d", second)
     }
 }

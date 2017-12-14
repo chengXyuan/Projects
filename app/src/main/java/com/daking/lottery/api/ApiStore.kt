@@ -12,7 +12,7 @@ interface ApiStore {
      * 注册
      */
     @POST("user/register")
-    fun register(@Body params: HashMap<String, Any?>): Flowable<Root<UserModel>>
+    fun register(@Body params: HashMap<String, Any?>): Flowable<Root<Unit>>
 
     /**
      * 登录
@@ -47,7 +47,19 @@ interface ApiStore {
      * 获取银行卡信息
      */
     @POST("userdeposit/userBank")
-    fun getBankInfo(@Body params: HashMap<String, Any?>): Call<Root<BankModel>>
+    fun getBankInfo(@Body params: HashMap<String, Any?>): Flowable<Root<BankModel>>
+
+    /**
+     * 添加/修改银行卡
+     */
+    @POST("userdeposit/bindBank")
+    fun bindOrModifyBankcard(@Body params: HashMap<String, Any?>): Flowable<Root<Unit>>
+
+    /**
+     * 获取银行卡信息
+     */
+    @POST("userdeposit/withdrawAmount")
+    fun withdraw(@Body params: HashMap<String, Any?>): Flowable<Root<Unit>>
 
     /**
      * 检查apk版本更新

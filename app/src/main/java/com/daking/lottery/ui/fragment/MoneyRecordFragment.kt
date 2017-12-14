@@ -23,6 +23,9 @@ class MoneyRecordFragment : BaseMVPListFragment<MoneyRecordPresenter>(), IMoneyR
         log("initData")
         isPrepare = true
         initRecyclerView()
+        if (isVisible) {
+            requestData(true)
+        }
     }
 
     private fun initRecyclerView() {
@@ -49,6 +52,5 @@ class MoneyRecordFragment : BaseMVPListFragment<MoneyRecordPresenter>(), IMoneyR
             requestData(true)
         }
     }
-
 
 }

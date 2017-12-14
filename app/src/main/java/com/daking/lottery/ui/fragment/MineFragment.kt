@@ -47,6 +47,14 @@ class MineFragment : BaseMVPFragment<MinePresenter>(), IMineView {
         }
     }
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        //每次可见是刷新一下账户信息
+        if (!hidden) {
+            mPresenter.refreshUser()
+        }
+    }
+
     override fun showMineItems(mineAdapter: MineAdapter) {
         recycler_view.setHasFixedSize(true)
         recycler_view.layoutManager = GridLayoutManager(context, 3)

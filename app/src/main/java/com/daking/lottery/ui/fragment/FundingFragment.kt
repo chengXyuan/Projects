@@ -6,11 +6,13 @@ import android.widget.LinearLayout
 import com.daking.lottery.R
 
 import com.daking.lottery.base.BaseMVPFragment
+import com.daking.lottery.event.RechargeOrWithdrawEvent
 import com.daking.lottery.model.UserModel
 import com.daking.lottery.ui.adapter.FundingAdapter
 import com.daking.lottery.ui.iview.IFundingView
 import com.daking.lottery.ui.presenter.FundingPresenter
 import kotlinx.android.synthetic.main.fragment_funding.*
+import org.greenrobot.eventbus.Subscribe
 
 class FundingFragment : BaseMVPFragment<FundingPresenter>(), IFundingView {
 
@@ -41,5 +43,13 @@ class FundingFragment : BaseMVPFragment<FundingPresenter>(), IFundingView {
 
     fun setCurrentTab(position: Int) {
         view_pager.setCurrentItem(position, true)
+    }
+
+    override fun useEventBus() = true
+
+    @Subscribe
+    fun onEvent(event: RechargeOrWithdrawEvent) {
+        mPresenter.refreshAccountInfo()
+        setCurrentTab(2)
     }
 }

@@ -15,7 +15,6 @@ class SPUtils {
 
     companion object {
         val instance = Holder.INSTANCE
-        val CURRENT_USER = "current_user"
     }
 
     fun putString(key: String, value: String?) = mPreferences.edit().putString(key, value).apply()

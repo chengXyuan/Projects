@@ -74,6 +74,34 @@ class LocalRepository private constructor() {
         return list
     }
 
+    fun getBankcardSupported(): ArrayList<BankRes> {
+        val list = ArrayList<BankRes>()
+        list.add(BankRes("工商银行", "ICBC", R.drawable.icon_bank_logo_icbc))
+        list.add(BankRes("建设银行", "CCB", R.drawable.icon_bank_logo_ccb))
+        list.add(BankRes("招商银行", "CMB", R.drawable.icon_bank_logo_cmb))
+        list.add(BankRes("农业银行", "ABC", R.drawable.icon_bank_logo_abc))
+        list.add(BankRes("中国银行", "BOC", R.drawable.icon_bank_logo_bc))
+        list.add(BankRes("邮政储蓄银行", "PSBS", R.drawable.icon_bank_logo_psbc))
+        list.add(BankRes("民生银行", "CMBC", R.drawable.icon_bank_logo_cmbc))
+        list.add(BankRes("兴业银行", "CIB", R.drawable.icon_bank_logo_ibc))
+        list.add(BankRes("中信银行", "CTTIC", R.drawable.icon_bank_logo_cib))
+        list.add(BankRes("渤海银行", "CBHB", R.drawable.icon_bank_logo_cbhb))
+        list.add(BankRes("光大银行", "CEB", R.drawable.icon_bank_logo_ceb))
+        list.add(BankRes("广发银行", "GDB", R.drawable.icon_bank_logo_gdb))
+        list.add(BankRes("华夏银行", "HXB", R.drawable.icon_bank_logo_hxb))
+        list.add(BankRes("平安银行", "PAB", R.drawable.icon_bank_logo_pab))
+        list.add(BankRes("浦发银行", "SPDB", R.drawable.icon_bank_logo_spdb))
+        list.add(BankRes("北京农商银行", "BJRCB", R.drawable.icon_bank_logo_brcb))
+        list.add(BankRes("上海银行", "SHB", R.drawable.icon_bank_logo_bs))
+        list.add(BankRes("交通银行", "BOCO", R.drawable.icon_bank_logo_bcomm))
+        return list
+    }
+
+    fun getBankLogoResByName(bankName: String): Int {
+        val banks = getBankcardSupported()
+        return banks.find { it.bankName == bankName }?.logoRes ?: 0
+    }
+
     /**
      * 根据gameCode和typeCode获取赔率
      */
@@ -116,7 +144,7 @@ class LocalRepository private constructor() {
     /**
      * 保存连码赔率
      */
-    fun saveOddsLian(gameCode: Int,  data: List<BetTypeItem>) {
+    fun saveOddsLian(gameCode: Int, data: List<BetTypeItem>) {
         Observable.just(data)
                 .observeOn(Schedulers.io())//在IO线程中执行保存操作
                 .subscribe { it ->

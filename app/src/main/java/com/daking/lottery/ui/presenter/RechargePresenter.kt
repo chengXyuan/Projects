@@ -12,7 +12,7 @@ class RechargePresenter : BasePresenter<IRechargeView>() {
     fun requestPayInWays() {
         mNetRepository.requestPayInWays()
                 .dealObj({ _, _, model ->
-                    dealPayInData(model)
+                    model?.let { dealPayInData(model) }
                 }, { _, msg ->
                     mView.onFailure(msg)
                     mView.onComplete()

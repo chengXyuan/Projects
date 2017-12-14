@@ -6,9 +6,11 @@
               android:orientation="vertical">
 
     <com.daking.lottery.widget.TitleBar
+        android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_bar_height"
         android:background="@color/colorPrimary"
+        app:title_leftTextDrawable="@drawable/ic_arrow_back_white"
         app:title_titleMainText="@string/user_register"
         app:title_titleMainTextColor="@color/white"/>
 
@@ -32,7 +34,7 @@
                 android:src="@drawable/img_logo"/>
 
             <EditText
-                android:id="@+id/et_username"
+                android:id="@+id/etUsername"
                 style="@style/style_login_edit_text"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
@@ -50,7 +52,7 @@
                 android:layout_marginTop="@dimen/item_margin_top">
 
                 <EditText
-                    android:id="@+id/et_password"
+                    android:id="@+id/etPassword"
                     style="@style/style_login_edit_text"
                     android:digits="@string/letter_and_number"
                     android:drawableStart="@drawable/ic_lock"
@@ -60,7 +62,7 @@
                     android:maxLines="1"/>
 
                 <ImageView
-                    android:id="@+id/iv_pwd_visibility"
+                    android:id="@+id/ivPwdVisibility"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_gravity="center|end"
@@ -76,7 +78,7 @@
                 android:layout_marginTop="@dimen/item_margin_top">
 
                 <EditText
-                    android:id="@+id/et_ensure_password"
+                    android:id="@+id/etEnsurePassword"
                     style="@style/style_login_edit_text"
                     android:digits="@string/letter_and_number"
                     android:drawableStart="@drawable/ic_lock"
@@ -86,7 +88,7 @@
                     android:maxLines="1"/>
 
                 <ImageView
-                    android:id="@+id/iv_ensure_pwd_visibility"
+                    android:id="@+id/ivEnsurePwdVisibility"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_gravity="center|end"
@@ -95,30 +97,52 @@
             </FrameLayout>
 
             <EditText
-                android:id="@+id/et_realName"
+                android:id="@+id/etRealName"
                 style="@style/style_login_edit_text"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="@dimen/item_margin_top"
-                android:digits="@string/letter_and_number"
                 android:drawableStart="@drawable/ic_user_realname"
                 android:hint="@string/register_hint_real_name"
                 android:maxLength="15"/>
 
-            <EditText
-                android:id="@+id/et_pay_pwd"
-                style="@style/style_login_edit_text"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
                 android:layout_marginEnd="24dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="@dimen/item_margin_top"
-                android:digits="@string/letter_and_number"
-                android:drawableStart="@drawable/ic_money_lock"
-                android:hint="@string/register_hint_pay_password"
-                android:inputType="number"
-                android:maxLength="4"/>
+                android:layout_marginTop="8dp"
+                android:background="@drawable/shape_bottom_line_gray"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_money_lock"/>
+
+                <com.daking.lottery.widget.PasswordView
+                    android:id="@+id/passwordView"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    app:cursorColor="@color/colorPrimary"
+                    app:filledItemBackground="@drawable/shape_password_border_select"
+                    app:pTextColor="@color/colorPrimary"
+                    app:pTextSize="18sp"
+                    app:passwordLength="4"
+                    app:passwordSpace="5dp"
+                    app:unfilledItemBackground="@drawable/shape_password_border"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_text_pay_password"/>
+            </LinearLayout>
 
             <Button
-                android:id="@+id/btn_register"
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_height"
                 android:layout_marginEnd="24dp"
@@ -128,6 +152,29 @@
                 android:text="@string/register_now"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_large"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="25dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/has_an_account"
+                    android:textColor="#666666"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/tvToLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_now"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

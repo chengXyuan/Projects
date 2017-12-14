@@ -1,7 +1,6 @@
 package com.daking.lottery.util
 
 import com.daking.lottery.R
-import com.daking.lottery.app.App
 import com.daking.lottery.app.Constant
 import com.daking.lottery.model.*
 import com.daking.lottery.ui.adapter.BetDataAdapter
@@ -748,7 +747,7 @@ class LotteryUtils private constructor() {
 
     fun checkBetBeans(gameCode: Int, position: Int, selectId: Int, selectBeans: List<MultiBetItem>): String? {
         if (selectBeans.isEmpty()) {
-            return App.instance.getString(R.string.select_betting_item)
+            return Utils.getString(R.string.select_betting_item)
         }
         var message: String? = null
         val size = selectBeans.size
@@ -795,19 +794,19 @@ class LotteryUtils private constructor() {
                 -> when (selectId) {
                     0//二肖
                     -> if (size != 2)
-                        message = String.format(App.instance.getString(R.string.bet_just), 2)
+                        message = String.format(Utils.getString(R.string.bet_just), 2)
                     1//三肖
                     -> if (size != 3)
-                        message = String.format(App.instance.getString(R.string.bet_just), 3)
+                        message = String.format(Utils.getString(R.string.bet_just), 3)
                     2//四肖
                     -> if (size != 4)
-                        message = String.format(App.instance.getString(R.string.bet_just), 4)
+                        message = String.format(Utils.getString(R.string.bet_just), 4)
                     3//五肖
                     -> if (size != 5)
-                        message = String.format(App.instance.getString(R.string.bet_just), 5)
+                        message = String.format(Utils.getString(R.string.bet_just), 5)
                     4//六肖
                     -> if (size != 6)
-                        message = String.format(App.instance.getString(R.string.bet_just), 6)
+                        message = String.format(Utils.getString(R.string.bet_just), 6)
                 }
                 9//生肖连
                 -> when (selectId) {
@@ -867,7 +866,7 @@ class LotteryUtils private constructor() {
 
     private fun getBetLimitString(size: Int, min: Int, max: Int): String? {
         return if (size < min || size > max) {
-            String.format(App.instance.getString(R.string.bet_limit), min, max)
+            String.format(Utils.getString(R.string.bet_limit), min, max)
         } else null
     }
 

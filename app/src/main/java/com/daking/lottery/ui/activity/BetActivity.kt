@@ -27,6 +27,7 @@ import com.daking.lottery.ui.iview.IBetView
 import com.daking.lottery.ui.presenter.BetPresenter
 import com.daking.lottery.util.LotteryUtils
 import com.daking.lottery.util.toast
+import com.daking.lottery.widget.OnMultiClickListener
 import kotlinx.android.synthetic.main.activity_bet.*
 import kotlinx.android.synthetic.main.fragment_lottery_info.*
 import kotlinx.android.synthetic.main.layout_bet_bottom.*
@@ -56,7 +57,11 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
         ivBack.setOnClickListener { onBackPressed() }
         ivMenu.setOnClickListener { showMenuPopup() }
         tvReset.setOnClickListener { clearSelection() }
-        btn_bet.setOnClickListener { commitBetting() }
+        btn_bet.setOnClickListener(object : OnMultiClickListener() {
+            override fun noMultiClick(view: View) {
+                commitBetting()
+            }
+        })
         et_bet_amount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 s?.let {
@@ -259,7 +264,7 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
         val selectedId = frag.getSelectedId()
         //检查用户的下注选项是否符合规则(是否为空, 是否小于最小选择数或大于最大选中数)
         val checkStr = LotteryUtils.instance.checkBetBeans(gameCode, fragPosition, selectedId, selectBeans)
-        if (checkStr.isNullOrEmpty()) {
+        if (!checkStr.isNullOrEmpty()) {
             toast(checkStr)
             return
         }
@@ -281,16 +286,18 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
         //显示下注结果和提示信息
         //刷新余额
         mBetDetailDialog = BetDetailDialog.init(gameCode, fragPosition, selectedId, money.toInt(),
-                roundNum, frag.getSelectItem(), selectBeans, object : BetDetailDialog.OnBetResultListener {
-            override fun onCommit() {
+                roundNum, mPresenter.mEndTime, frag.getSelectItem(), selectBeans,
+                object : BetDetailDialog.OnBetResultListener {
+                    override fun onCommit() {
+                        showLoadingDialog()
+                    }
 
-            }
-
-            override fun onBetResult(isSuccess: Boolean, msg: String) {
-                toast(msg)
-                //刷新余额
-                mPresenter.refreshBalance()
-            }
-        }).setMargin(40).show(supportFragmentManager)
+                    override fun onBetResult(isSuccess: Boolean, msg: String) {
+                        dismissLoadingDialog()
+                        toast(msg)
+                        //刷新余额
+                        mPresenter.refreshBalance()
+                    }
+                }).setMargin(40).show(supportFragmentManager)
     }
 }

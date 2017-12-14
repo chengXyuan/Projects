@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:layout_margin="3dp"
-        android:background="@drawable/shape_color_primary_corners_5dp"
+        android:background="@drawable/selector_btn_primary_pressed_dark"
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_16"/>

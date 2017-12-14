@@ -3,6 +3,7 @@ package com.daking.lottery.model
 import com.daking.lottery.util.AccountHelper
 
 class BetRequest(
+        var endTime: Long,
         var round: String,
         var money: String,
         var countPay: Int,

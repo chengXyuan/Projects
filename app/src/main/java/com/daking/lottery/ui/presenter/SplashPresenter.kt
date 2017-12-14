@@ -5,7 +5,6 @@ import com.daking.lottery.ui.iview.ISplashView
 import com.daking.lottery.util.AccountHelper
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import java.util.concurrent.TimeUnit
 
 class SplashPresenter : BasePresenter<ISplashView>() {
@@ -19,11 +18,7 @@ class SplashPresenter : BasePresenter<ISplashView>() {
     private fun jumpDelay(seconds: Long) {
         Flowable.timer(seconds, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Consumer<Long> {
-                    override fun accept(t: Long?) {
-                        toNextPage()
-                    }
-                })
+                .subscribe { toNextPage() }
     }
 
     private fun toNextPage() {

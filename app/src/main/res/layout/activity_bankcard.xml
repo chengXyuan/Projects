@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.daking.lottery.widget.TitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/colorPrimary"
+        app:title_leftTextDrawable="@drawable/ic_arrow_back_white"
+        app:title_titleMainText="银行卡管理"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/shape_divider_line"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/tvOddBankTips"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/bind_card_tip1"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/sp_12"/>
+
+            <LinearLayout
+                android:id="@+id/llOddBankName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bank_name"
+                    android:textColor="@color/text_normal"/>
+
+                <TextView
+                    android:id="@+id/tvOddBankName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_normal"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/text_normal"
+                    tools:text="中国建设银行"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llOddBankNum"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bank_num"
+                    android:textColor="@color/text_normal"/>
+
+                <com.daking.lottery.widget.BankNumEditText
+                    android:id="@+id/etOddBankNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/input_odd_card_num"
+                    android:inputType="number"
+                    android:maxLength="23"
+                    android:maxLines="1"
+                    android:textColor="@color/text_normal"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/sp_14"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvNewTips"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/bind_card_tip2"
+                android:textColor="@color/text_light"
+                android:textSize="@dimen/sp_12"/>
+
+
+            <LinearLayout
+                android:id="@+id/llSelectBank"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_bank"
+                    android:textColor="@color/text_normal"/>
+
+                <TextView
+                    android:id="@+id/tvSelectedBank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:drawableEnd="@drawable/ic_arrow_down_gray"
+                    android:gravity="center_vertical"
+                    android:hint="@string/choice_bank_you_deposit"
+                    android:textColor="@color/text_normal"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/text_normal"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bank_num"
+                    android:textColor="@color/text_normal"/>
+
+                <com.daking.lottery.widget.BankNumEditText
+                    android:id="@+id/etBankNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/input_card_num"
+                    android:inputType="number"
+                    android:maxLength="23"
+                    android:maxLines="1"
+                    android:textColor="@color/text_normal"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/sp_14"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bank_num"
+                    android:textColor="@color/text_normal"/>
+
+                <com.daking.lottery.widget.BankNumEditText
+                    android:id="@+id/etBankNumAgain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/input_card_num_again"
+                    android:inputType="number"
+                    android:maxLength="23"
+                    android:maxLines="1"
+                    android:textColor="@color/text_normal"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/sp_14"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_address"
+                    android:textColor="@color/text_normal"/>
+
+                <EditText
+                    android:id="@+id/etRegisteredAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/input_address"
+                    android:maxLines="1"
+                    android:textColor="@color/text_normal"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/sp_14"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCommit"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/selector_btn_primary_pressed_dark"
+                android:text="@string/commit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_large"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

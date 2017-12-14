@@ -35,6 +35,19 @@ class NetRepository private constructor() {
     fun visitorLogin() = mApiStore.visitorLogin()
 
     /**
+     * 注册
+     */
+    fun register(username: String, password: String, realName: String, payPassword: String)
+            : Flowable<Root<Unit>> {
+        val params = HashMap<String, Any?>()
+        params["username"] = username
+        params["password"] = password
+        params["realName"] = realName
+        params["payPassword"] = payPassword
+        return mApiStore.register(params)
+    }
+
+    /**
      * 登录
      */
     fun login(username: String, password: String): Flowable<Root<UserModel>> {
@@ -58,6 +71,30 @@ class NetRepository private constructor() {
      * 获取轮播图和客服链接
      */
     fun getBanner() = mApiStore.getBanner()
+
+    /**
+     * 获取银行卡资料
+     */
+    fun getBankcard(): Flowable<Root<BankModel>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        return mApiStore.getBankInfo(params)
+    }
+
+    /**
+     * 添加/修改银行卡
+     */
+    fun bindOrModifyBankcard(id: Int?, bankName: String, bankNum: String, address: String): Flowable<Root<Unit>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["bankId"] = id
+        params["bankName"] = bankName
+        params["bankCardNumbers"] = bankNum
+        params["bankAddress"] = address
+        return mApiStore.bindOrModifyBankcard(params)
+    }
 
     /**
      * 获取支持的支付方式
@@ -116,7 +153,20 @@ class NetRepository private constructor() {
         return mApiStore.getGameOdds(params)
     }
 
+    /**
+     * 下注
+     */
     fun betting(body: BetRequest): Flowable<Root<Unit>> {
         return mApiStore.betting(body)
+    }
+
+    fun withdraw(bankNum: String, amount: String, payPassword: String): Flowable<Root<Unit>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["bankCardNumbers"] = bankNum
+        params["withdrawalAmount"] = amount
+        params["payPassword"] = payPassword
+        return mApiStore.withdraw(params)
     }
 }

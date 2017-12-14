@@ -1,11 +1,9 @@
 package com.daking.lottery.api
 
-import com.daking.lottery.app.App
 import com.daking.lottery.app.Constant
 import com.daking.lottery.model.Root
 import com.daking.lottery.util.AccountHelper
 import com.daking.lottery.util.SPUtils
-import com.daking.lottery.util.Utils
 import com.google.gson.JsonParseException
 import io.reactivex.subscribers.DisposableSubscriber
 import org.json.JSONException
@@ -17,14 +15,6 @@ import java.text.ParseException
 import javax.net.ssl.SSLHandshakeException
 
 abstract class NetSubscriber<T> : DisposableSubscriber<Root<T>>() {
-
-    override fun onStart() {
-        super.onStart()
-        if (!Utils.isNetworkAvailable(App.instance)) {
-            cancel()
-            onFailure(9000, "网络异常，请检查网络连接后重试")
-        }
-    }
 
     override fun onNext(root: Root<T>) {
         with(root) {
