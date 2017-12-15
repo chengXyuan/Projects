@@ -48,9 +48,24 @@ class WithdrawFragment : BaseMVPFragment<WithdrawPresenter>(), IWithdrawView {
         })
         //金额首位不能输入0
         etAmount.addTextChangedListener(object : MyTextWatcher() {
-            override fun afterTextChanged(s: Editable) {
-                if (s.length == 1 && s.toString() == "0") {
-                    s.clear()
+            override fun afterTextChanged(e: Editable) {
+                if (e.isNotEmpty()) {
+                    val s = e.toString()
+                    if (s.length == 1 && ("0" == s || "." == s)) {
+                        e.clear()
+                        return
+                    }
+                    if (s.toFloat() > 100000) {
+                        etAmount.setText(100000.toString())
+                        etAmount.setSelection(etAmount.length())
+                    }
+                    //限制小数点后只能输入两位
+                    val posDot = s.indexOf(".")
+                    if (posDot <= 0)
+                        return
+                    if (s.length - posDot - 1 > 2) {
+                        e.delete(posDot + 3, posDot + 4)
+                    }
                 }
             }
         })

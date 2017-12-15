@@ -106,6 +106,41 @@ class NetRepository private constructor() {
         return mApiStore.getPayWays(params)
     }
 
+    fun onlinePayment(amount: String, businessCode: String, domain: String, notifyUrl: String,
+                      remark: String, paymentClass: Int, rechargeOffer: String, payTypeId: String,
+                      name: String): Flowable<Root<OnlinePayUrl>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["amount"] = amount
+        params["businessCode"] = businessCode
+        params["domain"] = domain
+        params["notifyurl"] = notifyUrl
+        params["remark"] = remark
+        params["paymentClass"] = paymentClass
+        params["rechargeOffer"] = rechargeOffer
+        params["payTypeId"] = payTypeId
+        params["name"] = name
+        return mApiStore.onlinePayment(params)
+    }
+
+    fun offlinePayment(businessCode: String, payTypeId: Int, amount: String,
+                       user: String, address: String, cardCode: String, rechargeOffer: String,
+                       createdTime: String): Flowable<Root<Unit>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["businessCode"] = businessCode
+        params["offlinePayId"] = payTypeId
+        params["amount"] = amount
+        params["user"] = user
+        params["address"] = address
+        params["cardCode"] = cardCode
+        params["rechargeOffer"] = rechargeOffer
+        params["createdTime"] = createdTime
+        return mApiStore.offlinePayment(params)
+    }
+
     /**
      * 充值提现记录
      */

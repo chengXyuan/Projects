@@ -87,6 +87,18 @@ interface ApiStore {
     fun getPayWays(@Body params: HashMap<String, Any?>): Flowable<Root<PayWaysModel>>
 
     /**
+     * 在线支付
+     */
+    @POST("onlinePay/pay")
+    fun onlinePayment(@Body params: HashMap<String, Any?>): Flowable<Root<OnlinePayUrl>>
+
+    /**
+     * 线下支付
+     */
+    @POST("offlinePay/TransactionRecord")
+    fun offlinePayment(@Body params: HashMap<String, Any?>): Flowable<Root<Unit>>
+
+    /**
      * 存取款记录
      */
     @POST("userdeposit/withdrawalsAndSaveDetail")

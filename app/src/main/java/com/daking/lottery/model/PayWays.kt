@@ -45,6 +45,7 @@ data class OnlinePayChannel(val payTypeId: String,
                             val domain: String,
                             @SerializedName("notifyurl") val notifyUrl: String,
                             val rechargeOffer: String,
+                            val remark: String,
                             val paymentClass: Int,
                             val maximumAmount: Int,
                             val minimumAmount: Int,
@@ -71,7 +72,7 @@ data class OfflinePayModel(val paymentClass: Int,
     override fun getItemType() = PayWaysAdapter.TYPE_OFFLINE_PAY
 }
 
-data class OfflinePayChannel(val payTypeId: String,
+data class OfflinePayChannel(val payTypeId: Int,
                              val user: String,
                              val address: String,
                              val code: String,

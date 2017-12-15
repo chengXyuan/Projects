@@ -95,5 +95,21 @@
     <string name="account_address">开户地址：</string>
     <string name="input_address">请输入开户行地址</string>
     <string name="commit">提交</string>
+    <string name="bank">银&#12288;&#12288;行：</string>
+    <string name="choice_bank_hint">请选择您要转入的银行</string>
+    <string name="input_recharge_amount">请输入充值金额</string>
+    <string name="channel_choice_hint">若充值失败，请更换其他通道重试</string>
+    <string name="confirm_recharge">确认充值</string>
+    <string name="payee_info">收款信息</string>
+    <string name="open_bank">开户银行：</string>
+    <string name="bank_address">银行地址：</string>
+    <string name="payee_name">收&#8194;款&#8194;人：</string>
+    <string name="user_account_name">用户姓名：</string>
+    <string name="input_real_name">请输入您的真实中文姓名</string>
+    <string name="deposit_amount">存款金额：</string>
+    <string name="deposit_date">汇款日期：</string>
+    <string name="time_with_colon">时间：</string>
+    <string name="order_num">交易单号：</string>
+    <string name="input_order_num">请输入交易单号的后4位</string>
 
 </resources>

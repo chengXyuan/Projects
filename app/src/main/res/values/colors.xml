@@ -33,4 +33,5 @@
     <color name="bg_pressed">#EFEFEF</color>
     <color name="lottery_property_title_bg">#f2f2f2</color>
     <color name="grey_666666">#666666</color>
+    <color name="grey_f9f9f9">#f9f9f9</color>
 </resources>

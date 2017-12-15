@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.daking.lottery.widget.TitleBar
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:background="@color/colorPrimary"
+        app:title_leftTextDrawable="@drawable/ic_arrow_back_white"
+        app:title_titleMainText="线下支付"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPayMethod"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/grey_f9f9f9"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/payee_info"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/sp_16"/>
+
+            <LinearLayout
+                android:id="@+id/llBankName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_bottom_line_solid_white"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/item_height"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/open_bank"
+                    android:textColor="@color/text_dark"/>
+
+
+                <TextView
+                    android:id="@+id/tvBankName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_normal"
+                    tools:text="工商银行"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBankAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_bottom_line_solid_white"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/item_height"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bank_address"
+                    android:textColor="@color/text_dark"/>
+
+                <TextView
+                    android:id="@+id/tvBankAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_normal"
+                    tools:text="福建泉州xx支行"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_bottom_line_solid_white"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/item_height"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/payee_name"
+                    android:textColor="@color/text_dark"/>
+
+                <TextView
+                    android:id="@+id/tvPayeeName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_normal"
+                    tools:text="深圳市xx公司"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llBankNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_bottom_line_solid_white"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/item_height"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bank_num"
+                    android:textColor="@color/text_dark"/>
+
+                <TextView
+                    android:id="@+id/tvBankNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/text_normal"
+                    tools:text="123456798123"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivQrCode"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/text_hint"
+                tools:ignore="ContentDescription"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/grey_f9f9f9"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp"
+                android:text="@string/payee_info"
+                android:textColor="@color/text_dark"
+                android:textSize="@dimen/sp_16"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:background="@drawable/shape_bottom_line_solid_white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_account_name"
+                    android:textColor="@color/text_dark"/>
+
+                <EditText
+                    android:id="@+id/etRealName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/input_real_name"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/sp_16"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:background="@drawable/shape_bottom_line_solid_white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deposit_amount"
+                    android:textColor="@color/text_dark"/>
+
+                <EditText
+                    android:id="@+id/etRechargeAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="@string/input_recharge_amount"
+                    android:inputType="numberDecimal"
+                    android:maxLength="9"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/sp_16"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:background="@drawable/shape_bottom_line_solid_white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/deposit_date"
+                    android:textColor="@color/text_dark"/>
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_solid_light_gray_corners_5dp"
+                    android:padding="5dp"
+                    tools:text="2017-09-02"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="@string/time_with_colon"
+                    android:textColor="@color/text_dark"/>
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_solid_light_gray_corners_5dp"
+                    android:padding="5dp"
+                    tools:text="13:50"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:background="@drawable/shape_bottom_line_solid_white"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/order_num"
+                    android:textColor="@color/text_dark"/>
+
+                <EditText
+                    android:id="@+id/etOrderNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:hint="@string/input_order_num"
+                    android:maxLength="4"
+                    android:maxLines="1"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_hint"
+                    android:textSize="@dimen/sp_16"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnConfirm"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/item_height"
+                android:layout_marginBottom="40dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/selector_btn_primary_pressed_dark"
+                android:text="@string/confirm_recharge"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_large"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

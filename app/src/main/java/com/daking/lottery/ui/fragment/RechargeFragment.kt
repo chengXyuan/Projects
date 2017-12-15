@@ -8,11 +8,16 @@ import android.widget.TextView
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.daking.lottery.R
 import com.daking.lottery.base.BaseMVPFragment
+import com.daking.lottery.model.OfflinePayModel
+import com.daking.lottery.model.OnlinePayModel
+import com.daking.lottery.ui.activity.OfflinePaymentActivity
+import com.daking.lottery.ui.activity.OnlinePaymentActivity
 import com.daking.lottery.ui.adapter.PayWaysAdapter
 import com.daking.lottery.ui.iview.IRechargeView
 import com.daking.lottery.ui.presenter.RechargePresenter
 import com.daking.lottery.widget.RecyclerViewDivider
 import kotlinx.android.synthetic.main.fragment_recharge.*
+import org.jetbrains.anko.startActivity
 
 class RechargeFragment : BaseMVPFragment<RechargePresenter>(), IRechargeView {
 
@@ -30,6 +35,20 @@ class RechargeFragment : BaseMVPFragment<RechargePresenter>(), IRechargeView {
 
     private fun initRecyclerView() {
         mAdapter = PayWaysAdapter(null)
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            when (adapter.getItemViewType(position)) {
+                PayWaysAdapter.TYPE_ONLINE_PAY -> {
+                    //线上支付
+                    val data = mAdapter.data[position] as OnlinePayModel
+                    context.startActivity<OnlinePaymentActivity>(Pair(OnlinePaymentActivity.PAY_IN_DATA, data))
+                }
+                PayWaysAdapter.TYPE_OFFLINE_PAY -> {
+                    //线下支付
+                    val data = mAdapter.data[position] as OfflinePayModel
+                    context.startActivity<OfflinePaymentActivity>(Pair(OfflinePaymentActivity.PAY_IN_DATA, data))
+                }
+            }
+        }
 
         refresh_layout.isRefreshing = true
         refresh_layout.setColorSchemeResources(R.color.colorAccent)

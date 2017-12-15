@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_pay_channel"
+        android:layout_width="match_parent"
+        android:layout_height="27dp"
+        android:background="@drawable/selector_online_pay_channel"
+        android:textColor="@color/selector_online_pay_channel"
+        android:gravity="center"
+        tools:text="通道1"/>
+
+</FrameLayout>
