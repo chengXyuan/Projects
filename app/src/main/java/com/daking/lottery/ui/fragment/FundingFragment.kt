@@ -11,6 +11,7 @@ import com.daking.lottery.model.UserModel
 import com.daking.lottery.ui.adapter.FundingAdapter
 import com.daking.lottery.ui.iview.IFundingView
 import com.daking.lottery.ui.presenter.FundingPresenter
+import com.daking.lottery.util.format
 import kotlinx.android.synthetic.main.fragment_funding.*
 import org.greenrobot.eventbus.Subscribe
 
@@ -30,7 +31,7 @@ class FundingFragment : BaseMVPFragment<FundingPresenter>(), IFundingView {
 
     override fun showAccount(user: UserModel) {
         tv_user_name.text = user.username
-        tv_balance.text = user.balance.toString()
+        tv_balance.text = user.balance.format()
     }
 
     override fun onHiddenChanged(hidden: Boolean) {

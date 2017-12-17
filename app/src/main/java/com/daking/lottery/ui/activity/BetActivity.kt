@@ -26,6 +26,7 @@ import com.daking.lottery.model.TypeTitle
 import com.daking.lottery.ui.iview.IBetView
 import com.daking.lottery.ui.presenter.BetPresenter
 import com.daking.lottery.util.LotteryUtils
+import com.daking.lottery.util.format
 import com.daking.lottery.util.toast
 import com.daking.lottery.widget.OnMultiClickListener
 import kotlinx.android.synthetic.main.activity_bet.*
@@ -157,8 +158,8 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
     /**
      * 刷新余额
      */
-    override fun refreshBalance(balance: Double) {
-        tvBalance.text = balance.toString()
+    override fun refreshBalance(balance: Float) {
+        tvBalance.text = balance.format()
     }
 
     /**

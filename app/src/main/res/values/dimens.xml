@@ -13,6 +13,8 @@
     <dimen name="title_bar_height">44dp</dimen>
     <dimen name="item_height">44dp</dimen>
     <dimen name="popup_item_height">38dp</dimen>
+    <dimen name="bet_record_line_height">28dp</dimen>
+    <dimen name="bet_record_margin">10dp</dimen>
 
     <!-- 字体尺寸 -->
     <dimen name="text_xx_large">20sp</dimen>

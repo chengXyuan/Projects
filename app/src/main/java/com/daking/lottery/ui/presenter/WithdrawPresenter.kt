@@ -9,7 +9,7 @@ import com.daking.lottery.util.toast
 
 class WithdrawPresenter : BasePresenter<IWithdrawView>() {
 
-    private var balance: Double = 0.0
+    private var balance: Float = 0f
 
     override fun onAttached() {
         super.onAttached()

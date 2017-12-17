@@ -204,4 +204,35 @@ class NetRepository private constructor() {
         params["payPassword"] = payPassword
         return mApiStore.withdraw(params)
     }
+
+    fun getRecordSummary(pageIndex: Int, pageSize: Int): Flowable<Root<RecordSummary>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["pageSize"] = pageSize
+        params["pageNo"] = pageIndex
+        return mApiStore.getAllBetRecord(params)
+    }
+
+    fun getSettledOrders(pageIndex: Int, pageSize: Int, timestamp: Long?): Flowable<Root<RecordDetail>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["pageSize"] = pageSize
+        params["pageNo"] = pageIndex
+        if (timestamp != null && timestamp != 0L)
+            params["createdTime"] = timestamp
+        return mApiStore.getSettledOrders(params)
+    }
+
+    fun getUnsettedOrders(pageIndex: Int, pageSize: Int, timestamp: Long?): Flowable<Root<RecordDetail>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["pageSize"] = pageSize
+        params["pageNo"] = pageIndex
+        if (timestamp != null && timestamp != 0L)
+            params["createdTime"] = timestamp
+        return mApiStore.getUnsettledOrders(params)
+    }
 }

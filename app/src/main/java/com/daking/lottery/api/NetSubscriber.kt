@@ -34,7 +34,9 @@ abstract class NetSubscriber<T> : DisposableSubscriber<Root<T>>() {
                     if (!parameter.isNullOrEmpty()) {
                         SPUtils.instance.putString(Constant.SERVICE_URL, parameter)
                     }
-                    onSuccess(httpCode, getMessage(), response)
+                    if (total != null) {
+                        onSuccess(total, getMessage(), response)
+                    } else onSuccess(httpCode, getMessage(), response)
                 }
 
                 4001 -> {//用户账号失效

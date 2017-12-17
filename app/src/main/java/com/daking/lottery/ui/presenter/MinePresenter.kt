@@ -1,15 +1,15 @@
 package com.daking.lottery.ui.presenter
 
-import com.daking.lottery.app.App
 import com.daking.lottery.app.Constant
 import com.daking.lottery.base.BasePresenter
 import com.daking.lottery.repository.LocalRepository
-import com.daking.lottery.ui.activity.MainActivity
-import com.daking.lottery.ui.activity.WebViewActivity
+import com.daking.lottery.ui.activity.*
 import com.daking.lottery.ui.adapter.MineAdapter
 import com.daking.lottery.ui.iview.IMineView
 import com.daking.lottery.util.AccountHelper
 import com.daking.lottery.util.SPUtils
+import com.daking.lottery.util.log
+import com.daking.lottery.util.toast
 import org.jetbrains.anko.startActivity
 
 class MinePresenter : BasePresenter<IMineView>() {
@@ -41,6 +41,7 @@ class MinePresenter : BasePresenter<IMineView>() {
             when (position) {
                 0 -> {
                     //个人资料
+                    mView.getActivity().startActivity<PersonalInfoActivity>()
                 }
                 1 -> {
                     //修改密码
@@ -50,29 +51,48 @@ class MinePresenter : BasePresenter<IMineView>() {
                 }
                 3 -> {
                     //资金管理
-                    App.instance.startActivity<MainActivity>(
+                    mView.getActivity().startActivity<MainActivity>(
                             Pair(MainActivity.MAIN_TAB_POSITION, 2))
                 }
                 4 -> {
                     //银行卡
+                    getBankcard()
                 }
                 5 -> {
                     //下注记录
+                    mView.getActivity().startActivity<BetRecordActivity>()
                 }
                 6 -> {
                     //新闻中心
                 }
                 7 -> {
                     //关于我们
+                    mView.getActivity().startActivity<AboutUsActivity>()
                 }
                 8 -> {
                     //客服中心
                     val url = SPUtils.instance.getString(Constant.SERVICE_URL, "")
-                    App.instance.startActivity<WebViewActivity>(
+                    mView.getActivity().startActivity<WebViewActivity>(
                             Pair(WebViewActivity.EXTRA_WEB_TITLE, "在线客服"),
                             Pair(WebViewActivity.EXTRA_WEB_URL, url!!))
                 }
             }
         }
+    }
+
+    private fun getBankcard() {
+        mNetRepository.getBankcard()
+                .dealObj({ code, msg, model ->
+                    log("code=$code, msg: $msg")
+                    if (model == null) {
+                        mView.getActivity().startActivity<BankcardActivity>(Pair(BankcardActivity.EXTRA_IS_MODIFY, false))
+                    } else {
+                        mView.getActivity().startActivity<BankcardActivity>(Pair(BankcardActivity.EXTRA_IS_MODIFY, true),
+                                Pair(BankcardActivity.EXTRA_ODD_BANK, model))
+                    }
+                }, { code, msg ->
+                    log("code=$code, msg: $msg")
+                    toast(msg)
+                })
     }
 }

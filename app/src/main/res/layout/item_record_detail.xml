@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/item_margin_top"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants">
+
+    <FrameLayout
+        android:id="@+id/fl_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bet_record_line_height"
+        android:background="@drawable/selector_lottery_date_bg"
+        android:duplicateParentState="true"
+        android:paddingEnd="@dimen/bet_record_margin"
+        android:paddingStart="@dimen/bet_record_margin"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvOrderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:textColor="@color/white"
+            tools:text="注单号:201756456"/>
+
+        <TextView
+            android:id="@+id/tvOrderStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:textColor="@color/white"
+            tools:text="已结"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvLotteryName"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bet_record_line_height"
+        android:layout_marginStart="@dimen/bet_record_margin"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fl_title"
+        tools:text="重庆时时彩"/>
+
+    <TextView
+        android:id="@+id/tvLotteryRound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/bet_record_margin"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_normal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvLotteryName"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="第20171217-068期"/>
+
+    <!--游戏玩法-->
+    <TextView
+        android:id="@+id/tvPlayType"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bet_record_line_height"
+        android:layout_marginStart="@dimen/bet_record_margin"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLotteryName"
+        android:text="游戏玩法："/>
+
+    <TextView
+        android:id="@+id/tvPlayDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/bet_record_margin"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_normal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvPlayType"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="第三球[大]@1.998"/>
+
+    <!--下注时间-->
+    <TextView
+        android:id="@+id/tvBetTimeT"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bet_record_line_height"
+        android:layout_marginStart="@dimen/bet_record_margin"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlayType"
+        android:text="下注时间："/>
+
+    <TextView
+        android:id="@+id/tvBetTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/bet_record_margin"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_normal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvBetTimeT"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="2017-12-17 17:50:32"/>
+
+    <!--下注金额-->
+    <TextView
+        android:id="@+id/tvBetMoneyT"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bet_record_line_height"
+        android:layout_marginStart="@dimen/bet_record_margin"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvBetTimeT"
+        android:text="下注金额："/>
+
+    <TextView
+        android:id="@+id/tvBetMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/bet_record_margin"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_normal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvBetMoneyT"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="10"/>
+
+    <FrameLayout
+        android:id="@+id/flCanWin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bet_record_line_height"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tvBetMoneyT">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bet_record_line_height"
+            android:layout_gravity="center|start"
+            android:layout_marginStart="@dimen/bet_record_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_normal"
+            android:text="可赢金额："/>
+
+        <TextView
+            android:id="@+id/tvCanWin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="@dimen/bet_record_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_normal"
+            tools:text="19.88"/>
+    </FrameLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cLResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBetMoneyT">
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/divider"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvWinOrLoseT"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bet_record_line_height"
+            android:layout_marginStart="@dimen/bet_record_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider1"
+            android:text="输赢结果："/>
+
+        <TextView
+            android:id="@+id/tvWinOrLose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/bet_record_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvWinOrLoseT"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="10"/>
+
+        <TextView
+            android:id="@+id/tvBackWaterT"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bet_record_line_height"
+            android:layout_marginStart="@dimen/bet_record_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWinOrLoseT"
+            android:text="下注退水："/>
+
+        <TextView
+            android:id="@+id/tvBackWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/bet_record_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_normal"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvBackWaterT"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="10"/>
+
+        <TextView
+            android:id="@+id/tvMoneyAfterT"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/bet_record_line_height"
+            android:layout_marginStart="@dimen/bet_record_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/text_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBackWaterT"
+            android:text="最后金额："/>
+
+        <TextView
+            android:id="@+id/tvMoneyAfter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/bet_record_margin"
+            android:gravity="center_vertical"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvMoneyAfterT"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="10"/>
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/divider"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

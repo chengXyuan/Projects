@@ -15,6 +15,7 @@ import com.daking.lottery.ui.activity.WebViewActivity
 import com.daking.lottery.util.AccountHelper
 import com.daking.lottery.util.SPUtils
 import com.daking.lottery.util.Utils
+import com.daking.lottery.util.format
 import kotlinx.android.synthetic.main.dialog_common.view.*
 import kotlinx.android.synthetic.main.popup_main_menu.view.*
 import org.jetbrains.anko.startActivity
@@ -77,7 +78,7 @@ class MainMenuPopupWindow(private val activity: FragmentActivity) : BasePopupWin
     fun refreshBalance() {
         val user = AccountHelper.instance.getUser()
         if (user != null) {
-            mtvBalance.text = user.balance.toString()
+            mtvBalance.text = user.balance.format()
         }
     }
 

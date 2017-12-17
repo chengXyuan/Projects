@@ -127,4 +127,22 @@ interface ApiStore {
      */
     @POST("betting/betting")
     fun betting(@Body body: BetRequest): Flowable<Root<Unit>>
+
+    /**
+     * 汇总
+     */
+    @POST("lotterybill/summary")
+    fun getAllBetRecord(@Body params: HashMap<String, Any?>): Flowable<Root<RecordSummary>>
+
+    /**
+     * 今日已结
+     */
+    @POST("lotterybill/todayend")
+    fun getSettledOrders(@Body params: HashMap<String, Any?>): Flowable<Root<RecordDetail>>
+
+    /**
+     * 未结注单
+     */
+    @POST("lotterybill/findlotteyBill")
+    fun getUnsettledOrders(@Body params: HashMap<String, Any?>): Flowable<Root<RecordDetail>>
 }

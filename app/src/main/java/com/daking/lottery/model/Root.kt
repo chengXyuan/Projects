@@ -2,7 +2,8 @@ package com.daking.lottery.model
 
 data class Root<out T>(val httpCode: Int,
                        val response: List<T>?,
-                       val parameter: String?) {
+                       val parameter: String?,
+                       val total: Int?) {
 
     fun getMessage() = when (httpCode) {
         200 -> "请求成功"

@@ -26,6 +26,8 @@ fun String.isPassword() = Pattern.matches(Constant.REGEX_PASSWORD, this)
 
 fun String.isRealName() = Pattern.matches(Constant.REGEX_REAL_NAME, this)
 
+fun Float.format() = String.format("%.2f", this)
+
 fun <T> Flowable<T>.retryWithDelay(maxCount: Int = 0, millisDelay: Long): Flowable<T> {
     return retryWithDelay { _, count -> if (maxCount > 0 && count == maxCount) null else millisDelay }
 }

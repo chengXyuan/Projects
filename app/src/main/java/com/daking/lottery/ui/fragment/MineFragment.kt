@@ -14,6 +14,7 @@ import com.daking.lottery.ui.adapter.MineAdapter
 import com.daking.lottery.ui.iview.IMineView
 import com.daking.lottery.ui.presenter.MinePresenter
 import com.daking.lottery.util.AccountHelper
+import com.daking.lottery.util.format
 import com.daking.lottery.widget.RecyclerViewDivider
 import kotlinx.android.synthetic.main.dialog_common.view.*
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -43,7 +44,7 @@ class MineFragment : BaseMVPFragment<MinePresenter>(), IMineView {
     override fun refreshUser(user: UserModel?) {
         user?.let {
             tv_greeting.text = "晚上好，${user.username}！"
-            tv_balance.text = "￥${user.balance}"
+            tv_balance.text = "￥${user.balance.format()}"
         }
     }
 

@@ -40,6 +40,8 @@ abstract class BaseActivity : RxAppCompatActivity() {
 
     open fun useEventBus() = false
 
+    fun getActivity() = this
+
     fun <T> bindLifecycle(): LifecycleTransformer<T> {
         return bindUntilEvent(ActivityEvent.DESTROY)
     }

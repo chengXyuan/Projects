@@ -22,6 +22,16 @@ class FormatUtils {
         return format.format(timestamp)
     }
 
+
+    fun convertDate(timestamp: Long): String {
+        if (timestamp <= 0L) {
+            return ""
+        }
+        val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        format.timeZone = TimeZone.getTimeZone("GMT+08")
+        return format.format(timestamp)
+    }
+
     fun convertTime(timestamp: Long): String {
         if (timestamp <= 0L) {
             return ""
