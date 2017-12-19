@@ -2,6 +2,7 @@ package com.daking.lottery.ui.fragment
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -11,11 +12,14 @@ import com.daking.lottery.dialog.MainMenuPopupWindow
 import com.daking.lottery.dialog.easy.HorizontalGravity
 import com.daking.lottery.dialog.easy.VerticalGravity
 import com.daking.lottery.model.BannerModel
+import com.daking.lottery.model.Promotion
 import com.daking.lottery.model.UserModel
 import com.daking.lottery.ui.activity.RegisterActivity
 import com.daking.lottery.ui.adapter.HomeGameAdapter
+import com.daking.lottery.ui.adapter.PromotionAdapter
 import com.daking.lottery.ui.iview.IHomeView
 import com.daking.lottery.ui.presenter.HomePresenter
+import com.daking.lottery.util.Utils
 import com.daking.lottery.widget.RecyclerViewDivider
 import com.daking.lottery.widget.banner.BannerView
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -25,6 +29,7 @@ class HomeFragment : BaseMVPFragment<HomePresenter>(), IHomeView {
 
     private lateinit var mBannerView: BannerView<BannerModel>
     private var menuPopup: MainMenuPopupWindow? = null
+    private lateinit var mPromotionAdapter: PromotionAdapter
 
     override fun getLayoutResId() = R.layout.fragment_home
 
@@ -62,6 +67,15 @@ class HomeFragment : BaseMVPFragment<HomePresenter>(), IHomeView {
         rv_lottery.adapter = gameAdapter
     }
 
+    override fun initPromotion(adapter: PromotionAdapter) {
+        mPromotionAdapter = adapter
+        rv_promotion.setHasFixedSize(true)
+        rv_promotion.isNestedScrollingEnabled = false
+        rv_promotion.layoutManager = LinearLayoutManager(activity,
+                LinearLayoutManager.HORIZONTAL, false)
+        rv_promotion.adapter = mPromotionAdapter
+    }
+
     override fun showBanner(data: List<BannerModel>) {
         mBannerView.setViewFactory { item, _, container ->
             val realItem = item as BannerModel
@@ -76,6 +90,17 @@ class HomeFragment : BaseMVPFragment<HomePresenter>(), IHomeView {
         mBannerView.start()
     }
 
+    override fun showMarquee(text: String) {
+        marquee.setText(text)
+        marquee.start()
+    }
+
+    override fun showPromotions(data: List<Promotion>) {
+        fl_promotion_title.visibility = View.VISIBLE
+        rv_promotion.visibility = View.VISIBLE
+        mPromotionAdapter.setNewData(data)
+    }
+
     override fun onComplete() {
         if (refresh_layout != null && refresh_layout.isRefreshing) {
             refresh_layout.isRefreshing = false
@@ -87,6 +112,7 @@ class HomeFragment : BaseMVPFragment<HomePresenter>(), IHomeView {
             menuPopup = MainMenuPopupWindow(activity).createPopup()
         }
         menuPopup!!.refreshBalance()
-        menuPopup!!.showAtAnchorView(fl_title_bar, VerticalGravity.BELOW, HorizontalGravity.ALIGN_RIGHT)
+        menuPopup!!.showAtAnchorView(fl_title_bar, VerticalGravity.BELOW,
+                HorizontalGravity.ALIGN_RIGHT, Utils.dp2px(-8), 0)
     }
 }

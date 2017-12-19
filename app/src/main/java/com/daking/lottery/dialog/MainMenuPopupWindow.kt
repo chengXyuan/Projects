@@ -37,24 +37,28 @@ class MainMenuPopupWindow(private val activity: FragmentActivity) : BasePopupWin
         mtvBalance = view.tv_balance
         view.tv_recharge.setOnClickListener {
             //跳转到充值页面
-            activity.startActivity<MainActivity>(Pair(MainActivity.MAIN_TAB_POSITION, 2))
+            if (AccountHelper.instance.hasAccess())
+                activity.startActivity<MainActivity>(Pair(MainActivity.MAIN_TAB_POSITION, 2))
             dismiss()
         }
         view.tv_withdraw.setOnClickListener {
             //跳转到提现页面
-            activity.startActivity<MainActivity>(Pair(MainActivity.MAIN_TAB_POSITION, 2),
-                    Pair(MainActivity.FUNDING_TAB_POSITION, 1))
+            if (AccountHelper.instance.hasAccess())
+                activity.startActivity<MainActivity>(Pair(MainActivity.MAIN_TAB_POSITION, 2),
+                        Pair(MainActivity.FUNDING_TAB_POSITION, 1))
             dismiss()
         }
         view.tv_bet_record.setOnClickListener {
             //跳转到交易记录页面
-            activity.startActivity<MainActivity>(Pair(MainActivity.MAIN_TAB_POSITION, 2),
-                    Pair(MainActivity.FUNDING_TAB_POSITION, 2))
+            if (AccountHelper.instance.hasAccess())
+                activity.startActivity<MainActivity>(Pair(MainActivity.MAIN_TAB_POSITION, 2),
+                        Pair(MainActivity.FUNDING_TAB_POSITION, 2))
             dismiss()
         }
         view.tv_personal_center.setOnClickListener {
             //跳转到个人中心页面
-            activity.startActivity<MainActivity>(Pair(MainActivity.MAIN_TAB_POSITION, 4))
+            if (AccountHelper.instance.hasAccess())
+                activity.startActivity<MainActivity>(Pair(MainActivity.MAIN_TAB_POSITION, 4))
             dismiss()
         }
         view.tv_game_rule.setOnClickListener {
@@ -89,7 +93,7 @@ class MainMenuPopupWindow(private val activity: FragmentActivity) : BasePopupWin
                 .setConvertListener(object : ViewConvertListener() {
                     override fun convertView(view: View, dialog: BaseDialog) {
                         view.tv_msg.text = "确定要退出登录?"
-                        view.tv_confirm.setOnClickListener { AccountHelper.instance.userSignOut() }
+                        view.tv_confirm.setOnClickListener { AccountHelper.instance.userSignOut(true) }
                         view.tv_cancel.setOnClickListener { dialog.dismiss() }
                         view.iv_close.setOnClickListener { dialog.dismiss() }
                     }

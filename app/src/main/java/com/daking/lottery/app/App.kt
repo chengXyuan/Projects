@@ -3,17 +3,15 @@ package com.daking.lottery.app
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
-import com.daking.lottery.model.MyObjectBox
 import com.daking.lottery.util.Utils
 import com.daking.lottery.util.delegate.NotNullSingleValueVar
 import com.daking.lottery.util.log
-import io.objectbox.BoxStore
 import java.util.*
 
 class App : Application() {
 
-    lateinit var boxStore: BoxStore
-        private set
+    /*lateinit var boxStore: BoxStore
+        private set*/
     private lateinit var mStack: Stack<Activity>
 
     companion object {
@@ -23,7 +21,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        boxStore = MyObjectBox.builder().androidContext(this).build()
+        //boxStore = MyObjectBox.builder().androidContext(this).build()
         mStack = Stack()
         registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityPaused(activity: Activity?) {
@@ -54,6 +52,8 @@ class App : Application() {
 
         }
     }
+
+    fun getCurrentActivity(): Activity = mStack.lastElement()
 
     /**
      * 退出应用

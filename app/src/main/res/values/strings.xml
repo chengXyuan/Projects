@@ -118,4 +118,20 @@
     <string name="recharge">充值</string>
     <string name="withdraw">提现</string>
 
+    <string name="modify_login_password">修改登录密码</string>
+    <string name="modify_pay_password">修改支付密码</string>
+    <string name="input_odd_password">请输入旧密码</string>
+    <string name="input_new_password">请输入新密码</string>
+    <string name="input_new_password_again">请再次输入新密码</string>
+    <string name="input_odd_password2">请输入旧密码(四位纯数字)</string>
+    <string name="input_new_password2">请输入新密码(四位纯数字)</string>
+    <string name="input_new_password_again2">请再次输入新密码(四位纯数字)</string>
+    <string name="ensure_modify">确认修改</string>
+    <string name="record_detail">交易记录详情</string>
+    <string name="record_no">交易单号:</string>
+    <string name="record_time">交易时间:</string>
+    <string name="record_style">交易方式:</string>
+    <string name="record_status">交易状态:</string>
+    <string name="record_amount">交易金额:</string>
+
 </resources>

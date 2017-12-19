@@ -16,6 +16,7 @@ import com.daking.lottery.ui.activity.WebViewActivity
 import com.daking.lottery.ui.adapter.HallAdapter
 import com.daking.lottery.ui.iview.IHallView
 import com.daking.lottery.ui.presenter.HallPresenter
+import com.daking.lottery.util.Utils
 import com.daking.lottery.widget.RecyclerViewDivider
 import kotlinx.android.synthetic.main.fragment_hall.*
 import kotlinx.android.synthetic.main.layout_error_view.view.*
@@ -72,7 +73,8 @@ class HallFragment : BaseMVPFragment<HallPresenter>(), IHallView {
             menuPopup = MainMenuPopupWindow(activity).createPopup()
         }
         menuPopup!!.refreshBalance()
-        menuPopup!!.showAtAnchorView(title_bar, VerticalGravity.BELOW, HorizontalGravity.ALIGN_RIGHT)
+        menuPopup!!.showAtAnchorView(title_bar, VerticalGravity.BELOW,
+                HorizontalGravity.ALIGN_RIGHT, Utils.dp2px(-8), 0)
     }
 
     override fun showLotteries(data: List<OpenModel>?) {

@@ -51,7 +51,7 @@ class BetDataAdapter(val gameCode: Int, data: List<MultiBetItem>?)
                 setData(helper, item, betItem!!)
                 when (gameCode) {
                     Constant.GAME_CODE_PJ_PK_10,
-                    Constant.GAME_CODE_CJ_LOTTERY,
+                    Constant.GAME_CODE_CJ_LUCKY_FARM,
                     Constant.GAME_CODE_LUCKY_AIRSHIP -> {
                     }
                     else -> helper.setText(R.id.tv_item_name, betItem.name)

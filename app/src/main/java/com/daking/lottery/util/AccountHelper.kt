@@ -33,17 +33,35 @@ class AccountHelper {
         return currentUser
     }
 
-    fun userSignOut() {
+    fun userSignOut(clear: Boolean) {
         AccountHelper.instance.saveUser(null)
-        val intent = Intent(App.instance, LoginActivity::class.java)
-        //清空Activity栈
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        App.instance.startActivity(intent)
+        val activity = App.instance.getCurrentActivity()
+        val intent = Intent(activity, LoginActivity::class.java)
+        if (clear) {
+            //清空Activity栈
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        activity.startActivity(intent)
     }
 
     fun getUserId() = getUser()?.id
 
     fun getSessionId() = getUser()?.sessionId
+
+    fun hasAccess(): Boolean {
+        val user = getUser()
+        return when {
+            user == null -> {
+                toast("请先登录!")
+                false
+            }
+            user.isVisitor -> {
+                toast("请登录正式账号")
+                false
+            }
+            else -> true
+        }
+    }
 
     /**
      *  刷新账户 调用获取个人信息接口

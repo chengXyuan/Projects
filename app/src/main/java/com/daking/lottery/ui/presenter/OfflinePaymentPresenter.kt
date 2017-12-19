@@ -36,7 +36,7 @@ class OfflinePaymentPresenter : BasePresenter<IOfflinePaymentView>() {
                                createdTime: String) {
         mNetRepository.offlinePayment(orderNo, payTypeId, amount, realName, address, bankNum,
                 rechargeOffer, createdTime)
-                .dealObj({ code, msg, model ->
+                .dealObj({ code, msg, _ ->
                     log("code=$code, msg: $msg")
                     toast(msg)
                     mView.paySuccess()

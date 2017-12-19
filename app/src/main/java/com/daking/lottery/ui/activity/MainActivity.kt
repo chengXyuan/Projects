@@ -12,10 +12,12 @@ import com.daking.lottery.ui.fragment.HomeFragment
 import com.daking.lottery.ui.fragment.MineFragment
 import com.daking.lottery.ui.iview.IMainView
 import com.daking.lottery.ui.presenter.MainPresenter
+import com.daking.lottery.util.AccountHelper
 import com.daking.lottery.util.log
 import com.daking.lottery.util.toast
 import com.daking.lottery.widget.TabEntity
 import com.flyco.tablayout.listener.CustomTabEntity
+import com.flyco.tablayout.listener.OnTabSelectListener
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -63,6 +65,38 @@ class MainActivity : BaseMVPActivity<MainPresenter>(), IMainView {
             mFragments.add(fragClazz[index].newInstance() as Fragment)
         }
         bottom_tab.setTabData(tabEntities, this, R.id.fl_container, mFragments)
+
+        bottom_tab.setOnTabSelectListener(object : OnTabSelectListener {
+
+            override fun onTabClick(position: Int): Boolean {
+                //返回值true/false表示tab是否可以选择
+                return when (position) {
+                    2 -> {
+                        val user = AccountHelper.instance.getUser()
+                        when {
+                            user == null -> {
+                                toast("请先登录!")
+                                false
+                            }
+                            user.isVisitor -> {
+                                toast("请登录正式账号")
+                                false
+                            }
+                            else -> true
+                        }
+                    }
+                    else -> true
+                }
+            }
+
+            override fun onTabSelect(position: Int) {
+
+            }
+
+            override fun onTabReselect(position: Int) {
+
+            }
+        })
     }
 
     override fun onNewIntent(intent: Intent?) {

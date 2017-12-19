@@ -2,6 +2,7 @@ package com.daking.lottery.ui.presenter
 
 import com.daking.lottery.app.Constant
 import com.daking.lottery.base.BasePresenter
+import com.daking.lottery.event.OutOfSignEvent
 import com.daking.lottery.repository.LocalRepository
 import com.daking.lottery.ui.activity.*
 import com.daking.lottery.ui.adapter.MineAdapter
@@ -10,6 +11,7 @@ import com.daking.lottery.util.AccountHelper
 import com.daking.lottery.util.SPUtils
 import com.daking.lottery.util.log
 import com.daking.lottery.util.toast
+import org.greenrobot.eventbus.Subscribe
 import org.jetbrains.anko.startActivity
 
 class MinePresenter : BasePresenter<IMineView>() {
@@ -41,22 +43,28 @@ class MinePresenter : BasePresenter<IMineView>() {
             when (position) {
                 0 -> {
                     //个人资料
-                    mView.getActivity().startActivity<PersonalInfoActivity>()
+                    if (AccountHelper.instance.hasAccess())
+                        mView.getActivity().startActivity<PersonalInfoActivity>()
                 }
                 1 -> {
                     //修改密码
+                    if (AccountHelper.instance.hasAccess())
+                        mView.getActivity().startActivity<PasswordActivity>()
                 }
                 2 -> {
                     //我的消息
+                    mView.getActivity().startActivity<MyMessageActivity>()
                 }
                 3 -> {
                     //资金管理
-                    mView.getActivity().startActivity<MainActivity>(
-                            Pair(MainActivity.MAIN_TAB_POSITION, 2))
+                    if (AccountHelper.instance.hasAccess())
+                        mView.getActivity().startActivity<MainActivity>(
+                                Pair(MainActivity.MAIN_TAB_POSITION, 2))
                 }
                 4 -> {
                     //银行卡
-                    getBankcard()
+                    if (AccountHelper.instance.hasAccess())
+                        getBankcard()
                 }
                 5 -> {
                     //下注记录
@@ -64,6 +72,7 @@ class MinePresenter : BasePresenter<IMineView>() {
                 }
                 6 -> {
                     //新闻中心
+                    mView.getActivity().startActivity<MyMessageActivity>()
                 }
                 7 -> {
                     //关于我们
@@ -94,5 +103,12 @@ class MinePresenter : BasePresenter<IMineView>() {
                     log("code=$code, msg: $msg")
                     toast(msg)
                 })
+    }
+
+    override fun useEventBus() = true
+
+    @Subscribe
+    fun onEvent(event: OutOfSignEvent) {
+        refreshUser()
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.widget.LinearLayout
 import com.daking.lottery.R
-
 import com.daking.lottery.base.BaseMVPFragment
 import com.daking.lottery.event.RechargeOrWithdrawEvent
 import com.daking.lottery.model.UserModel

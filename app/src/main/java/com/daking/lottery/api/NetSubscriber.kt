@@ -41,7 +41,7 @@ abstract class NetSubscriber<T> : DisposableSubscriber<Root<T>>() {
 
                 4001 -> {//用户账号失效
                     onFailure(httpCode, getMessage())
-                    AccountHelper.instance.userSignOut()
+                    AccountHelper.instance.userSignOut(false)
                 }
 
                 else -> onFailure(httpCode, getMessage())//其他失败情况

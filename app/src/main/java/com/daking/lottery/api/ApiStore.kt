@@ -3,7 +3,6 @@ package com.daking.lottery.api
 import com.daking.lottery.model.*
 import io.reactivex.Flowable
 import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiStore {
@@ -36,12 +35,13 @@ interface ApiStore {
      * 修改密码
      */
     @POST("user/updatepwd")
-    fun updatePassword(@Body params: HashMap<String, Any?>): Call<Root<Unit>>
+    fun updatePassword(@Body params: HashMap<String, Any?>): Flowable<Root<Unit>>
 
     /**
      * 修改取款密码
      */
-    fun updatePayPassword(@Body params: HashMap<String, Any?>): Call<Root<Unit>>
+    @POST("user/updateplypwd")
+    fun updatePayPassword(@Body params: HashMap<String, Any?>): Flowable<Root<Unit>>
 
     /**
      * 获取银行卡信息
@@ -145,4 +145,28 @@ interface ApiStore {
      */
     @POST("lotterybill/findlotteyBill")
     fun getUnsettledOrders(@Body params: HashMap<String, Any?>): Flowable<Root<RecordDetail>>
+
+    /**
+     * 最新消息
+     */
+    @POST("announcement/newmessage")
+    fun getNewMessage(@Body params: HashMap<String, Any?>): Flowable<Root<MsgModel>>
+
+    /**
+     * 所有消息
+     */
+    @POST("announcement/findall")
+    fun getAllMessage(@Body params: HashMap<String, Any?>): Flowable<Root<MsgModel>>
+
+    /**
+     * 消息详情
+     */
+    @POST("announcement/details")
+    fun getMessageDetail(@Body params: HashMap<String, Any?>): Flowable<Root<MsgModel>>
+
+    /**
+     * 优惠活动
+     */
+    @POST("activityUrl/activityQuery")
+    fun getPromotions(@Body params: HashMap<String, Any?>): Flowable<Root<Promotion>>
 }

@@ -119,11 +119,14 @@
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1">
 
-                        <TextView
+                        <com.daking.lottery.widget.MarqueeView
                             android:id="@+id/marquee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"/>
+                            android:layout_gravity="center_vertical"
+                            app:speed="30dp"
+                            app:text_color="@color/text_normal"
+                            app:text_size="14sp"/>
                     </FrameLayout>
 
                     <ImageView
@@ -174,8 +177,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingEnd="@dimen/material_unit_space"
-                    android:paddingStart="@dimen/material_unit_space"
+                    android:padding="@dimen/material_unit_space"
                     android:scrollbars="none"
                     android:visibility="gone"/>
             </LinearLayout>

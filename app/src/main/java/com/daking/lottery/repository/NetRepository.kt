@@ -67,6 +67,24 @@ class NetRepository private constructor() {
         return mApiStore.refreshAccount(params)
     }
 
+    fun updatePassword(oldPassword: String, newPassword: String): Flowable<Root<Unit>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["oldpassword"] = oldPassword
+        params["password"] = newPassword
+        return mApiStore.updatePassword(params)
+    }
+
+    fun updatePayPassword(oldPassword: String, newPassword: String): Flowable<Root<Unit>> {
+        val params = HashMap<String, Any?>()
+        params["usersId"] = getUserId()
+        params["sessionId"] = getSessionId()
+        params["oldPayPassWord"] = oldPassword
+        params["payPassWord"] = newPassword
+        return mApiStore.updatePayPassword(params)
+    }
+
     /**
      * 获取轮播图和客服链接
      */
@@ -225,7 +243,7 @@ class NetRepository private constructor() {
         return mApiStore.getSettledOrders(params)
     }
 
-    fun getUnsettedOrders(pageIndex: Int, pageSize: Int, timestamp: Long?): Flowable<Root<RecordDetail>> {
+    fun getUnsettledOrders(pageIndex: Int, pageSize: Int, timestamp: Long?): Flowable<Root<RecordDetail>> {
         val params = HashMap<String, Any?>()
         params["usersId"] = getUserId()
         params["sessionId"] = getSessionId()
@@ -234,5 +252,47 @@ class NetRepository private constructor() {
         if (timestamp != null && timestamp != 0L)
             params["createdTime"] = timestamp
         return mApiStore.getUnsettledOrders(params)
+    }
+
+    /**
+     * 最新公告
+     *
+     * @param type 0-滚动公告,1-弹窗公告,2充值公告
+     */
+    fun getNewMessage(type: Int): Flowable<Root<MsgModel>> {
+        val params = HashMap<String, Any?>()
+        params["type"] = type
+        return mApiStore.getNewMessage(params)
+    }
+
+    /**
+     * 所有公告
+     *
+     * @param pageIndex 当前页数
+     * @param pageSize 显示多少条数 （如果值为-1则查询所有信息）
+     */
+    fun getAllMessage(pageIndex: Int, pageSize: Int): Flowable<Root<MsgModel>> {
+        val params = HashMap<String, Any?>()
+        params["pageSize"] = pageSize
+        params["pageNo"] = pageIndex
+        return mApiStore.getAllMessage(params)
+    }
+
+    /**
+     * 公告详情
+     *
+     * @param id 公告编号
+     */
+    fun getMessageDetail(id: Int): Flowable<Root<MsgModel>> {
+        val params = HashMap<String, Any?>()
+        params["id"] = id
+        return mApiStore.getMessageDetail(params)
+    }
+
+    fun getPromotions(pageIndex: Int, pageSize: Int): Flowable<Root<Promotion>> {
+        val params = HashMap<String, Any?>()
+        params["pageSize"] = pageSize
+        params["pageNo"] = pageIndex
+        return mApiStore.getPromotions(params)
     }
 }

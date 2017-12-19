@@ -6,7 +6,7 @@ data class FundingModel(val id: Int,
                         @SerializedName("billcode") val billCode: String,
                         val orderStatus: Int,
                         val money: Float,
-                        val remark: String,
+                        val remark: String?,
                         val createdTime: Long,
                         val type: Int,
                         val status: Int)

@@ -7,7 +7,6 @@ import com.daking.lottery.event.ClearSelectionEvent
 import com.daking.lottery.event.SelectStateChangeEvent
 import com.daking.lottery.model.BetTypeItem
 import com.daking.lottery.model.MultiBetItem
-import com.daking.lottery.repository.LocalRepository
 import com.daking.lottery.ui.adapter.BetDataAdapter
 import com.daking.lottery.ui.adapter.BetTypeAdapter
 import com.daking.lottery.ui.fragment.OddsFragment
@@ -122,11 +121,11 @@ class OddsPresenter : BasePresenter<IOddsView>() {
             @Suppress("UNCHECKED_CAST")
             typeData = MemoryCacheManager.instance.get(key) as List<BetTypeItem>?
             if (typeData == null || typeData!!.isEmpty()) {
-                //先查询数据库中的数据, 显示
+                /*//先查询数据库中的数据, 显示
                 typeData = LocalRepository.instance.getOddsLian(gameCode)
                 if (typeData == null || typeData!!.isEmpty()) {
-                    typeData = LotteryUtils.instance.getTypeData(gameCode, fragPosition)
-                }
+                }*/
+                typeData = LotteryUtils.instance.getTypeData(gameCode, fragPosition)
                 //同时查询最新的数据
                 requestOdds(typeCode)
             }
@@ -151,7 +150,7 @@ class OddsPresenter : BasePresenter<IOddsView>() {
             betData = MemoryCacheManager.instance.get(key) as List<MultiBetItem>?
             if (betData == null || betData!!.isEmpty()) {
                 //先查询数据库中的数据, 显示
-                betData = LocalRepository.instance.getOddsData(gameCode, typeCode)
+                //betData = LocalRepository.instance.getOddsData(gameCode, typeCode)
                 //同时查询最新的数据
                 requestOdds(typeCode)
             }
@@ -214,7 +213,7 @@ class OddsPresenter : BasePresenter<IOddsView>() {
                         val key = "odds_${gameCode}_$typeCode"
                         MemoryCacheManager.instance.put(key, typeData!!)
                         //更新数据库中的数据
-                        LocalRepository.instance.saveOddsLian(gameCode, typeData!!)
+                        //LocalRepository.instance.saveOddsLian(gameCode, typeData!!)
                     } else {
                         betData = LotteryUtils.instance.reassembleBetData(gameCode, fragPosition, typeCode, data)
                         mDataAdapter.setNewData(betData)
@@ -223,7 +222,7 @@ class OddsPresenter : BasePresenter<IOddsView>() {
                         val key = "odds_${gameCode}_$typeCode"
                         MemoryCacheManager.instance.put(key, betData!!)
                         //更新数据库中的数据
-                        LocalRepository.instance.saveOddsData(gameCode, typeCode, betData!!)
+                        //LocalRepository.instance.saveOddsData(gameCode, typeCode, betData!!)
 
                         val betType = LotteryUtils.instance.getBetType(gameCode, fragPosition)
                         if (betType == LotteryUtils.BET_TYPE_THREE) {
@@ -231,9 +230,8 @@ class OddsPresenter : BasePresenter<IOddsView>() {
                         }
                     }
                 }, { _, msg ->
-                    if (betData == null || betData!!.isEmpty()) {
-                        mView.showError(msg)
-                    }
+                    mDataAdapter.setNewData(null)
+                    mView.showError(msg)
                 })
     }
 

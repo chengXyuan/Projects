@@ -1,11 +1,7 @@
 package com.daking.lottery.model
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import io.objectbox.annotation.Convert
-import io.objectbox.annotation.Entity
-import io.objectbox.annotation.Id
 
-@Entity
 data class MultiBetItem(val gameCode: Int,
                         val typeCode: String,
                         private val itemType: Int,
@@ -13,8 +9,8 @@ data class MultiBetItem(val gameCode: Int,
                         val typeName: String,
                         var isSelected: Boolean = false,
                         val number: Int = 0,
-                        @Convert(converter = OddsItemConverter::class, dbType = String::class) var betItem: OddsItem? = null,
-                        @Id var id: Long = 0) : MultiItemEntity, Comparable<MultiBetItem> {
+                        var betItem: OddsItem? = null,
+                        var id: Long = 0) : MultiItemEntity, Comparable<MultiBetItem> {
 
     override fun getItemType() = itemType
 

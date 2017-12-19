@@ -20,6 +20,15 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+#-------------------------------------------定制化区域----------------------------------------------
+#---------------------------------1.实体类---------------------------------
+
+-keep class com.daking.lottery.model.** { *; }
+
+#-------------------------------------------------------------------------
+
+#---------------------------------2.第三方包-------------------------------
+
 # Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
@@ -28,5 +37,146 @@
   public *;
 }
 
-# for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+##---------------Begin: proguard configuration for Gson  ----------
+# Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
+
+# Gson specific classes
+-dontwarn sun.misc.**
+#-keep class com.google.gson.stream.** { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+-keep class com.google.gson.examples.android.model.** { *; }
+
+# Prevent proguard from stripping interface information from TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+##---------------End: proguard configuration for Gson  ----------
+
+## Retrofit
+-dontwarn retrofit2.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+
+## OkHttp
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
+## EventBus
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}
+
+## BaseRecyclerViewAdapterHelper
+-keep class com.chad.library.adapter.** {
+*;
+}
+-keep public class * extends com.chad.library.adapter.base.BaseQuickAdapter
+-keep public class * extends com.chad.library.adapter.base.BaseViewHolder
+-keepclassmembers  class **$** extends com.chad.library.adapter.base.BaseViewHolder {
+     <init>(...);
+}
+
+## AdvancedWebView
+-dontwarn im.delight.android.webview.**
+
+#-------------------------------------------------------------------------
+
+#---------------------------------3.与js互相调用的类------------------------
+
+
+
+#-------------------------------------------------------------------------
+
+#---------------------------------4.反射相关的类和方法-----------------------
+
+
+
+#----------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------
+
+#-------------------------------------------基本不用动区域--------------------------------------------
+#---------------------------------基本指令区----------------------------------
+-optimizationpasses 5
+-dontskipnonpubliclibraryclassmembers
+-printmapping proguardMapping.txt
+-optimizations !code/simplification/cast,!field/*,!class/merging/*
+-keepattributes *Annotation*,InnerClasses
+-keepattributes Signature
+-keepattributes SourceFile,LineNumberTable
+#----------------------------------------------------------------------------
+
+#---------------------------------默认保留区---------------------------------
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class * extends android.view.View
+-keep public class * extends android.support.v4.app.Fragment
+-keep public class com.android.vending.licensing.ILicensingService
+-keep class android.support.** {*;}
+
+-keep public class * extends android.view.View{
+    *** get*();
+    void set*(***);
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+-keepclasseswithmembers class * {
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+}
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
+-keep class **.R$* {
+ *;
+}
+-keepclassmembers class * {
+    void *(**On*Event);
+}
+#----------------------------------------------------------------------------
+
+#---------------------------------webview------------------------------------
+-keepclassmembers class fqcn.of.javascript.interface.for.Webview {
+   public *;
+}
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
+    public boolean *(android.webkit.WebView, java.lang.String);
+}
+-keepclassmembers class * extends android.webkit.WebViewClient {
+    public void *(android.webkit.WebView, jav.lang.String);
+}
+#----------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------
+
+#混淆参考
+#作者：wolearn
+#链接：http://www.jianshu.com/p/f3455ecaa56e
+#來源：简书
+#著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

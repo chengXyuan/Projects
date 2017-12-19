@@ -3,7 +3,6 @@ package com.daking.lottery.ui.activity
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextWatcher
 import android.view.Gravity
 import android.view.View
 import android.widget.RadioButton
@@ -14,6 +13,7 @@ import com.daking.lottery.base.BaseMVPActivity
 import com.daking.lottery.dialog.BetDetailDialog
 import com.daking.lottery.dialog.MainMenuPopupWindow
 import com.daking.lottery.dialog.MoreGameTypePopup
+import com.daking.lottery.dialog.SwitchGamePopup
 import com.daking.lottery.dialog.easy.HorizontalGravity
 import com.daking.lottery.dialog.easy.VerticalGravity
 import com.daking.lottery.dialog.nice.BaseDialog
@@ -26,8 +26,10 @@ import com.daking.lottery.model.TypeTitle
 import com.daking.lottery.ui.iview.IBetView
 import com.daking.lottery.ui.presenter.BetPresenter
 import com.daking.lottery.util.LotteryUtils
+import com.daking.lottery.util.Utils
 import com.daking.lottery.util.format
 import com.daking.lottery.util.toast
+import com.daking.lottery.widget.MyTextWatcher
 import com.daking.lottery.widget.OnMultiClickListener
 import kotlinx.android.synthetic.main.activity_bet.*
 import kotlinx.android.synthetic.main.fragment_lottery_info.*
@@ -35,6 +37,7 @@ import kotlinx.android.synthetic.main.layout_bet_bottom.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.jetbrains.anko.collections.forEachWithIndex
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
@@ -56,6 +59,7 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
         tvGameName.text = LotteryUtils.instance.getGameName(gameCode)
 
         ivBack.setOnClickListener { onBackPressed() }
+        tvGameName.setOnClickListener { switchGame() }
         ivMenu.setOnClickListener { showMenuPopup() }
         tvReset.setOnClickListener { clearSelection() }
         btn_bet.setOnClickListener(object : OnMultiClickListener() {
@@ -63,7 +67,7 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
                 commitBetting()
             }
         })
-        et_bet_amount.addTextChangedListener(object : TextWatcher {
+        et_bet_amount.addTextChangedListener(object : MyTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
                 s?.let {
                     val text = s.toString()
@@ -71,12 +75,6 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
                         s.clear()
                     }
                 }
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
         })
 
@@ -131,6 +129,17 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
         }
     }
 
+    private fun switchGame() {
+        SwitchGamePopup(this, gameCode, object : SwitchGamePopup.OnItemClickListener {
+            override fun onItemClick(gameCode: Int) {
+                //当切换标题时, 重新给intent中的GAME_CODE赋值, 并重启Activity
+                finish()
+                startActivity<BetActivity>(Pair(Constant.GAME_CODE, gameCode))
+            }
+        }).createPopup<SwitchGamePopup>()
+                .showAtAnchorView(fl_title, VerticalGravity.BELOW, HorizontalGravity.CENTER)
+    }
+
     private fun showMoreTypePopup(moreTitle: List<TypeTitle>) {
         if (mTypePopup == null) {
             mTypePopup = MoreGameTypePopup(this, gameCode, moreTitle,
@@ -152,7 +161,8 @@ class BetActivity : BaseMVPActivity<BetPresenter>(), IBetView {
             menuPopup = MainMenuPopupWindow(this).createPopup()
         }
         menuPopup!!.refreshBalance()
-        menuPopup!!.showAtAnchorView(fl_title, VerticalGravity.BELOW, HorizontalGravity.ALIGN_RIGHT)
+        menuPopup!!.showAtAnchorView(fl_title, VerticalGravity.BELOW,
+                HorizontalGravity.ALIGN_RIGHT, Utils.dp2px(-8), 0)
     }
 
     /**

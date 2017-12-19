@@ -39,6 +39,7 @@
             android:layout_gravity="center|end"
             android:scaleType="centerInside"
             android:src="@drawable/ic_calendar"
+            android:visibility="gone"
             tools:ignore="ContentDescription"/>
     </FrameLayout>
 

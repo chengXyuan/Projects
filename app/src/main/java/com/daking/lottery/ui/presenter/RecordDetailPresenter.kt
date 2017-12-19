@@ -23,7 +23,7 @@ class RecordDetailPresenter : BasePresenter<IRecordDetailView>() {
     }
 
     private fun getUnsettledOrders(mPageIndex: Int, timestamp: Long?) {
-        mNetRepository.getUnsettedOrders(mPageIndex, Constant.PAGE_SIZE, timestamp)
+        mNetRepository.getUnsettledOrders(mPageIndex, Constant.PAGE_SIZE, timestamp)
                 .dealArray({ total, _, data ->
                     EventBus.getDefault().post(UnsettledCountEvent(total))
                     mView.showRecord(data)

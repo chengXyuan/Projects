@@ -10,7 +10,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.daking.lottery.R
 import com.daking.lottery.api.NetSubscriber
-import com.daking.lottery.base.BaseView
 import com.daking.lottery.dialog.nice.BaseDialog
 import com.daking.lottery.model.BetItem
 import com.daking.lottery.model.BetRequest
@@ -22,7 +21,6 @@ import com.daking.lottery.util.LotteryUtils
 import com.daking.lottery.util.RxUtils
 import com.daking.lottery.util.Utils
 import com.daking.lottery.widget.RecyclerViewDivider
-import com.trello.rxlifecycle2.LifecycleTransformer
 import kotlinx.android.synthetic.main.dialog_bet_detail.view.*
 import java.util.*
 
@@ -103,7 +101,7 @@ class BetDetailDialog : BaseDialog() {
                         RecyclerViewDivider.HORIZONTAL_DIVIDER, R.drawable.shape_divider_line))
                 val adapter = object : BaseQuickAdapter<MultiBetItem, BaseViewHolder>(R.layout.item_bet_data, betItems) {
                     override fun convert(helper: BaseViewHolder, item: MultiBetItem) {
-                        helper.setText(R.id.tv_bet_type, "${item.betItem?.name} [${item.betItem?.name}]")
+                        helper.setText(R.id.tv_bet_type, "${item.typeName} [${item.betItem?.name}]")
                         helper.setText(R.id.tv_bet_money, betMoney.toString())
                         helper.addOnClickListener(R.id.iv_delete)
                     }

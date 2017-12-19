@@ -35,7 +35,7 @@ class RechargeFragment : BaseMVPFragment<RechargePresenter>(), IRechargeView {
 
     private fun initRecyclerView() {
         mAdapter = PayWaysAdapter(null)
-        mAdapter.setOnItemClickListener { adapter, view, position ->
+        mAdapter.setOnItemClickListener { adapter, _, position ->
             when (adapter.getItemViewType(position)) {
                 PayWaysAdapter.TYPE_ONLINE_PAY -> {
                     //线上支付

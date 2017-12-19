@@ -33,5 +33,6 @@ interface Constant {
         val BASE_URL = "http://182.16.9.242/userBetting/"
         val GAME_RULE_WEBSITE = "http://androidapi.alcp66.com/#/todayRule"//游戏规则
         val LOTTERY_WEBSITE = "https://pk10tv.com/"//开奖网
+        val WELCOME = "WELCOME TO ALI LOTTERY"
     }
 }

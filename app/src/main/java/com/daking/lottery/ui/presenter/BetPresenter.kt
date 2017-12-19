@@ -6,6 +6,7 @@ import android.util.ArrayMap
 import android.util.SparseArray
 import collections.forEach
 import com.daking.lottery.base.BasePresenter
+import com.daking.lottery.event.OutOfSignEvent
 import com.daking.lottery.model.LotteryInfo
 import com.daking.lottery.ui.fragment.OddsFragment
 import com.daking.lottery.ui.iview.IBetView
@@ -16,6 +17,7 @@ import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
+import org.greenrobot.eventbus.Subscribe
 import java.util.concurrent.TimeUnit
 
 class BetPresenter : BasePresenter<IBetView>() {
@@ -194,5 +196,12 @@ class BetPresenter : BasePresenter<IBetView>() {
         }
         fragments.clear()
         arrayMap.remove(gameCode)
+    }
+
+    override fun useEventBus() = true
+
+    @Subscribe
+    fun onEvent(event: OutOfSignEvent) {
+        refreshBalance()
     }
 }

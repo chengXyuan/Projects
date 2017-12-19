@@ -1,11 +1,13 @@
 package com.daking.lottery.ui.presenter
 
 import com.daking.lottery.base.BasePresenter
+import com.daking.lottery.event.OutOfSignEvent
 import com.daking.lottery.model.BankModel
 import com.daking.lottery.ui.iview.IWithdrawView
 import com.daking.lottery.util.AccountHelper
 import com.daking.lottery.util.log
 import com.daking.lottery.util.toast
+import org.greenrobot.eventbus.Subscribe
 
 class WithdrawPresenter : BasePresenter<IWithdrawView>() {
 
@@ -67,7 +69,7 @@ class WithdrawPresenter : BasePresenter<IWithdrawView>() {
 
     private fun withdraw(bankNum: String, amount: String, payPassword: String) {
         mNetRepository.withdraw(bankNum, amount, payPassword)
-                .dealObj({ code, msg, model ->
+                .dealObj({ code, msg, _ ->
                     log("code=$code, msg: $msg")
                     toast(msg)
                     mView.withdrawSuccess()
@@ -75,5 +77,12 @@ class WithdrawPresenter : BasePresenter<IWithdrawView>() {
                     log("code=$code, msg: $msg")
                     toast(msg)
                 })
+    }
+
+    override fun useEventBus() = true
+
+    @Subscribe
+    fun onEvent(event: OutOfSignEvent) {
+        refreshAccountInfo()
     }
 }

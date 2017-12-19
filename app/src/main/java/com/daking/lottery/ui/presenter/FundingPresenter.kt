@@ -1,8 +1,10 @@
 package com.daking.lottery.ui.presenter
 
 import com.daking.lottery.base.BasePresenter
+import com.daking.lottery.event.OutOfSignEvent
 import com.daking.lottery.ui.iview.IFundingView
 import com.daking.lottery.util.AccountHelper
+import org.greenrobot.eventbus.Subscribe
 
 class FundingPresenter : BasePresenter<IFundingView>() {
 
@@ -23,5 +25,12 @@ class FundingPresenter : BasePresenter<IFundingView>() {
                 mView.showAccount(user)
             }
         })
+    }
+
+    override fun useEventBus() = true
+
+    @Subscribe
+    fun onEvent(event: OutOfSignEvent) {
+        refreshAccountInfo()
     }
 }

@@ -1,13 +1,10 @@
 package com.daking.lottery.repository
 
 import com.daking.lottery.R
-import com.daking.lottery.app.App
 import com.daking.lottery.app.Constant
-import com.daking.lottery.model.*
-import com.daking.lottery.util.log
-import io.objectbox.kotlin.boxFor
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
+import com.daking.lottery.model.BankRes
+import com.daking.lottery.model.GameModel
+import com.daking.lottery.model.MineItem
 
 /**
  * 本地数据仓库: 为应用提供本地数据(包括写死的和缓存的.)
@@ -101,10 +98,10 @@ class LocalRepository private constructor() {
         val banks = getBankcardSupported()
         return banks.find { it.bankName == bankName }?.logoRes ?: 0
     }
-
-    /**
+/*
+    *//**
      * 根据gameCode和typeCode获取赔率
-     */
+     *//*
     fun getOddsData(gameCode: Int, typeCode: String): List<MultiBetItem> {
         val boxStore = App.instance.boxStore
         return boxStore.boxFor(MultiBetItem::class).query()
@@ -113,9 +110,9 @@ class LocalRepository private constructor() {
                 .build().find()
     }
 
-    /**
+    *//**
      * 根据gameCode和typeCode保存赔率到数据库
-     */
+     *//*
     fun saveOddsData(gameCode: Int, typeCode: String, data: List<MultiBetItem>) {
         Observable.just(data)
                 .observeOn(Schedulers.io())//在IO线程中执行保存操作
@@ -131,9 +128,9 @@ class LocalRepository private constructor() {
                 }
     }
 
-    /**
+    *//**
      * 获取连码赔率
-     */
+     *//*
     fun getOddsLian(gameCode: Int): List<BetTypeItem> {
         val boxStore = App.instance.boxStore
         return boxStore.boxFor(BetTypeItem::class).query()
@@ -141,9 +138,9 @@ class LocalRepository private constructor() {
                 .build().find()
     }
 
-    /**
+    *//**
      * 保存连码赔率
-     */
+     *//*
     fun saveOddsLian(gameCode: Int, data: List<BetTypeItem>) {
         Observable.just(data)
                 .observeOn(Schedulers.io())//在IO线程中执行保存操作
@@ -157,5 +154,5 @@ class LocalRepository private constructor() {
                     betItemBox.put(it)
                     log("保存数据 gameCode = $gameCode, 共${data.size}条!")
                 }
-    }
+    }*/
 }

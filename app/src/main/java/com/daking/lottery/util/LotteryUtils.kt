@@ -61,6 +61,19 @@ class LotteryUtils private constructor() {
         }
     }
 
+    fun getAllOtherGames(gameCode: Int): LinkedHashMap<Int, String> {
+        val map = LinkedHashMap<Int, String>()
+        map.put(Constant.GAME_CODE_PJ_PK_10, "北京PK拾")
+        map.put(Constant.GAME_CODE_CJ_LOTTERY, "重庆时时彩")
+        map.put(Constant.GAME_CODE_HK_MARK_SIX, "香港六合彩")
+        map.put(Constant.GAME_CODE_LUCKY_AIRSHIP, "幸运飞艇")
+        map.put(Constant.GAME_CODE_LUCKY_28, "PC蛋蛋")
+        map.put(Constant.GAME_CODE_GD_HAPPY_10, "广东快乐十分")
+        map.put(Constant.GAME_CODE_CJ_LUCKY_FARM, "重庆幸运农场")
+        map.remove(gameCode)
+        return map
+    }
+
     fun getLotteryNumBg(gameCode: Int, number: String): Int {
         return when (gameCode) {
             Constant.GAME_CODE_PJ_PK_10,
